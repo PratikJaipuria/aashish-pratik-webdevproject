@@ -46,7 +46,12 @@ input.form-control {
 
 body {
     padding-top: 36px;
-    background-color: lightgrey;
+    /*background-color: black;*/
+
+}
+#mainPage{
+    background-image:url(../images/0.jpg);
+    background-size: cover;
 
 }
 
@@ -60,7 +65,13 @@ body {
     background-size: cover;
     }
 
-#registrationPage{
+#ownerRegistration{
+    background-image:url(../images/1.jpg);
+    background-repeat: no-repeat;
+
+}
+
+#userRegistration{
     background-image:url(../images/1.jpg);
     background-repeat: no-repeat;
 

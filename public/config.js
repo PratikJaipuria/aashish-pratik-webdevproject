@@ -20,7 +20,21 @@
                 templateUrl: "views/login.html"})
 
 
-            .when("/register",{
-                templateUrl: "views/register.html"})
+            // .when("/register",{
+            //     templateUrl: "views/register.html"
+            //     // controller: "registerController"
+            // })
+
+
+            .when("/register/user",{
+                templateUrl: "views/userRegister.html",
+                controller: "userRegisterController"
+            })
+
+            .when("/register/owner",{
+                templateUrl: "views/ownerRegister.html",
+                controller: "ownerRegisterController"
+            })
+
 
     }})();
