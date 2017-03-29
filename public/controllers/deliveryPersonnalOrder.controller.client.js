@@ -5,30 +5,59 @@
     
     function deliveryPersonnalOrderController () {
         var vm = this;
-        var ids = ["1","2","3"];
-        vm.id=ids;
+        // var ids = ["1","2","3"];
+        // vm.id=ids;
+
+        var orders=[{
+                        name: "abc",
+                        address:"germain",
+                        orderNum: 1,
+                        phone: 123,
+                        amount: "1000",
+                        flag:0
+                    },{
+                        name: "def",
+                        address:"huntington",
+                        orderNum: 2,
+                        phone: 456,
+                        amount: "7000",
+                        flag:0}];
 
 
         vm.delivered=delivered;
-        
+        vm.enableButton=enableButton;
         function init() {
-            $('#delivery' + vm.id[0]).bootstrapToggle('on');
-            $('#delivery' + vm.id[1]).bootstrapToggle('on');
-            console.log('#delivery' + vm.id[0]);
+            vm.orders=orders;
         }
         init();
-        
-        function delivered () {
-            if ('#delivery' + vm.id[0] == "#delivery0"){
-                $('#delivery' + vm.id[0]).bootstrapToggle('off').bootstrapToggle('disable');
+
+        function enableButton (orderId,orderFlag) {
+            // console.log( vm.orders);
+            if (orderFlag==0){
+                $('#delivery-' + orderId).bootstrapToggle('on');
+                // for (order in vm.orders){
+                //     if (vm.orders[order].orderNum == orderId){
+                //         vm.orders[order].flag=1;
+                //     }
+                // }
+
             }
 
-            // $('#delivery-' + vm.id[0]);
+            // console.log(vm.orders);
 
-            // $('#delivery-' + vm.id[1]).bootstrapToggle('off');
-            // $('#delivery-' + vm.id[1]).bootstrapToggle('disable');
-            // $('#deliveryStatus1').bootstrapToggle('off');
-            // $('#deliveryStatus1').bootstrapToggle('disable');
+
+        }
+        
+        function delivered (orderId, orderFlag) {
+            console.log( vm.orders);
+            $('#delivery-' + orderId).bootstrapToggle('off').bootstrapToggle('disable');
+
+                for ( var order in vm.orders){
+                    if (vm.orders[order].orderNum == orderId){
+                        vm.orders[order].flag=1;
+                    }
+                }
+            console.log( vm.orders);
 
 
 
