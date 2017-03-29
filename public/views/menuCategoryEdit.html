@@ -1,0 +1,57 @@
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/owner/123/restaurant/123/menu">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
+            </a>
+        </div>
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Edit Category </span>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container wbdv-pad-left-right">
+    <form>
+        <div style="width: 100%; top: 50%; left: 50%;" class="wbdv-mar-top-25 wbdv-text-clr-white">
+
+            <div>
+                <label for="prevCat">Existing Name</label>
+                <input id="prevCat" ng-model="model.prevCat" class="form-control" ng-disabled="model.prevCat">
+            </div>
+            <div>
+                <label for="newCat" class="wbdv-req-field wbdv-mar-top-5">New Category:</label>
+                <input id="newCat" ng-model="model.newCat" class="form-control" type="text" placeholder="New Category Name">
+            </div>
+        </div>
+
+    </form>
+    <div  class="wbdv-mar-bottom-60 wbdv-pad-left-right wbdv-mar-top-25">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <a href="#/owner/123/restaurant/123/menu" class="btn btn-success btn-block">Update</a>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <a href="#/owner/123/restaurant/123/menu" class="btn btn-danger  btn-block">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

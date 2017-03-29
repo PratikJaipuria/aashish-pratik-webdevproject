@@ -1,0 +1,78 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0">-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>login</title>-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!--<link href="style.css" rel="stylesheet"/>-->
+<!--</head>-->
+
+
+
+<!--<div class="container" id="loginPage" style="margin-top: 100px;">-->
+
+
+
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/home">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<div  class="container-fluid wbdv-mar-top-50" id="loginPage" >
+    <!--<div id="loginContent">-->
+
+
+
+    <!--<div ng-show="model.error" class="alert alert-danger" role="alert">-->
+        <!--{{model.error}}-->
+    <!--</div>-->
+
+
+    <div>
+        <h1 class="wbdv-text-clr-white">Login</h1>
+        <label class="wbdv-text-clr-white" for="username">Username</label>
+        <input ng-model="user.username" type="text"
+               id="username"
+               class="form-control"
+               placeholder="username"
+               required/>
+
+        <label class="wbdv-text-clr-white wbdv-mar-top-5" for="password">Password</label>
+        <input ng-model="user.password"
+               id="password"
+               type="password"
+               class="form-control"
+               placeholder="password"
+               required/>
+
+
+        <a style="margin-top: 5px;" ng-click="model.login(user)"
+           class="btn btn-success
+           btn-block">Login</a>
+    </div>
+
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-xs-6">
+            <a href="#/register-user" class="btn btn-primary btn-block pull-right">Register User</a>
+        </div>
+        <div class="col-xs-6">
+            <a href="#/register-owner" class="btn btn-danger btn-block pull-left" ">Register Owner</a>
+        </div>
+    </div>
+
+    <!--</div>-->
+
+</div>
+
+
+
+<!--</html>-->

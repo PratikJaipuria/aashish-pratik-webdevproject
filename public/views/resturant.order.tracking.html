@@ -1,0 +1,231 @@
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+//    var myBtn
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
+
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/owner/123/restaurant">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
+            </a>
+        </div>
+
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Restaurant Orders </span>
+        </div>
+
+
+
+        <div  class="navbar-text navbar-link pull-right visible-xs" >
+            <a href="#/owner/123/restaurant/123/menu">
+                <span class="glyphicon glyphicon-menu-hamburger wbdv-text-clr-white" title="Menu"></span>
+            </a>
+        </div>
+
+        <div  class="navbar-text navbar-link pull-right visible-xs" >
+            <a href="#/owner/123/restaurant/123/db">
+                <i class="fa fa-motorcycle wbdv-text-clr-white" style="padding-right: 25px;" title="Delivery Boys" aria-hidden="true"></i>
+
+            </a>
+        </div>
+
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
+            <a href="#/owner/123/restaurant/123/menu">
+                <span class="wbdv-text-clr-white" title="Menu" >Menu</span>
+            </a>
+        </div>
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
+            <a href="#/owner/123/restaurant/123/db">
+                <span class="wbdv-text-clr-white" title="Delivery Boys" style="padding-right: 25px;">Delivery Boys</span>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+
+
+<div class="container">
+
+
+    <div id="menu">
+
+
+        <div class="panel list-group prevent-overflow">
+            <a  class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu">ORDERS <span class="glyphicon glyphicon-envelope pull-right"></span></a>
+            <div id="sm" class="sublinks collapse">
+
+
+                <div class="list-group-item small">
+                    <div class="row ">
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">OrderID</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">123456789</span>
+
+                        </div>
+
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">Customer Name</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">Donald Trump</span>
+                        </div>
+
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">Phone Number</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">987654321</span>
+                        </div>
+
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">Address</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">abc stjhbhfbfbfbfbvmbfmbmvbmnbnreet, boston, MA</span>
+                        </div>
+
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">Amount</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">$600</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4  pull-right">
+                        <label for="delBoy"  class="wbdv-req-field leftinfotext" style="background-color: yellow;">Select Delivery Boy:</label>
+                        <select ng-model="model.order.delBoy"
+                                id="delBoy"
+                                name="delBoy"
+                                class="form-control leftinfotext">
+                            <option value="1" ng-selected="selected">Ramesh</option>
+                            <option value="2" >Suresh</option>
+                            <option value="3" >Rakesh</option>
+
+                        </select>
+                    </div>
+                    <div class="wbdv-mar-top-25">
+                        <a class="btn btn-primary btn-block" id="myBtn"><span>Assign for Delivery</span></a>
+                    </div>
+
+            </div>
+        </div>
+
+
+
+            <a  class="list-group-item" data-toggle="collapse" data-target="#sm1" data-parent="#menu">ORDER 2<span class="glyphicon glyphicon-envelope pull-right"></span></a>
+            <div id="sm1" class="sublinks collapse">
+
+
+                <div class="list-group-item small">
+                    <div class="row">
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">OrderID</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">123456789</span>
+
+                        </div>
+
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">Customer Name</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">Donald Trump</span>
+                        </div>
+
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">Phone Number</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">987654321</span>
+                        </div>
+
+                        <div>
+                            <span class="col-xs-6 col-sm-4 leftinfotext">Amount</span>
+                            <span class="col-xs-6 col-sm-8 rightinfotext">$600</span>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary btn-block" id="myBtn"><span>Assign for Delivery</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+</div>
+
+            <!--<div>-->
+            <!--<a class="list-group-item" data-toggle="collapse" data-target="#sl" data-parent="#menu">AVAILABE DELIVERY BOY<span class="glyphicon glyphicon-tag pull-right"></span></a>-->
+            <!--<div id="sl" class="sublinks collapse">-->
+                <!--<a class="list-group-item small" id="myBtn"><span class="glyphicon glyphicon-chevron-right"></span> saved tasks</a>-->
+                <!--<a class="list-group-item small" id="myBtn"><span class="glyphicon glyphicon-chevron-right"></span> add new task</a>-->
+            <!--</div>-->
+
+            <!--<a  class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu">ORDERS <span class="glyphicon glyphicon-envelope pull-right"></span></a>-->
+            <!--<div id="sm" class="sublinks collapse">-->
+
+                <!--<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> inbox</a>-->
+                <!--<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> sent</a>-->
+            <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+
+        <!-- The Modal -->
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <!--<p>Some text in the Modal..</p>-->
+            </div>
+
+            <li>
+                <ul>
+                    Ramesh
+                </ul>
+
+                <ul>
+                    Suresh
+                </ul>
+
+                <ul>
+                    Yogesh
+                </ul>
+            </li>
+             </div>
+
+</div>
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

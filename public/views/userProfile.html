@@ -1,18 +1,27 @@
-<nav class="navbar  navbar-fixed-top bg-primary">
+<nav class="navbar  navbar-fixed-top bg-primary" xmlns="http://www.w3.org/1999/html">
     <div class="container-fluid" >
-
-        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white "> Profile </span>
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/login">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
+            </a>
         </div>
-        <div  class="navbar-text navbar-link pull-right">
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Profile </span>
+        </div>
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
             <a ng-click="model.modifyUser(model.user)">
-                <span class="glyphicon glyphicon-ok wbdv-text-clr-white"></span>
+                <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
+            </a>
+        </div>
+        <div  class="navbar-text navbar-link pull-right visible-xs">
+            <a ng-click="model.modifyUser(model.user)">
+                <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
             </a>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid wbdv-profile-content wbdv-mar-top-25">
+<div class="container  wbdv-text-clr-white">
 
 
     <div ng-show="model.message" class="alert alert-success" role="alert" >
@@ -23,67 +32,163 @@
         {{model.error}}
     </div>
 
+    <div class="container  wbdv-mar-top-25">
+        <div class="row">
+            <form name="profilePage">
 
-    <form name="profilePage">
+                <div class="row wbdv-pad-left-right">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="username">Username</label>
+                        <input ng-model="model.user.username"
+                               ng-disabled="model.user.username"
+                               type="text" class="form-control"
+                               id="username"
+                               value="aashishsingh"
+                               placeholder="Username"/>
+                    </div>
 
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input ng-model="model.user.username"
-                   ng-disabled="model.user.username"
-                   type="text" class="form-control"
-                   id="username"
-                   value="aashishsingh"
-                   placeholder="Username"/>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="firstName" class="wbdv-req-field">First Name:</label>
+                        <input ng-model="model.user.firstName"
+                               type="text" class="form-control"
+                               id="firstName"
+                               name="firstName"
+                               value="Aashish Vikram"
+                               placeholder="First Name"
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="lastName"  class="wbdv-req-field">Last Name:</label>
+                        <input ng-model="model.user.lastName"
+                               type="text" class="form-control"
+                               id="lastName"
+                               name="lastName"
+                               value="Singh"
+                               placeholder="Last Name"
+                               required/>
+                    </div>
+
+                </div>
+
+                <div class="row wbdv-pad-left-right">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="password"  class="wbdv-req-field">Password:</label>
+                        <input ng-model="model.user.password"
+                               type="password" class="form-control"
+                               id="password"
+                               name="password"
+                               value="Singh"
+                               placeholder="Password"
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="email"  class="wbdv-req-field">Email address:</label>
+                        <input ng-model="model.user.email"
+                               type="email" class="form-control"
+                               id="email"
+                               value="singh.aa@husky.neu.edu"
+                               placeholder="Email Id"/>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="phone"  class="wbdv-req-field">Phone:</label>
+                        <input ng-model="model.user.phone"
+                               type="text" class="form-control"
+                               id="phone"
+                               name="phone"
+                               placeholder="Phone"
+                               required/>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row wbdv-pad-left-right">
+                    <div class="col-sm-4 col-xs-12 ">
+                        <div class="form-group ">
+                            <label for="address"  class="wbdv-req-field">Address:</label>
+                            <textarea ng-model="model.user.address"
+                                      class="form-control"
+                                      id="address"
+                                      name="address"
+                                      row="5"
+                                      placeholder="Address" required></textarea>
+                        </div>
+                    </div>
+
+                        <div class="form-group col-sm-3 col-xs-12">
+                            <label for="city"  class="wbdv-req-field">City:</label>
+
+                            <select ng-model="model.user.city"
+                                    id="city"
+                                    name="city"
+                                    class="form-control" placeholder="Restaurant City"
+                                    style="display: block;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-sm-2 col-xs-12">
+                            <label for="pin"  class="wbdv-req-field">PIN:</label>
+                            <input ng-model="model.user.pin"
+                                   type="text" class="form-control"
+                                   id="pin"
+                                   name="pin"
+                                   placeholder="PIN"
+                                   required/>
+                        </div>
+
+                        <div class="form-group col-sm-3 col-xs-12">
+                            <label for="country"  class="wbdv-req-field">Country:</label>
+                            <select ng-model="model.user.country"
+                                    id="country"
+                                    name="country"
+                                    class="form-control">
+                                <option value="1" selected="selected">United States</option>
+
+                            </select>
+                        </div>
+                     </div>
+                <div class="row wbdv-pad-left-right">
+                    <div class="col-xs-12 col-sm-6">
+                        <label for="dateCreated">Profile Created On</label>
+                        <input ng-model="model.user.dateCreated"
+                               ng-disabled="model.user.dateCreated"
+                               type="text" class="form-control"
+                               id="dateCreated"
+                               name="dateCreated"/>
+                    </div>
+                </div>
+
+            </form>
+            <div class="row  wbdv-pad-left-right wbdv-mar-bottom-60">
+                <div class="col-sm-6 col-xs-12">
+                    <a ng-click="model.searchRest(model.user.firstName)" class="btn btn-success btn-block form-control">Update</a>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <a href="#/login" class="btn btn-danger  btn-block">Logout</a>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="password"  class="wbdv-req-field">Password:</label>
-            <input ng-model="model.user.password"
-                   type="password" class="form-control"
-                   id="password"
-                   name="password"
-                   value="Singh"
-                   placeholder="Password"
-                   required/>
+
         </div>
-
-        <div class="form-group">
-            <label for="email"  class="wbdv-req-field">Email address:</label>
-            <input ng-model="model.user.email"
-                   type="email" class="form-control"
-                   id="email"
-                   value="singh.aa@husky.neu.edu"
-                   placeholder="Email Id"/>
-        </div>
-
-        <div class="form-group">
-            <label for="firstName" class="wbdv-req-field">First Name:</label>
-            <input ng-model="model.user.firstName"
-                   type="text" class="form-control"
-                   id="firstName"
-                   name="firstName"
-                   value="Aashish Vikram"
-                   placeholder="First Name"
-                   required/>
-        </div>
-
-        <div class="form-group">
-            <label for="lastName"  class="wbdv-req-field">Last Name:</label>
-            <input ng-model="model.user.lastName"
-                   type="text" class="form-control"
-                   id="lastName"
-                   name="lastName"
-                   value="Singh"
-                   placeholder="Last Name"
-                   required/>
-        </div>
-
-        <a href="#/users/{{model.user._id}}/website" class="btn btn-primary btn-block form-control">Websites</a>
-        <a ng-click="model.modifyUser(model.user)" class="btn btn-success btn-block form-control">Update</a>
-        <a href="#/login" class="btn btn-danger  btn-block">Logout</a>
-
-    </form>
 </div>
+
+
+
+
+
+
 
 
 
@@ -91,7 +196,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/users/{{model.user._id}}" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

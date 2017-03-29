@@ -1,0 +1,189 @@
+<nav class="navbar navbar_container navbar-fixed-top ">
+    <div class="container-fluid">
+<div class="row">
+    <div class="col-sm-4 pull-left hidden-xs">
+        <div class="navbar-header navbar-link pull-left">
+            <span class="navbar-brand wbdv-text-clr-white "> Resturants </span>
+        </div>
+    </div>
+    <div class="col-sm-4 col-xs-6 search-bar-pad">
+        <input placeholder="Restaurant Name" type="text"  ng-model="model.search.name" class="form-control pull-left">
+    </div>
+    <div class="col-sm-4 col-xs-6 search-bar-pad">
+
+            <input placeholder="Restaurant Address" type="text"  ng-model="model.search.address" class="form-control pull-left">
+           <a ng-click="model.searchRestaurant(model.search)"> <span class="glyphicon glyphicon-search pull-right search-bar-margin"></span></a>
+    </div>
+    </div>
+</div>
+</nav>
+
+<div class="container-fluid  level-search-result wbdv-mar-top-15" >
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <div class="col-sm-2 hidden-xs">
+        <div class="menudiv">
+            <div class="hotelname">Filters</div>
+            <hr>
+            <div>
+                <!--<div class=""></div>-->
+                <div><div class="filter-headings">Sort by</div></div>
+                <a href="#"><div class="filter-items"><span>Popularity <span> - high to low </span></span></div></a>
+                <a href="#"><div class="filter-items"><span>Rating<span> - high to low </span></span></div></a>
+                <a href="#"><div class="filter-items"><span>Cost <span> - high to low </span></span></div></a>
+                <a href="/boston/lunch?sort=ca"><div class="filter-items"><span>Cost <span> - low to high </span></span></div></a>
+                <a href="/boston/lunch?sort=recent"><div class="filter-items"><span>Recently added</span></div></a></div>
+
+            <hr>
+
+
+            <div>
+                <div class="filter-headings">Cuisine</div>
+                <a  href="#"><div class="filter-items"><span>Pizza</span></div></a>
+                <a  href="#"><div class="filter-items"><span>American</span></div></a>
+                <a  href="#"><div class="filter-items"><span>Italian</span></div></a>
+                <a  href="#"><div class="filter-items"><span>Chinese</span></div></a>
+                <a  href="#"><div class="filter-items"><span>Seafood</span></div></a>
+
+            </div>
+    </div>
+
+    </div>
+
+    <div class="col-sm-10">
+        <div class="row" >
+            <div ng-repeat="restaurant in model.restaurants">
+            <div class="menudiv">
+
+                <div class="row" >
+                <div class="btn pull-right rating">4.2/5</div>
+                <div class="col-sm-3 "><img src="{{restaurant.logoUrl}}" class="imageview"></div>
+                <div class="col-sm-9 hotelname"><a href="{{restaurant.url}}">{{restaurant.name}}
+                    <p class="greytext">{{restaurant.streetAddress}},{{restaurant.city}}, {{restaurant.zip}}</p></a>
+                </div>
+                </div>
+                 <hr>
+                <div class="row">
+
+                    <div ng-switch="{{restaurant.open}}">
+                        <div ng-switch-when="true">
+                            <div >
+                                <span class="col-xs-3 leftinfotext">OPEN</span>
+                                <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
+
+                            </div>
+                        </div>
+                        <div ng-switch-when="false">
+                            <div>
+                                <span class="col-xs-3 leftinfotext">OPEN</span>
+                                <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--ng-repeat="foodTypes in restaurant.foodTypes"-->
+                    <div>
+                            <span class="col-xs-3 leftinfotext">CUISINES:</span>
+                            <span  class="col-xs-9 rightinfotext">{{restaurant.cuisine}}</span>
+                              <!--<span ng-repeat="foodTypes in restaurant.foodTypes">-->
+                                 <!--{{foodTypes}}-->
+                                 <!--<span ng-show=" ! $last ">,</span>-->
+
+                                <!--</span>-->
+
+                    </div>
+
+                    <div>   <span class="col-xs-3 leftinfotext">PHONE:</span>
+                            <span class="col-xs-9 rightinfotext">{{restaurant.phone}}</span>
+                    </div>
+
+                    <div>
+                        <span class="col-xs-3 leftinfotext">HOURS:</span>
+                            <span class="col-xs-9 rightinfotext">
+                                <div ng-repeat="(key, time) in restaurant.hours">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-xs-4 pull-left">{{key}}</div>
+                                        <div class="col-sm-3 col-xs-8 pull-left">{{time[0]}}</div>
+                                    </div>
+                                </div>
+                            </span>
+                    </div>
+
+                    <div ng-switch="{{restaurant.offersDelivery}}">
+                        <div ng-switch-when="true">
+                            <div >
+                                <span class="col-xs-3 leftinfotext">Delivery</span>
+                                <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
+
+                            </div>
+                        </div>
+                        <div ng-switch-when="false">
+                            <div>
+                                <span class="col-xs-3 leftinfotext">Delivery</span>
+                                <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch="{{restaurant.offersPickup}}">
+                        <div ng-switch-when="true">
+                            <div >
+                                <span class="col-xs-3 leftinfotext">Pickup</span>
+                                <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
+
+                            </div>
+                        </div>
+                        <div ng-switch-when="false">
+                            <div>
+                                <span class="col-xs-3 leftinfotext">Pickup</span>
+                                <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                   <!--<div>-->
+                        <!--<span class="col-xs-3 leftinfotext">FEATURED IN:</span>-->
+                        <!--<span class="col-xs-9 rightinfotext">Trending this week</span>-->
+                    <!--</div>-->
+
+
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="viewmenu">
+                    <a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">
+                        <span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+</div>
+             </div>
+        </div>
+</div>
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
+                        <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</nav>

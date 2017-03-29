@@ -1,0 +1,188 @@
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
+
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Owner Profile </span>
+        </div>
+
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
+
+            <a href="#/owner/123/restaurant" style="padding-right: 25px;">
+                <span class=" wbdv-text-clr-white" title="View Restaurant">View Restaurant </span>
+            </a>
+            <a href="#/owner/123/restaurant/new" style="padding-right: 25px;">
+                <span class="wbdv-text-clr-white" title="Add Restaurant">Add Restaurant</span>
+            </a>
+
+            <a ng-click="model.modifyUser(model.user)" >
+                <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
+            </a>
+
+        </div>
+
+        <div  class="navbar-text navbar-link pull-right visible-xs">
+
+            <a href="#/owner/123/restaurant" style="padding-right: 25px;">
+                <span class="glyphicon glyphicon-cutlery wbdv-text-clr-white" title="View Restaurant"></span>
+            </a>
+            <a href="#/owner/123/restaurant/new" style="padding-right: 25px;">
+                <span class="glyphicon glyphicon-plus wbdv-text-clr-white" title="Add Restaurant"></span>
+            </a>
+
+            <a ng-click="model.modifyUser(model.user)" >
+                <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container  wbdv-text-clr-white">
+
+
+    <div ng-show="model.message" class="alert alert-success" role="alert" >
+        {{model.message}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <div class="container  wbdv-mar-top-25">
+
+        <div class="row">
+            <form name="profilePage">
+
+                <div class="row wbdv-pad-left-right">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="username">Username</label>
+                        <input ng-model="model.user.username"
+                               ng-disabled="model.user.username"
+                               type="text" class="form-control"
+                               id="username"
+                               value="aashishsingh"
+                               placeholder="Username"/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="firstName" class="wbdv-req-field">First Name:</label>
+                        <input ng-model="model.user.firstName"
+                               type="text" class="form-control"
+                               id="firstName"
+                               name="firstName"
+                               value="Aashish Vikram"
+                               placeholder="First Name"
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="lastName"  class="wbdv-req-field">Last Name:</label>
+                        <input ng-model="model.user.lastName"
+                               type="text" class="form-control"
+                               id="lastName"
+                               name="lastName"
+                               value="Singh"
+                               placeholder="Last Name"
+                               required/>
+                    </div>
+
+                </div>
+
+                <div class="row wbdv-pad-left-right">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="password"  class="wbdv-req-field">Password:</label>
+                        <input ng-model="model.user.password"
+                               type="password" class="form-control"
+                               id="password"
+                               name="password"
+                               value="Singh"
+                               placeholder="Password"
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="email"  class="wbdv-req-field">Email address:</label>
+                        <input ng-model="model.user.email"
+                               type="email" class="form-control"
+                               id="email"
+                               value="singh.aa@husky.neu.edu"
+                               placeholder="Email Id"/>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="phone"  class="wbdv-req-field">Phone:</label>
+                        <input ng-model="model.user.phone"
+                               type="text" class="form-control"
+                               id="phone"
+                               name="phone"
+                               placeholder="Phone"
+                               required/>
+                    </div>
+
+                </div>
+
+                <div class="row wbdv-pad-left-right wbdv-mar-top-5">
+
+
+                    <div class="col-xs-12 col-sm-6 pull-left">
+                        <label for="dateCreated-xs">Profile Created On</label>
+                        <input ng-model="model.user.dateCreated"
+                               ng-disabled="model.user.dateCreated"
+                               type="text" class="form-control"
+                               id="dateCreated-xs"
+                               name="dateCreated"/>
+                    </div>
+
+                    <!--<div class="col-xs-12 col-sm-6 pull-right">-->
+                        <!--<label for="dateCreated-xs">View Restaurants</label>-->
+                        <!--<a href="">-->
+                            <!--<div style="background-color: lime; color: black; height: 34px; padding-top: 5px; padding-left: 95px;">-->
+                                <!--<span class="glyphicon glyphicon-cutlery" style="padding-left: 30%;"></span></div>-->
+                        <!--</a>-->
+                    <!--</div>-->
+
+                </div>
+
+
+        </form>
+    </div>
+
+
+</div>
+
+    <div  class="container wbdv-mar-bottom-60 wbdv-pad-left-right wbdv-mar-top-25">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <a ng-click="" class="btn btn-success btn-block form-control">Update</a>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <a href="#/login" class="btn btn-danger  btn-block">Logout</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
+                        <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</nav>
+
+

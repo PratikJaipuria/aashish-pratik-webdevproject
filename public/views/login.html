@@ -12,7 +12,23 @@
 
 <!--<div class="container" id="loginPage" style="margin-top: 100px;">-->
 
-<div  class="container-fluid" id="loginPage">
+
+
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/home">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<div  class="container wbdv-mar-top-50" id="loginPage" >
+    <!--<div id="loginContent">-->
 
 
 
@@ -42,18 +58,20 @@
         <a style="margin-top: 5px;" ng-click="model.login(user)"
            class="btn btn-success
            btn-block">Login</a>
+
+        <div class="row wbdv-mar-top-15" >
+            <div class="col-xs-6">
+                <a href="#/register-user" class="btn btn-primary btn-block pull-right">Register User</a>
+            </div>
+            <div class="col-xs-6">
+                <a href="#/register-owner" class="btn btn-danger btn-block pull-left" ">Register Owner</a>
+            </div>
+        </div>
     </div>
 
-    <div class="row" style="margin-top: 50px;">
-        <div class="col-xs-6">
-            <a href="#/register/user" class="btn btn-primary btn-block pull-right">Register User</a>
-        </div>
-        <div class="col-xs-6">
-            <a href="#/register/owner" class="btn btn-danger btn-block pull-left" ">Register Owner</a>
-        </div>
-    </div>
 
 
+    <!--</div>-->
 
 </div>
 

@@ -1,0 +1,105 @@
+<nav class="navbar navbar_container navbar-fixed-top ">
+    <div class="container-fluid">
+<div class="row">
+    <div class="col-sm-8 pull-left hidden-xs">
+        <div class="navbar-header navbar-link pull-left">
+            <span class="navbar-brand wbdv-text-clr-white "> Resturants </span>
+        </div>
+    </div>
+    <div class="col-sm-4 col-xs-12 search-bar-pad">
+            <input placeholder="Search" type="text"  ng-model="searchText" class="form-control pull-left">
+           <a ng-click="model.searchResults(searchText)"> <span class="glyphicon glyphicon-search pull-right search-bar-margin"></span></a>
+    </div>
+    </div>
+</div>
+</nav>
+
+<div class="container-fluid  level-search-result wbdv-mar-top-15" >
+    <div class="col-sm-2 hidden-xs">
+        <div class="menudiv">
+            <div class="hotelname">Filters</div>
+            <hr>
+            <div>
+                <!--<div class=""></div>-->
+                <div><div class="filter-headings">Sort by</div></div>
+                <a href="#"><div class="filter-items"><span>Popularity <span> - high to low </span></span></div></a>
+                <a href="#"><div class="filter-items"><span>Rating<span> - high to low </span></span></div></a>
+                <a href="#"><div class="filter-items"><span>Cost <span> - high to low </span></span></div></a>
+                <a href="/boston/lunch?sort=ca"><div class="filter-items"><span>Cost <span> - low to high </span></span></div></a>
+                <a href="/boston/lunch?sort=recent"><div class="filter-items"><span>Recently added</span></div></a></div>
+
+            <hr>
+
+
+            <div>
+                <div class="filter-headings">Cuisine</div>
+                <a  href="#"><div class="filter-items"><span>Pizza</span></div></a>
+                <a  href="#"><div class="filter-items"><span>American</span></div></a>
+                <a  href="#"><div class="filter-items"><span>Italian</span></div></a>
+                <a  href="#"><div class="filter-items"><span>Chinese</span></div></a>
+                <a  href="#"><div class="filter-items"><span>Seafood</span></div></a>
+
+            </div>
+    </div>
+
+    </div>
+
+    <div class="col-sm-10">
+        <div class="row" >
+            <div ng-repeat="restaurant in model.restaurants">
+            <div class="menudiv">
+
+                <div class="row" >
+                <div class="btn pull-right rating">4.2/5</div>
+                <div class="col-sm-3 "><img src="{{restaurant.logoUrl}}" class="imageview"></div>
+                <div class="col-sm-9 hotelname">{{restaurant.name}}
+                    <p class="greytext">{{restaurant.streetAddress}},{{restaurant.city}}</p>
+                </div>
+                </div>
+                 <hr>
+                <div class="row">
+
+                    <!--ng-repeat="foodTypes in restaurant.foodTypes"-->
+                    <div>
+                            <span class="col-xs-3 leftinfotext">CUISINES:</span>
+                            <span  class="col-xs-9 rightinfotext">{{restaurant.cuisine}}</span>
+                              <!--<span ng-repeat="foodTypes in restaurant.foodTypes">-->
+                                 <!--{{foodTypes}}-->
+                                 <!--<span ng-show=" ! $last ">,</span>-->
+
+                                <!--</span>-->
+
+                    </div>
+
+                    <div>   <span class="col-xs-3 leftinfotext">PHONE:</span>
+                            <span class="col-xs-9 rightinfotext">{{restaurant.phone}}</span>
+                    </div>
+
+                    <div>   <span class="col-xs-3 leftinfotext">HOURS:</span>
+                            <span class="col-xs-9 rightinfotext">{{restaurant.hours.Monday[0]}} (Mon-Sun)</span>
+                    </div>
+
+                    <!--<div>-->
+                        <!--<span class="col-xs-3 leftinfotext">FEATURED IN:</span>-->
+                        <!--<span class="col-xs-9 rightinfotext">Trending this week</span>-->
+                    <!--</div>-->
+
+
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="viewmenu">
+                    <a href="{{restaurant.url}}">    <span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+</div>
+             </div>
+        </div>
+</div>

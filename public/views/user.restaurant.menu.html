@@ -1,0 +1,114 @@
+<nav class="navbar navbar_container navbar-fixed-top ">
+    <div class="container-fluid">
+
+            <div class=" navbar-text pull-left wbdv-mar-left-0 ">
+                <a href="">
+                    <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
+                </a>
+            </div>
+
+            <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;"> {{model.restaurantName}} </span>
+            </div>
+
+
+            <div class="navbar-text navbar-link pull-right visible-xs">
+                <a ng-click="model.checkOut()">
+                    <span class="glyphicon glyphicon-shopping-cart wbdv-text-clr-white" title="Proceed to payment"></span>
+                </a>
+            </div>
+
+            <div class="navbar-text navbar-link pull-right hidden-xs">
+                <a ng-click="model.checkOut()">
+                    <span class=" wbdv-text-clr-white" title="checkOut">Proceed to Payment</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid  level-search-result wbdv-mar-top-15 wbdv-pad-left-right" style="background-color:lightslategray;">
+
+<div class="alert alert-danger" ng-show="model.error">
+    {{model.error}}
+</div>
+
+<div ng-repeat="mn in model.menu">
+    <div class="row wbdv-pad-left-15 wbdv-mar-top-5" style="background-color: black;height: auto; ">
+        <div  style="text-align:center;font-size: x-large;font-weight: bold; color: red;">{{mn.name}}</div>
+        <div style="color: yellow;">
+            <span style="padding-bottom: 3px;">{{mn.description}}</span>
+        </div>
+    </div>
+
+    <div class="row wbdv-mar-top-3">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="item in mn.items " style="background-color: white">
+                <div class="row" style="height: auto">
+                    <div class="col-xs-6 col-sm-8" pull-left>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-6 pull-left">
+                                {{item.name}}
+                            </div>
+                            <div class="col-xs-2 col-sm-2 pull-right" style="width: 50px; text-align: justify;">
+                                {{item.basePrice}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 pull-right">
+                        <div class="row">
+                            <div class="col-xs-2 pull-left">
+                                <a ng-click="model.increaseItemCount(mn.apiKey, item.apiKey, model.countCom, item.name, item.basePrice)">
+                                    <span   class="glyphicon glyphicon-plus-sign col-xs-1 col-sm-1 pull-left"></span>
+                                </a>
+                            </div>
+
+
+                            <div id = "{{'count-'+item.apiKey}}" style="padding-left: 0;margin-left:40%;margin-right:1px;" class="col-xs-2">
+
+                            </div>
+
+
+                            <div class="col-xs-2 pull-right">
+                                <a ng-click="model.decreaseItemCount(mn.apiKey, item.apiKey, model.countCom, item.name, item.basePrice)">
+                                    <span   class="glyphicon glyphicon-minus-sign col-xs-1 col-sm-1 pull-right"></span>
+                                </a>
+                            </div>
+
+
+                    </div>
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
+                        <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,172 @@
+<nav class="navbar navbar_container navbar-fixed-top ">
+    <div class="container-fluid">
+
+        <div class=" navbar-text pull-left wbdv-mar-left-0 ">
+            <a href="">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
+            </a>
+        </div>
+
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;"> CheckOut </span>
+        </div>
+
+
+        <div class="navbar-text navbar-link pull-right hidden-xs">
+            <a nhref="">
+                <span class="wbdv-text-clr-white" title="cancel">Cancel</span>
+            </a>
+        </div>
+        <div class="navbar-text navbar-link pull-right visible-xs">
+            <a href="">
+                <span class="glyphicon glyphicon-remove wbdv-text-clr-white" title="cancel"></span>
+            </a>
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="container wbdv-pad-left-right wbdv-mar-top-25  wbdv-background-black">
+
+        <div style="width: 100%;  top: 50%; left: 50%;" class=" wbdv-text-clr-white">
+
+            <div class="row wbdv-text-clr-white" style="background-color: red; height: 60px;">
+                <div style="text-align: center;padding-top: 25px;">YOUR ORDER DETAILS</div>
+
+            </div>
+            <div class=" wbdv-mar-top-10">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <span><h4>Restaurant</h4></span>
+                    </div>
+                    <div class="col-xs-8">
+                        <span><h4><em>{{model.restaurantName}}</em></em></h4></span>
+                    </div>
+                </div>
+
+                <ul class="list-group wbdv-mar-top-15">
+                    <li class="list-group-item" style="color: black;">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <span>Items</span>
+                            </div>
+                            <div class="col-xs-2" style="padding-left: 0px;">
+                                <span>UnitPrice</span>
+                            </div>
+                            <div class="col-xs-2">
+                                <span>Quantity</span>
+                            </div>
+                            <div class="col-xs-3">
+                                <span>Total ($)</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="list-group" >
+                    <li class="list-group-item" style="background-color: black;" ng-repeat="item in model.cart.items">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <span>{{item.name}}</span>
+                            </div>
+                            <div class="col-xs-2">
+                                <span>{{item.basePrice}}</span>
+                            </div>
+                            <div class="col-xs-2">
+                                <span>{{item.totCount}}</span>
+                            </div>
+                            <div class="col-xs-3">
+                                <span>{{item.totPrice}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!--<div class="row wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color: green;height: 60px;">-->
+                    <!--<div>-->
+                        <!--&lt;!&ndash;style="margin-left: auto;  margin-right: auto;  display: table;"&ndash;&gt;-->
+                        <!--<div class="col-xs-6 pull-left" style="padding-top: 25px;text-align: right;">-->
+                        <!--<span>-->
+                            <!--<strong>Total:</strong>-->
+                        <!--</span>-->
+                        <!--</div>-->
+
+                        <!--<div class="col-xs-6 pull-left" style="padding-top: 25px;">-->
+                            <!--<div class="row" >-->
+                                <!--<div class="col-xs-1" style="text-align: left;">-->
+                                    <!--<span class="glyphicon glyphicon-usd"></span>-->
+
+                                <!--</div>-->
+                                <!--<div class="col-xs-3" style="text-align: left;">-->
+                                    <!--<span>-->
+                                        <!--<strong>{{model.cart.amount}}</strong>-->
+                                    <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                        <!--</div>-->
+                    <!--</div>-->
+
+
+                <!--</div>-->
+
+                <div class="wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color: green;height: 60px;">
+
+                        <!--style="margin-left: auto;  margin-right: auto;  display: table;"-->
+
+                        <span style="padding-top: 25px;margin-left: auto;  margin-right: auto;  display: table;">
+                            <span>
+                               <strong>Total:</strong>
+                            </span>
+
+                            <span class="glyphicon glyphicon-usd"></span>
+                            <span>
+                                <strong>{{model.cart.amount}}</strong>
+                            </span>
+                        </span>
+                </div>
+
+
+
+
+
+                </div>
+
+            </div>
+            <div  class="wbdv-mar-bottom-60 wbdv-pad-left-right wbdv-mar-top-25">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <a href="" class="btn btn-success btn-block">ORDER</a>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <a href="" class="btn btn-danger  btn-block">CANCEL</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+</div>
+
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
+                        <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</nav>

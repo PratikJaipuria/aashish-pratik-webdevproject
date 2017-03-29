@@ -11,120 +11,187 @@
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <!--<link href="style.css" rel="stylesheet"/>-->
 <!--</head>-->
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
 
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/login">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
+            </a>
+        </div>
 
-
-    <div class="container-fluid wbdv-text-clr-white" style="background-color: black;">
-        <h3>Owner Register</h3>
-
-
-                <form name="registrationForm">
-                    <label for="ownerregUser" class="wbdv-req-field" >Username:</label>
-                    <input ng-model="owner.ownerregUser"
-                           id="ownerregUser"
-                           name="ownerregUser1"
-                           type="text"
-                           class="form-control"
-                           placeholder="username"/>
-
-                    <label for="ownerregPassword" class="wbdv-req-field">Password:</label>
-                    <input ng-model="owner.ownerregPassword"
-                           id="ownerregPassword"
-                           name="ownerregPassword"
-                           type="password"
-                           class="form-control"
-                           placeholder="password"/>
-
-                    <label for="ownerregPassword1" class="wbdv-req-field">Verify Password:</label>
-                    <input ng-model="owner.ownerregPassword1"
-                           id="ownerregPassword1"
-                           name="ownerregPassword1"
-                           type="password"
-                           class="form-control"
-                           placeholder="verify password"/>
-
-                    <label for="ownerfname" class="wbdv-req-field">First Name:</label>
-                    <input ng-model="owner.ownerfname"
-                           id="ownerfname"
-                           name="ownerfname"
-                           type="text"
-                           class="form-control"
-                           placeholder="First Name" required/>
-
-                    <label for="ownerlname" class="wbdv-req-field">Last Name:</label>
-                    <input ng-model="owner.ownerlname"
-                           id="ownerlname"
-                           name="ownerlname"
-                           type="text"
-                           class="form-control"
-                           placeholder="Last Name" required/>
-
-                    <label for="owneremail" class="wbdv-req-field">Email:</label>
-                    <input ng-model="owner.owneremail"
-                           id="owneremail"
-                           name="owneremail"
-                           type="email"
-                           class="form-control"
-                           placeholder="Email"/>
-
-                    <label for="ownerphone" class="wbdv-req-field">Phone Number:</label>
-                    <input ng-model="owner.ownerphone"
-                           id="ownerphone"
-                           name="ownerphone"
-                           type="text"
-                           class="form-control"
-                           placeholder="Phone"/>
-
-                    <label for="RestaurantName" class="wbdv-req-field">Restaurant Name:</label>
-                    <input ng-model="owner.RestaurantName"
-                           id="RestaurantName"
-                           name="RestaurantName"
-                           type="text"
-                           class="form-control"
-                           placeholder="Restaurant Name"/>
-
-                    <label for="RestaurantAddress" class="wbdv-req-field">Restaurant Address:</label>
-                    <input ng-model="owner.RestaurantAddress"
-                           id="RestaurantAddress"
-                           name="RestaurantAddress"
-                           type="text"
-                           class="form-control"
-                           placeholder="Restaurant Address"/>
-
-                    <label for="RestaurantCity" class="wbdv-req-field" style="color: white; padding-top: 5px;">Restaurant City:</label>
-                    <select ng-model="owner.RestaurantCity"
-                            id="RestaurantCity"
-                            name="RestaurantCity"
-                            class="form-control" placeholder="Restaurant City"
-                            style="display: block;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-
-                    <label for="RestaurantPIN" class="wbdv-req-field">Restaurant PIN:</label>
-                    <input ng-model="owner.RestaurantPIN"
-                           id="RestaurantPIN"
-                           name="RestaurantPIN"
-                           type="text"
-                           class="form-control"
-                           placeholder="PIN"/>
-
-                    <label for="RestaurantCountry" class="wbdv-req-field" style="color: white; padding-top: 5px;">Country:</label>
-                    <select ng-model="owner.RestaurantCountry"
-                            id="RestaurantCountry"
-                            name="RestaurantCountry"
-                            class="form-control">
-                        <option value="1" selected="selected">United States</option>
-
-                    </select>
-
-                </form>
-
-                <a ng-click="model.register(owner)" class="btn btn-primary btn-block form-control"
-                >Register</a>
-                <a href="#/home" class="btn btn-danger  btn-block">Cancel</a>
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Owner Register </span>
+        </div>
 
     </div>
+</nav>
+
+<div class="container  wbdv-text-clr-white">
+
+
+    <div ng-show="model.message" class="alert alert-success" role="alert" >
+        {{model.message}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <div class="container  wbdv-mar-top-25">
+        <div class="row">
+            <form name="profilePage">
+
+                <div class="row wbdv-pad-left-right">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="username">Username</label>
+                        <input ng-model="model.owner.username"
+                               ng-disabled="model.owner.username"
+                               type="text" class="form-control"
+                               id="username"
+                               value="aashishsingh"
+                               placeholder="Username"/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="firstName" class="wbdv-req-field">First Name:</label>
+                        <input ng-model="model.owner.firstName"
+                               type="text" class="form-control"
+                               id="firstName"
+                               name="firstName"
+                               value="Aashish Vikram"
+                               placeholder="First Name"
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="lastName"  class="wbdv-req-field">Last Name:</label>
+                        <input ng-model="model.owner.lastName"
+                               type="text" class="form-control"
+                               id="lastName"
+                               name="lastName"
+                               value="Singh"
+                               placeholder="Last Name"
+                               required/>
+                    </div>
+
+                </div>
+
+                <div class="row wbdv-pad-left-right">
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="password"  class="wbdv-req-field">Password:</label>
+                        <input ng-model="model.owner.password"
+                               type="password" class="form-control"
+                               id="password"
+                               name="password"
+                               value="Singh"
+                               placeholder="Password"
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="password2"  class="wbdv-req-field">Verify Password:</label>
+                        <input ng-model="model.owner.password"
+                               type="password" class="form-control"
+                               id="password2"
+                               name="password2"
+                               value="Singh"
+                               placeholder="Verify Password"
+                               required/>
+                    </div>
+                </div>
+                <div class="row wbdv-pad-left-right">
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="email"  class="wbdv-req-field">Email address:</label>
+                        <input ng-model="model.owner.email"
+                               type="email" class="form-control"
+                               id="email"
+                               value="singh.aa@husky.neu.edu"
+                               placeholder="Email Id"/>
+                    </div>
+
+
+
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label for="phone"  class="wbdv-req-field">Phone:</label>
+                        <input ng-model="model.owner.phone"
+                               type="text" class="form-control"
+                               id="phone"
+                               name="phone"
+                               placeholder="Phone"
+                               required/>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row wbdv-pad-left-right">
+                    <div class="col-sm-4 col-xs-12 ">
+                        <div class="form-group ">
+                            <label for="address"  class="wbdv-req-field">Address:</label>
+                            <textarea ng-model="model.owner.address"
+                                      class="form-control"
+                                      id="address"
+                                      name="address"
+                                      row="5"
+                                      placeholder="Address" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-3 col-xs-12">
+                        <label for="city"  class="wbdv-req-field">City:</label>
+
+                        <select ng-model="model.owner.city"
+                                id="city"
+                                name="city"
+                                class="form-control" placeholder="Restaurant City"
+                                style="display: block;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group col-sm-2 col-xs-12">
+                        <label for="pin"  class="wbdv-req-field">PIN:</label>
+                        <input ng-model="model.owner.pin"
+                               type="text" class="form-control"
+                               id="pin"
+                               name="pin"
+                               placeholder="PIN"
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-3 col-xs-12">
+                        <label for="country"  class="wbdv-req-field">Country:</label>
+                        <select ng-model="model.owner.country"
+                                id="country"
+                                name="country"
+                                class="form-control">
+                            <option value="1" selected="selected">United States</option>
+
+                        </select>
+                    </div>
+
+
+
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    <div  class="container wbdv-mar-bottom-60 wbdv-pad-left-right wbdv-mar-top-5">
+        <a href="#/owner/123/" class="btn btn-success btn-block form-control">Register</a>
+        <a href="#/login" class="btn btn-danger  btn-block">Cancel</a>
+    </div>
+
+</div>
+
+
 

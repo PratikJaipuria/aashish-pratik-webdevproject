@@ -1,4 +1,5 @@
 (function () {
     angular
-        .module("ProjectMaker", ["ngRoute"]);
+        .module("ProjectMaker", ["ngRoute","ngFileUpload","textAngular"]);
 })();
+//,
