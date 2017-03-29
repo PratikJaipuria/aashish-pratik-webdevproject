@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/public'));
 
 // require ("./test/app.js")(app);
 //
-// require("./mean-todo/app.js")(app);
+require ("./server/app.js")(app);
 //
 // require("./assignment/app.js")(app);
 

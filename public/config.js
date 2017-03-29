@@ -5,6 +5,9 @@
 
     function configuration($routeProvider, $httpProvider) {
 
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+
         $routeProvider
             .when("/",{
                 templateUrl: "views/home.html",
@@ -108,7 +111,8 @@
 
             .when("/register-user",{
                 templateUrl: "views/userRegister.html",
-                controller: "userRegisterController"
+                controller: "userRegisterController",
+                controllerAs:'model'
             })
 
             .when("/register-owner",{

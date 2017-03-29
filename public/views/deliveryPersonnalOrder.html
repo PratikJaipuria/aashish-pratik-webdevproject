@@ -107,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="wbdv-mar-top-5">
+                <div class="wbdv-mar-top-5" ng-click="m.flag==0 && model.delivered(m.orderNum, m.flag)">
                     <input id =  "{{'delivery-'+m.orderNum}}"
                            type="checkbox"
                            checked
@@ -118,7 +118,7 @@
                            data-offstyle="success"
                            data-size="large"
                            class="form-control"
-                           ng-click="model.delivered(m.orderNum, m.flag)">
+                           >
                 </div>
 
             </div>

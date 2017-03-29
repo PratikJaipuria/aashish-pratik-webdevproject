@@ -172,13 +172,23 @@
 <nav class="navbar  navbar-fixed-bottom bg-primary" >
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-xs-12" >
-                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+            <div class="col-xs-12 visible-xs" >
+                <a href="#/user/123" class="wbdv-mar-right-5 pull-right" title="Profile">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>
-                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
-                        <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
+                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-right" title="Previous Orders">
+                        <span class="glyphicon glyphicon-th-list wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+            <div class="col-xs-12 hidden-xs" >
+                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="wbdv-text-clr-white navbar-text"> Profile
+                        </span>
+                </a>
+                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-right">
+                        <span class="wbdv-text-clr-white navbar-text"> Previous Orders
                         </span>
                 </a>
             </div>
