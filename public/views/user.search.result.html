@@ -107,19 +107,19 @@
 
                             <div class="row" data-toggle="collapse" data-target="#{{'hours-'+ restaurant.apiKey}}">
 
-                                <span class="leftinfotext col-xs-3" style="padding-left: 30px;">HOURS:
+                                <span class="leftinfotext col-xs-3" style="padding-left: 30px;">HOURS:</span>
                                     <!--<a>-->
-                                        <!--<span class="glyphicon glyphicon-chevron-down wbdv-text-clr-white"-->
-                                                     <!--style="padding-top: 2px; padding-right: 4px;">-->
+                                        <span class="glyphicon glyphicon-chevron-down wbdv-text-clr-white pull-right"
+                                                     style="padding-top: 2px; padding-right: 4px;">
 
-                                        <!--</span>-->
+                                        </span>
                                     <!--</a>-->
-                                </span>
+
                                 <span class="col-xs-9 rightinfotext collapse"  id="{{'hours-'+ restaurant.apiKey}}">
                                     <div ng-repeat="(key, time) in restaurant.hours">
                                         <div class="row">
-                                            <div class="col-sm-3 col-xs-3 pull-left" style="padding-left: 24px;">{{key}}</div>
-                                            <div class="col-sm-3 col-xs-9 pull-left">{{time[0]}}</div>
+                                            <div class=" col-xs-4 pull-left" style="padding-left: 24px;">{{key}}</div>
+                                            <div class=" col-xs-8 pull-left">{{time[0]}}</div>
                                         </div>
                                     </div>
                                 </span>
