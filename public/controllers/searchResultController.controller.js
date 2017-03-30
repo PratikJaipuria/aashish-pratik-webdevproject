@@ -20,6 +20,11 @@
         function init() {
 
             searchRestaurant(vm.search);
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $('#mainCOntainer').show(500);
+                }, 1000);
+            })
 
 
         }

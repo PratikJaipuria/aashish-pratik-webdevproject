@@ -15,10 +15,10 @@
             console.log(user);
             if(user){
 
-                    if(user.password===user.password2){
+                    if(user.password === user.password2 && user.password){
                          createNewUser(user);
                     }else{
-                        throwError('Password doesnot match');
+                        throwError('Password does not match');
 
                     }
 
@@ -38,7 +38,9 @@
             promise.success(function (user) {
                 $location.url('#/user/'+user._id);
             }).error(function (err) {
-                vm.error='Unable to create new User'+ err;
+                console.log(err);
+                if (err==11000)
+                throwError('Either this username or email already taken.');
             })
         }
 

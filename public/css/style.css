@@ -1,3 +1,25 @@
+.blackContainer{
+    margin-top: 100px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.blackContainerList{
+    margin-top: 30px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.contentContainer{
+    padding-right:35px;
+    padding-left:35px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.pageHeading{
+    color: #ffffff;
+    text-align: center;
+}
+
 .button-centre{
     margin-left:75px;
 }
@@ -53,11 +75,11 @@
 }
 
 
-.level-search-result{
-    padding-top: 50px;
-    /*margin-top: 25px;*/
-    background-color: whitesmoke;
-}
+/*.level-search-result{*/
+    /*padding-top: 50px;*/
+    /*!*margin-top: 25px;*!*/
+    /*background-color: whitesmoke;*/
+/*}*/
 
 .rating{
     margin-top: 1px;
@@ -78,7 +100,8 @@
 
 }
 .hotelname{
-    color: black;
+    /*color: black;*/
+    color: #ffffff;
     font-weight: bold;
     font-family: Calibri;
     font-size: x-large;
@@ -108,11 +131,13 @@
 }
 
 .leftinfotext{
-    color: grey;
+    /*color: grey;*/
+    color: #ffffff;
     font-size: small;
 }
 .rightinfotext{
-    color: black;
+    /*color: black;*/
+    color: #ffffff;
     font-size: small;
 }
 /*--------------------------------------------------------------------------------------------*/
@@ -181,10 +206,36 @@ body {
 
 }
 #mainPage{
-    background-image:url(../images/8.jpeg);
+    /*background-image:url(../images/10.jpg);*/
+    /*background-size: cover;*/
+}
+
+.wbdv-rest-logo{
+    border: 1px hidden #ddd;
+    border-radius: 4px;
+    /*padding: 5px;*/
+    width: 50px;
+
+}
+/*.inlineblock {*/
+    /*display: inline-block;*/
+    /*zoom: 1;*/
+    /*!*display*: inline; !* ie hack *!*!*/
+    /*!*background-color: #f0f;*!*/
+    /*width: 50%;*/
+/*}*/
+
+.pageBackground {
+
+    background: url('../images/10.jpg');
     background-size: cover;
-
-
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    margin-top: 50px;
+    color: #ffffff;
 }
 
 #homePage{
@@ -192,18 +243,6 @@ body {
     background-size: cover;
 }
 
-#loginPage{
-    /*background-image:url(../images/2.jpg);*/
-    /*background-size: cover;*/
-    /*z-index: 1;*/
-    /*opacity: 0.9;*/
-    /*margin-bottom: 5px;*/
-    }
-
-/*#loginContent{*/
-    /*!*background-color: black;*!*/
-    /*rgba(0,0,0,0.5);*/
-/*}*/
 
 #ownerRegistration{
     /*background-image:url(../images/1.jpg);*/
@@ -328,9 +367,17 @@ input[type="checkbox"]{
     margin-bottom:60px;
 }
 
+.wbdv-mar-bottom-10{
+    margin-bottom:10px;
+}
+
 
 .wbdv-mar-bottom-20{
     margin-bottom:20px;
+}
+
+.wbdv-mar-bottom-30{
+    margin-bottom:30px;
 }
 
 .wbdv-mar-right-x{

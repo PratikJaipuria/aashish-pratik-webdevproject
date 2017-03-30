@@ -3,11 +3,11 @@ module.exports=function(){
 
     var UserSchema = mongoose.Schema({
 
-        username: String,
+        username:  {type: String, index: {unique: true}},
         password: String,
         firstName: String,
         lastName: String,
-        email: String,
+        email: {type: String, index: {unique: true}},
         phone: String,
         address: [String],
         dateCreated: {type: Date, default: Date.now},

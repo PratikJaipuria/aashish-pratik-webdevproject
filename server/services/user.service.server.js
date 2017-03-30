@@ -26,14 +26,15 @@ module.exports=function(app,model){
             .then(function (reponse) {
                 UserModel.findUserByUsername(reponse.username)
                     .then(function (user) {
-                        console.log(user);
+                        console.log("found: ",user);
                         res.json(user);
                     }, function (err) {
-                        console.log(err);
-                        res.sendStatus(404).send({message: err});
+
+                        res.sendStatus(err.code);
                     })
             }, function (err) {
-                res.sendStatus(404).send({message: err});
+
+                res.sendStatus(err.code);
             })
 
         };

@@ -18,155 +18,299 @@
 </div>
 </nav>
 
-<div class="container-fluid  level-search-result wbdv-mar-top-15" >
+
+<div class="container pageBackground" id="mainCOntainer" style="text-align: center; display: none;">
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>
-    <div class="col-sm-2 hidden-xs">
-        <div class="menudiv">
-            <div class="hotelname">Filters</div>
-            <hr>
-            <div>
-                <!--<div class=""></div>-->
-                <div><div class="filter-headings">Sort by</div></div>
-                <a href="#"><div class="filter-items"><span>Popularity <span> - high to low </span></span></div></a>
-                <a href="#"><div class="filter-items"><span>Rating<span> - high to low </span></span></div></a>
-                <a href="#"><div class="filter-items"><span>Cost <span> - high to low </span></span></div></a>
-                <a href="/boston/lunch?sort=ca"><div class="filter-items"><span>Cost <span> - low to high </span></span></div></a>
-                <a href="/boston/lunch?sort=recent"><div class="filter-items"><span>Recently added</span></div></a></div>
-
-            <hr>
-
-
-            <div>
-                <div class="filter-headings">Cuisine</div>
-                <a  href="#"><div class="filter-items"><span>Pizza</span></div></a>
-                <a  href="#"><div class="filter-items"><span>American</span></div></a>
-                <a  href="#"><div class="filter-items"><span>Italian</span></div></a>
-                <a  href="#"><div class="filter-items"><span>Chinese</span></div></a>
-                <a  href="#"><div class="filter-items"><span>Seafood</span></div></a>
-
-            </div>
-    </div>
-
-    </div>
-
-    <div class="col-sm-10">
-        <div class="row" >
-            <div ng-repeat="restaurant in model.restaurants">
+    <div class="row blackContainerList " style="display: inline-block; text-align: left">
+        <div class="col-sm-4 hidden-xs contentContainer">
             <div class="menudiv">
+                <div class="hotelname">Filters</div>
+                <hr>
+                <div>
 
-                <div class="row" >
-                <div class="btn pull-right rating">4.2/5</div>
-                <div class="col-sm-3 "><img src="{{restaurant.logoUrl}}" class="imageview"></div>
-                <div class="col-sm-9 hotelname"><a href="{{restaurant.url}}">{{restaurant.name}}
-                    <p class="greytext">{{restaurant.streetAddress}},{{restaurant.city}}, {{restaurant.zip}}</p></a>
-                </div>
-                </div>
-                 <hr>
-                <div class="row">
+                    <div><div class="filter-headings">Sort by</div></div>
+                    <a href="#"><div class="filter-items"><span>Popularity <span> - high to low </span></span></div></a>
+                    <a href="#"><div class="filter-items"><span>Rating<span> - high to low </span></span></div></a>
+                    <a href="#"><div class="filter-items"><span>Cost <span> - high to low </span></span></div></a>
+                    <a href="/boston/lunch?sort=ca"><div class="filter-items"><span>Cost <span> - low to high </span></span></div></a>
+                    <a href="/boston/lunch?sort=recent"><div class="filter-items"><span>Recently added</span></div></a></div>
 
-                    <div ng-switch="{{restaurant.open}}">
-                        <div ng-switch-when="true">
-                            <div >
-                                <span class="col-xs-3 leftinfotext">OPEN</span>
-                                <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
-
-                            </div>
-                        </div>
-                        <div ng-switch-when="false">
-                            <div>
-                                <span class="col-xs-3 leftinfotext">OPEN</span>
-                                <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--ng-repeat="foodTypes in restaurant.foodTypes"-->
-                    <div>
-                            <span class="col-xs-3 leftinfotext">CUISINES:</span>
-                            <span  class="col-xs-9 rightinfotext">{{restaurant.cuisine}}</span>
-                              <!--<span ng-repeat="foodTypes in restaurant.foodTypes">-->
-                                 <!--{{foodTypes}}-->
-                                 <!--<span ng-show=" ! $last ">,</span>-->
-
-                                <!--</span>-->
-
-                    </div>
-
-                    <div>   <span class="col-xs-3 leftinfotext">PHONE:</span>
-                            <span class="col-xs-9 rightinfotext">{{restaurant.phone}}</span>
-                    </div>
-
-                    <div>
-                        <span class="col-xs-3 leftinfotext">HOURS:</span>
-                            <span class="col-xs-9 rightinfotext">
-                                <div ng-repeat="(key, time) in restaurant.hours">
-                                    <div class="row">
-                                        <div class="col-sm-3 col-xs-4 pull-left">{{key}}</div>
-                                        <div class="col-sm-3 col-xs-8 pull-left">{{time[0]}}</div>
-                                    </div>
-                                </div>
-                            </span>
-                    </div>
-
-                    <div ng-switch="{{restaurant.offersDelivery}}">
-                        <div ng-switch-when="true">
-                            <div >
-                                <span class="col-xs-3 leftinfotext">Delivery</span>
-                                <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
-
-                            </div>
-                        </div>
-                        <div ng-switch-when="false">
-                            <div>
-                                <span class="col-xs-3 leftinfotext">Delivery</span>
-                                <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div ng-switch="{{restaurant.offersPickup}}">
-                        <div ng-switch-when="true">
-                            <div >
-                                <span class="col-xs-3 leftinfotext">Pickup</span>
-                                <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
-
-                            </div>
-                        </div>
-                        <div ng-switch-when="false">
-                            <div>
-                                <span class="col-xs-3 leftinfotext">Pickup</span>
-                                <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
-                            </div>
-                        </div>
-                    </div>
-
-                   <!--<div>-->
-                        <!--<span class="col-xs-3 leftinfotext">FEATURED IN:</span>-->
-                        <!--<span class="col-xs-9 rightinfotext">Trending this week</span>-->
-                    <!--</div>-->
-
-
-                </div>
                 <hr>
 
-                <div class="row">
-                    <div class="viewmenu">
-                    <a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">
-                        <span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>
-                    </div>
+
+                <div>
+                    <div class="filter-headings">Cuisine</div>
+                    <a  href="#"><div class="filter-items"><span>Pizza</span></div></a>
+                    <a  href="#"><div class="filter-items"><span>American</span></div></a>
+                    <a  href="#"><div class="filter-items"><span>Italian</span></div></a>
+                    <a  href="#"><div class="filter-items"><span>Chinese</span></div></a>
+                    <a  href="#"><div class="filter-items"><span>Seafood</span></div></a>
+
                 </div>
-
-
             </div>
 
-
-
-</div>
-             </div>
         </div>
+
+        <div class="col-sm-8 col-xs-12 contentContainer">
+            <div class="row "  >
+                <div ng-repeat="restaurant in model.restaurants" >
+                    <div class="menudiv">
+                        <div class="row" style="border-bottom: solid 1px white; margin-right: 1px; margin-left: 1px;">
+                            <div class="btn pull-right rating"  style="margin: 0px;">4.2/5</div>
+                            <div class="col-sm-1 "   style="padding: 0px;">
+                                <a href="{{restaurant.url}}">
+                                <img src="{{restaurant.logoUrl}}" class="wbdv-rest-logo pull-left" >
+                                </a>
+                            </div>
+                            <div class="col-sm-9 hotelname" style="margin-left: 52px;"  >
+                                <a href="{{restaurant.url}}">{{restaurant.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <!--<p class="wbdv-text-clr-white">{{restaurant.streetAddress}},{{restaurant.city}}, {{restaurant.zip}}</p>-->
+                        <!--<hr>-->
+                        <div class="row wbdv-pad-left-right" style="margin-top:10px;">
+                            <div >
+                                <span class="col-xs-3 leftinfotext">ADDRESS</span>
+                                <span class="col-xs-9 rightinfotext">{{restaurant.streetAddress}},{{restaurant.city}}, {{restaurant.zip}}</span>
+
+                            </div>
+
+                            <div ng-switch="{{restaurant.open}}">
+                                <div ng-switch-when="true">
+                                    <div >
+                                        <span class="col-xs-3 leftinfotext">OPEN</span>
+                                        <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
+
+                                    </div>
+                                </div>
+                                <div ng-switch-when="false">
+                                    <div>
+                                        <span class="col-xs-3 leftinfotext">OPEN</span>
+                                        <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="col-xs-3 leftinfotext">CUISINES:</span>
+                                <span  class="col-xs-9 rightinfotext">{{restaurant.cuisine}}</span>
+
+                            </div>
+
+                            <div>
+                                <span class="col-xs-3 leftinfotext">PHONE:</span>
+                                <span class="col-xs-9 rightinfotext">{{restaurant.phone}}</span>
+                            </div>
+
+                            <div class="row" data-toggle="collapse" data-target="#{{'hours-'+ restaurant.apiKey}}">
+
+                                <span class="leftinfotext col-xs-3" style="padding-left: 30px;">HOURS:
+                                    <!--<a>-->
+                                        <!--<span class="glyphicon glyphicon-chevron-down wbdv-text-clr-white"-->
+                                                     <!--style="padding-top: 2px; padding-right: 4px;">-->
+
+                                        <!--</span>-->
+                                    <!--</a>-->
+                                </span>
+                                <span class="col-xs-9 rightinfotext collapse"  id="{{'hours-'+ restaurant.apiKey}}">
+                                    <div ng-repeat="(key, time) in restaurant.hours">
+                                        <div class="row">
+                                            <div class="col-sm-3 col-xs-3 pull-left" style="padding-left: 24px;">{{key}}</div>
+                                            <div class="col-sm-3 col-xs-9 pull-left">{{time[0]}}</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+
+                            <!--<div class="row collapse" id="{{'hours-'+ restaurant.apiKey}}"  style="padding-left: 100px;">-->
+                                <!--<div ng-repeat="(key, time) in restaurant.hours" class="rightinfotext">-->
+                                    <!--<div class="col-xs-4" >-->
+                                        <!--{{key}}-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-8">-->
+                                        <!--{{time[0]}}-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                                    <!--<div class="row rightinfotext" style="padding-left: 20px;">-->
+                                        <!--<div class="col-sm-4 col-xs-4 "></div>-->
+                                        <!--<div class="col-sm-8 col-xs-8 "></div>-->
+                                    <!--</div>-->
+
+
+                            <div ng-switch="{{restaurant.offersDelivery}}">
+                                <div ng-switch-when="true">
+                                    <div>
+                                        <span class="col-xs-3 leftinfotext">DELIVERY</span>
+                                        <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
+
+                                    </div>
+                                </div>
+                                <div ng-switch-when="false">
+                                    <div>
+                                        <span class="col-xs-3 leftinfotext">DELIVERY</span>
+                                        <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-switch="{{restaurant.offersPickup}}">
+                                <div ng-switch-when="true">
+                                    <div >
+                                        <span class="col-xs-3 leftinfotext">PICKUP</span>
+                                        <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
+
+                                    </div>
+                                </div>
+                                <div ng-switch-when="false">
+                                    <div>
+                                        <span class="col-xs-3 leftinfotext">PICKUP</span>
+                                        <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div>-->
+                            <!--<span class="col-xs-3 leftinfotext">FEATURED IN:</span>-->
+                            <!--<span class="col-xs-9 rightinfotext">Trending this week</span>-->
+                            <!--</div>-->
+
+
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="viewmenu">
+                                <a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">
+                                    <span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12 visible-xs">-->
+            <!--<div class="blackContainerList">-->
+                <!--&lt;!&ndash;<div class="col-xs-12 ">&ndash;&gt;-->
+                <!--<div class="row" style="padding-left: 10px; padding-right: 10px;" >-->
+                    <!--<div ng-repeat="restaurant in model.restaurants">-->
+                        <!--<div class="menudiv">-->
+                            <!--<div class="row" >-->
+                                <!--<div class="btn pull-right rating">4.2/5</div>-->
+                                <!--<div class="col-sm-3 "><img src="{{restaurant.logoUrl}}" class="imageview"></div>-->
+                                <!--<div class="col-sm-9 hotelname"><a href="{{restaurant.url}}">{{restaurant.name}}-->
+                                    <!--<p class="wbdv-text-clr-white">{{restaurant.streetAddress}},{{restaurant.city}}, {{restaurant.zip}}</p></a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<hr>-->
+                            <!--<div class="row">-->
+
+                                <!--<div ng-switch="{{restaurant.open}}">-->
+                                    <!--<div ng-switch-when="true">-->
+                                        <!--<div >-->
+                                            <!--<span class="col-xs-3 leftinfotext">OPEN</span>-->
+                                            <!--<span class="col-xs-9 rightinfotext"  style="color: green">YES</span>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div ng-switch-when="false">-->
+                                        <!--<div>-->
+                                            <!--<span class="col-xs-3 leftinfotext">OPEN</span>-->
+                                            <!--<span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div>-->
+                                    <!--<span class="col-xs-3 leftinfotext">CUISINES:</span>-->
+                                    <!--<span  class="col-xs-9 rightinfotext">{{restaurant.cuisine}}</span>-->
+
+                                <!--</div>-->
+
+                                <!--<div>   <span class="col-xs-3 leftinfotext">PHONE:</span>-->
+                                    <!--<span class="col-xs-9 rightinfotext">{{restaurant.phone}}</span>-->
+                                <!--</div>-->
+
+                                <!--<div>-->
+                                    <!--<span class="col-xs-3 leftinfotext">HOURS:</span>-->
+                                    <!--<span class="col-xs-9 rightinfotext">-->
+                                <!--<div ng-repeat="(key, time) in restaurant.hours">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-sm-3 col-xs-4 pull-left">{{key}}</div>-->
+                                        <!--<div class="col-sm-3 col-xs-8 pull-left">{{time[0]}}</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</span>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch="{{restaurant.offersDelivery}}">-->
+                                    <!--<div ng-switch-when="true">-->
+                                        <!--<div >-->
+                                            <!--<span class="col-xs-3 leftinfotext">DELIVERY</span>-->
+                                            <!--<span class="col-xs-9 rightinfotext"  style="color: green">YES</span>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div ng-switch-when="false">-->
+                                        <!--<div>-->
+                                            <!--<span class="col-xs-3 leftinfotext">DELIVERY</span>-->
+                                            <!--<span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div ng-switch="{{restaurant.offersPickup}}">-->
+                                    <!--<div ng-switch-when="true">-->
+                                        <!--<div >-->
+                                            <!--<span class="col-xs-3 leftinfotext">PICKUP</span>-->
+                                            <!--<span class="col-xs-9 rightinfotext"  style="color: green">YES</span>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div ng-switch-when="false">-->
+                                        <!--<div>-->
+                                            <!--<span class="col-xs-3 leftinfotext">PICKUP</span>-->
+                                            <!--<span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="col-xs-3 leftinfotext">FEATURED IN:</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="col-xs-9 rightinfotext">Trending this week</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+                            <!--</div>-->
+                            <!--<hr>-->
+
+                            <!--<div class="row">-->
+                                <!--<div class="viewmenu">-->
+                                    <!--<a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">-->
+                                        <!--<span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+
+
+    <!--</div>-->
+
 </div>
 
 <nav class="navbar  navbar-fixed-bottom bg-primary" >
@@ -184,11 +328,11 @@
             </div>
             <div class="col-xs-12 hidden-xs" >
                 <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
-                        <span class="wbdv-text-clr-white navbar-text"> Profile
+                        <span class="wbdv-text-clr-white navbar-text navbar-link"> Profile
                         </span>
                 </a>
                 <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-right">
-                        <span class="wbdv-text-clr-white navbar-text"> Previous Orders
+                        <span class="wbdv-text-clr-white navbar-text navbar-link"> Previous Orders
                         </span>
                 </a>
             </div>

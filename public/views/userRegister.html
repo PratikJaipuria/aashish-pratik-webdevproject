@@ -28,35 +28,33 @@
 </nav>
 
 
-<div class="container  wbdv-text-clr-white">
-
-
-
-
-    <div class="container  wbdv-mar-top-25">
-        <div style= "position: fixed;" ng-show="model.message" class="alert alert-success" role="alert" >
+<div class="container pageBackground">
+    <div class="container blackContainer">
+        <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
             {{model.message}}
         </div>
 
-        <div style= "position: fixed;" ng-show="model.error" class="alert alert-danger" role="alert">
+        <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
             {{model.error}}
         </div>
-        <div class="row">
+
+        <div class="row wbdv-pad-left-right contentContainer">
+            <h1 class="wbdv-text-clr-white pageHeading">Registeration</h1>
             <form name="profilePage">
 
-                <div class="row wbdv-pad-left-right">
-                    <div class="form-group col-sm-4 col-xs-12">
-                        <label for="username" class="wbdv-req-field">Username:</label>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <!--<label for="username" class="wbdv-req-field">Username:</label>-->
                         <input ng-model="model.user.username"
                                type="text" class="form-control"
                                id="username"
                                value="aashishsingh"
                                placeholder="Username"
-                               required//>
+                               required/>
                     </div>
 
-                    <div class="form-group col-sm-4 col-xs-12">
-                        <label for="firstName" class="wbdv-req-field">First Name:</label>
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <!--<label for="firstName" class="wbdv-req-field">First Name:</label>-->
                         <input ng-model="model.user.firstName"
                                type="text" class="form-control"
                                id="firstName"
@@ -66,8 +64,8 @@
                                required/>
                     </div>
 
-                    <div class="form-group col-sm-4 col-xs-12">
-                        <label for="lastName"  class="wbdv-req-field">Last Name:</label>
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <!--<label for="lastName"  class="wbdv-req-field">Last Name:</label>-->
                         <input ng-model="model.user.lastName"
                                type="text" class="form-control"
                                id="lastName"
@@ -79,9 +77,9 @@
 
                 </div>
 
-                <div class="row wbdv-pad-left-right">
-                    <div class="form-group col-sm-4 col-xs-12">
-                        <label for="password"  class="wbdv-req-field">Password:</label>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <!--<label for="password"  class="wbdv-req-field">Password:</label>-->
                         <input ng-model="model.user.password"
                                type="password" class="form-control"
                                id="password"
@@ -91,8 +89,8 @@
                                required/>
                     </div>
 
-                    <div class="form-group col-sm-4 col-xs-12">
-                        <label for="password2"  class="wbdv-req-field">Verify Password:</label>
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <!--<label for="password2"  class="wbdv-req-field">Verify Password:</label>-->
                         <input ng-model="model.user.password2"
                                type="password" class="form-control"
                                id="password2"
@@ -102,10 +100,9 @@
                                required/>
                     </div>
                 </div>
-                <div class="row wbdv-pad-left-right">
 
-                    <div class="form-group col-sm-4 col-xs-12">
-                        <label for="email"  class="wbdv-req-field">Email address:</label>
+                <div class="row ">
+                    <div class="form-group col-sm-4 col-xs-12 ">
                         <input ng-model="model.user.email"
                                type="email" class="form-control"
                                id="email"
@@ -116,12 +113,12 @@
 
 
 
-                    <div class="form-group col-sm-4 col-xs-12">
-                        <label for="phone"  class="wbdv-req-field">Phone:</label>
+                    <div class="form-group col-sm-4 col-xs-12 ">
                         <input ng-model="model.user.phone"
                                type="text" class="form-control"
                                id="phone"
                                name="phone"
+                               pattern="[0-9]{10}"
                                placeholder="Phone"
                                required/>
                     </div>
@@ -130,10 +127,10 @@
 
 
 
-                <div class="row wbdv-pad-left-right">
+                <div class="row">
                     <div class="col-sm-4 col-xs-12 ">
                         <div class="form-group ">
-                            <label for="address"  class="wbdv-req-field">Address:</label>
+                            <!--<label for="address"  class="wbdv-req-field">Address:</label>-->
                             <textarea ng-model="model.user.address"
                                       class="form-control"
                                       id="address"
@@ -143,8 +140,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-sm-3 col-xs-12">
-                        <label for="city"  class="wbdv-req-field">City:</label>
+                    <div class="form-group col-sm-3 col-xs-12 ">
+                        <!--<label for="city"  class="wbdv-req-field">City:</label>-->
                         <input id="city"
                                type="text"
                                class="form-control"
@@ -155,8 +152,8 @@
                     </div>
 
 
-                    <div class="form-group col-sm-2 col-xs-12">
-                        <label for="pin"  class="wbdv-req-field">PIN:</label>
+                    <div class="form-group col-sm-2 col-xs-12 ">
+                        <!--<label for="pin"  class="wbdv-req-field">PIN:</label>-->
                         <input ng-model="model.user.pin"
                                type="text" class="form-control"
                                id="pin"
@@ -165,8 +162,8 @@
                                required/>
                     </div>
 
-                    <div class="form-group col-sm-3 col-xs-12">
-                        <label for="country"  class="wbdv-req-field">Country:</label>
+                    <div class="form-group col-sm-3 col-xs-12 ">
+                        <!--<label for="country"  class="wbdv-req-field">Country:</label>-->
                         <select ng-model="model.user.country"
                                 id="country"
                                 name="country"
@@ -177,7 +174,7 @@
                     </div>
                 </div>
             </form>
-            <div class="row wbdv-mar-bottom-60 wbdv-pad-left-right">
+            <div class="row wbdv-mar-bottom-10">
                 <div class="col-sm-6 col-xs-12">
                     <a ng-click="model.createUser(model.user)" class="btn btn-success btn-block form-control">Register</a>
                 </div>
