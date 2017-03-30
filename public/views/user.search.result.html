@@ -58,16 +58,24 @@
                 <div ng-repeat="restaurant in model.restaurants" >
                     <div class="menudiv">
                         <div class="row" style="border-bottom: solid 1px white; margin-right: 1px; margin-left: 1px;">
-                            <div class="btn pull-right rating"  style="margin: 0px;">4.2/5</div>
-                            <div class="col-sm-1 "   style="padding: 0px;">
+
+
+                            <div class="col-sm-1 col-xs-1 pull-left"   style="padding: 0px;">
                                 <a href="{{restaurant.url}}">
                                 <img src="{{restaurant.logoUrl}}" class="wbdv-rest-logo pull-left" >
                                 </a>
                             </div>
-                            <div class="col-sm-9 hotelname" style="margin-left: 52px;"  >
+                            <div class="col-sm-7 col-xs-7 hotelname pull-left" style="margin-left: 52px;"  >
                                 <a href="{{restaurant.url}}">{{restaurant.name}}
                             </a>
                             </div>
+
+                            <div ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)"
+                                 class=" wbdv-rest-menu col-sm-4s col-xs-4 pull-right btn rating" style="">
+                                <span style="text-align: center;">Menu</span>
+                                <!--<div class="btn pull-right rating"  style="margin: 0px;">Menu</div>-->
+                            </div>
+
                         </div>
                         <!--<p class="wbdv-text-clr-white">{{restaurant.streetAddress}},{{restaurant.city}}, {{restaurant.zip}}</p>-->
                         <!--<hr>-->
@@ -182,14 +190,14 @@
 
 
                         </div>
-                        <hr>
+                        <!--<hr>-->
 
-                        <div class="row">
-                            <div class="viewmenu">
-                                <a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">
-                                    <span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>
-                            </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="viewmenu">-->
+                                <!--<a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">-->
+                                    <!--<span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
