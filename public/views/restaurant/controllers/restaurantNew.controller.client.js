@@ -3,13 +3,16 @@
         .module("ProjectMaker")
         .controller("restaurantNewController",restaurantNewController);
 
-    function restaurantNewController($routeParams, restaurantService,$location, Upload){
+    function restaurantNewController($routeParams, restaurantService,$location, Upload, $timeout){
         var vm = this;
+        var day=['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday'];
         vm.count=0;
         vm.hours=["HH","00","01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20", "21", "22","23"];
         vm.mins=["MM","00","15","30","45"];
-        var day=['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday'];
         vm.days=[];
+        vm.city=["Boston", "Newyork"];
+        vm.country=["United States"];
+        vm.booleanVal=['Yes','No'];
         vm.speciality=[];
         vm.url='';
 
@@ -44,24 +47,69 @@
         init();
 
         function createRestaurant(newRestaurant) {
+            var errors=[];
+            var error='';
+
+            if(newRestaurant){
+
+                restaurant=formatTiming(newRestaurant);
+                restaurant.foodTypes=[];
+                restaurant=setFoodTypes(newRestaurant);
+                restaurant=setDeliveryAndPickupFlag(newRestaurant);
+                restaurant.ownerId = ownerId;
+
+                if(!restaurant.name){
+                 error="Invalid Restaurant Name";
+                 errors.push(error);
+                }
+
+                if(!restaurant.pin){
+                    error="Invalid pin";
+                    errors.push(error);
+                }
+
+                if(!restaurant.phone){
+                    error="Invalid phone";
+                    errors.push(error);
+                }
+
+                if(!restaurant.address){
+                    error="Invalid address";
+                    errors.push(error);
+                }
+
+                if(!restaurant.city){
+                    error="Invalid city";
+                    errors.push(error);
+                }
+
+                if(!restaurant.country){
+                    error="Invalid country";
+                    errors.push(error);
+                }
+
+                if(errors.length==0){
+
+                    restaurantService
+                        .createRestaurant(ownerId,restaurant)
+                        .success(function (restaurant) {
+                            $location.url("/user/"+ownerId+"/restaurant");
+                        }).error(function (err) {
+
+                    });
+                }
+                else {
+                    throwError(errors);
+                }
+
+            }
+            else{
+                error="Please fill in the details";
+                errors.push(error);
+                throwError(errors);
+            }
 
 
-            restaurant=formatTiming(newRestaurant);
-
-            restaurant.foodTypes=[];
-            restaurant=setFoodTypes(newRestaurant);
-            restaurant.ownerId = ownerId;
-            uploadImage();
-            restaurant.url=vm.url;
-
-
-            restaurantService
-                .createRestaurant(ownerId,restaurant)
-                .success(function (restaurant) {
-                    $location.url("/user/"+ownerId+"/restaurant");
-                }).error(function (err) {
-
-            });
 
         }
 
@@ -161,9 +209,8 @@
             var newObj={
                 key:vm.count,
                 value:''
-            }
-            console.log(vm.count);
-            console.log(vm.speciality);
+            };
+
             vm.speciality.push(newObj);
         }
 
@@ -213,6 +260,34 @@
                 vm.error =  'Error status: ' + resp.status;
             });
         };
+
+        function setDeliveryAndPickupFlag (restaurant) {
+            if(restaurant.pickup=='Yes'){
+                restaurant.pickup=true;
+            }
+            else {
+                restaurant.pickup=false;
+            }
+
+            if(restaurant.delivery=='Yes'){
+                restaurant.delivery=true;
+            }
+            else {
+                restaurant.delivery=false;
+            }
+            return restaurant;
+        }
+
+        function throwError(errorMsg){
+            vm.error=errorMsg;
+
+
+            $timeout(clearError, 5000);
+        }
+
+        function clearError() {
+            vm.error='';
+        }
         
     }
 })();

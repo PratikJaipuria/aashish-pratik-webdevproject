@@ -33,11 +33,13 @@
         </div>
 
         <div ng-show="model.error" class="alert alert-danger" role="alert">
-            {{model.error}}
+            <div ng-repeat="e in model.error">
+                {{e}}
+            </div>
         </div>
 
         <div class="container  contentContainer">
-            <h1 class="pageHeading" >Register Restaurant</h1>
+            <h2 class="pageHeading" >Register Restaurant</h2>
 
             <form name="RestaurantProfile">
                 <div class="row">
@@ -73,6 +75,7 @@
                                    type="text" class="form-control"
                                    id="phone"
                                    name="phone"
+                                   pattern="[0-9]{10}"
                                    placeholder="Phone"
                                    required/>
                         </div>
@@ -103,11 +106,10 @@
                                             name="city"
                                             class="form-control"
                                             placeholder="Restaurant City"
-                                            style="display: block;">
-                                        <option value="1">Boston</option>
-                                        <option value="2">New York</option>
-                                        <option value="3">San Jose</option>
-                                        <option value="4">Iowa</option>
+                                            style="display: block;"
+                                            ng-init="model.restaurant.city=model.restaurant.city||model.city[0]"
+                                    ng-options="option for option in model.city">
+
                                     </select>
                                 </div>
                             </div>
@@ -118,8 +120,11 @@
                                     <select ng-model="model.restaurant.country"
                                             id="country"
                                             name="country"
-                                            class="form-control">
-                                        <option value="1" selected="selected">United States</option>
+                                            class="form-control"
+                                            ng-init="model.restaurant.country=model.restaurant.country||model.country[0]"
+                                            ng-options="option for option in model.country">
+
+
 
                                     </select>
                                 </div>
@@ -141,9 +146,10 @@
                                             id="del"
                                             name="del"
                                             class="form-control"
-                                            style="display: block;">
-                                        <option  selected="selected" value="true">Yes</option>
-                                        <option value="false">No</option>
+                                            style="display: block;"
+                                            ng-init="model.restaurant.delivery=model.restaurant.delivery||model.booleanVal[0]"
+                                            ng-options="option for option in model.booleanVal">
+
                                     </select>
                                 </div>
                             </div>
@@ -155,9 +161,9 @@
                                             id="pickup"
                                             name="pickup"
                                             class="form-control"
-                                            style="display: block;">
-                                        <option  selected="selected" value="true">Yes</option>
-                                        <option value="false">No</option>
+                                            style="display: block"
+                                            ng-init="model.restaurant.pickup=model.restaurant.pickup||model.booleanVal[0]"
+                                            ng-options="option for option in model.booleanVal">
                                     </select>
                                 </div>
                             </div>
