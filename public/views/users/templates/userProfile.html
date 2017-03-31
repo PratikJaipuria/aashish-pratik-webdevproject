@@ -5,19 +5,58 @@
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
             </a>
         </div>
-        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Profile </span>
+        <div ng-show="model.user.role=='USER'">
+            <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Profile </span>
+            </div>
+            <div  class="navbar-text navbar-link pull-right hidden-xs">
+                <a ng-click="model.modifyUser(model.user)">
+                    <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
+                </a>
+            </div>
+            <div  class="navbar-text navbar-link pull-right visible-xs">
+                <a ng-click="model.modifyUser(model.user)">
+                    <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
+                </a>
+            </div>
         </div>
-        <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a ng-click="model.modifyUser(model.user)">
-                <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
-            </a>
+        <div ng-show="model.user.role=='OWNER'">
+            <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Owner Profile </span>
+            </div>
+
+            <div  class="navbar-text navbar-link pull-right hidden-xs">
+
+                <a href="#/owner/123/restaurant" style="padding-right: 25px;">
+                    <span class=" wbdv-text-clr-white" title="View Restaurant">View Restaurant </span>
+                </a>
+                <a href="#/owner/123/restaurant/new" style="padding-right: 25px;">
+                    <span class="wbdv-text-clr-white" title="Add Restaurant">Add Restaurant</span>
+                </a>
+
+                <a ng-click="model.modifyUser(model.user)" >
+                    <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
+                </a>
+
+            </div>
+
+            <div  class="navbar-text navbar-link pull-right visible-xs">
+
+                <a href="#/owner/123/restaurant" style="padding-right: 25px;">
+                    <span class="glyphicon glyphicon-cutlery wbdv-text-clr-white" title="View Restaurant"></span>
+                </a>
+                <a href="#/owner/123/restaurant/new" style="padding-right: 25px;">
+                    <span class="glyphicon glyphicon-plus wbdv-text-clr-white" title="Add Restaurant"></span>
+                </a>
+
+                <a ng-click="model.modifyUser(model.user)" >
+                    <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
+                </a>
+
+            </div>
+
         </div>
-        <div  class="navbar-text navbar-link pull-right visible-xs">
-            <a ng-click="model.modifyUser(model.user)">
-                <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
-            </a>
-        </div>
+
     </div>
 </nav>
 
@@ -117,16 +156,12 @@
                         </div>
 
                         <div class="form-group col-sm-3 col-xs-12">
-                            <select ng-model="model.user.city"
+                            <input ng-model="model.user.city"
                                     id="city"
                                     name="city"
-                                    class="form-control" placeholder="Restaurant City"
-                                    style="display: block;">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                                    class="form-control" placeholder="City"
+                                   />
+
                         </div>
 
 
@@ -143,9 +178,9 @@
                             <select ng-model="model.user.country"
                                     id="country"
                                     name="country"
-                                    class="form-control">
-                                <option value="1" selected="selected">United States</option>
-
+                                    class="form-control"
+                                    ng-init="model.user.country = model.user.country||model.countries[0]"
+                                    ng-options="option for option in model.countries">
                             </select>
                         </div>
                     </div>

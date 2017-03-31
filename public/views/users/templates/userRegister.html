@@ -141,12 +141,12 @@
                     </div>
 
                     <div class="form-group col-sm-3 col-xs-12 ">
-                        <!--<label for="city"  class="wbdv-req-field">City:</label>-->
+
                         <input id="city"
                                type="text"
                                class="form-control"
                                placeholder="City"
-                               ng-model="user.city"
+                               ng-model="model.user.city"
                                required/>
 
                     </div>
@@ -167,9 +167,9 @@
                         <select ng-model="model.user.country"
                                 id="country"
                                 name="country"
-                                class="form-control">
-                            <option value="United States" selected="selected">United States</option>
-
+                                class="form-control"
+                                ng-init="model.user.country = model.user.country||model.countries[0]"
+                                ng-options="option for option in model.countries">
                         </select>
                     </div>
                 </div>

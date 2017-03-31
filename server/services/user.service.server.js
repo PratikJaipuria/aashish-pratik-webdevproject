@@ -3,16 +3,28 @@ module.exports=function(app,model){
     app.post("/api/user", createUser);
     // app.put("/api/user/:userId", updateUser);
     // app.delete("/api/user/:userId", deleteUser);
-    // app.get("/api/user/:userId", findUserById);
+    app.get("/api/user/:uid", findUserById);
+    app.get("/api/user",findUserByCredentials);
 
     var UserModel = model.UserModel;
 
-    var api={
-        "createUser":createUser
-    };
 
-    return api;
 
+
+    function findUserByCredentials(req,res) {
+        var username = req.query.username;
+        var password = req.query.password;
+
+        UserModel
+            .findUserByCredentials(username,password)
+            .then(function (user) {
+
+                    res.json(user);
+
+                }, function (err) {
+                res.sendStatus(err);
+            });
+    }
 
 
 
@@ -20,13 +32,13 @@ module.exports=function(app,model){
 
     function createUser(req, res){
         var user=req.body;
-        console.log(user);
+
         UserModel
             .createUser(user)
             .then(function (reponse) {
                 UserModel.findUserByUsername(reponse.username)
                     .then(function (user) {
-                        console.log("found: ",user);
+
                         res.json(user);
                     }, function (err) {
 
@@ -38,6 +50,20 @@ module.exports=function(app,model){
             })
 
         };
+
+    function findUserById(req, res) {
+        var userId= req.params['uid'];
+
+        UserModel.findUserById(userId)
+            .then(function (user) {
+
+
+                res.json(user);
+            }, function (err) {
+
+                res.send(err);
+            })
+    }
 
 
 

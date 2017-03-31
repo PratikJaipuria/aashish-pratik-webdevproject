@@ -41,7 +41,7 @@
                     vm.x++; //text box increment
                     $(wrapper).append('' +
                         '<div class="pull-left col-sm-4 col-xs-12" style="position: relative">' +
-                        '<input type="text" ng-model="model.speciality.{{model.x}}"  name="mytext[]" class="wbdv-mar-top-5" style="color: black; width:175px; height: 40px; margin-left: 20px;"/>' +
+                        '<input type="text" ng-model="model.speciality.{{model.x}}"  class="wbdv-mar-top-5" style="color: black; width:175px; height: 40px; margin-left: 20px;"/>' +
                         '<a href="#" class="wbdv-toolbar"><span class="glyphicon glyphicon-remove-circle remove_field" ' +
                         'style="height: 10px; color: black;"></span></a>' +
                         '</div>'); //add input box

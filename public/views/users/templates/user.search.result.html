@@ -19,7 +19,7 @@
 </nav>
 
 
-<div class="container pageBackground" id="mainCOntainer" style="text-align: center; display: none;">
+<div class="container-fluid pageBackground" id="mainCOntainer" style="text-align: center; display: none;">
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
     </div>
@@ -73,7 +73,7 @@
                             <div ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)"
                                  class=" wbdv-rest-menu col-sm-4s col-xs-4 pull-right btn rating" style="">
                                 <span style="text-align: center;">Menu</span>
-                                <!--<div class="btn pull-right rating"  style="margin: 0px;">Menu</div>-->
+                                <!--<div class="btn pull-right rating"  style="margin: 0px;">menu</div>-->
                             </div>
 
                         </div>
@@ -81,7 +81,7 @@
                         <!--<hr>-->
                         <div class="row wbdv-pad-left-right" style="margin-top:10px;">
                             <div >
-                                <span class="col-xs-3 leftinfotext">ADDRESS</span>
+                                <span class="col-xs-3 leftinfotext">ADDRESS:</span>
                                 <span class="col-xs-9 rightinfotext">{{restaurant.streetAddress}},{{restaurant.city}}, {{restaurant.zip}}</span>
 
                             </div>
@@ -89,14 +89,14 @@
                             <div ng-switch="{{restaurant.open}}">
                                 <div ng-switch-when="true">
                                     <div >
-                                        <span class="col-xs-3 leftinfotext">OPEN</span>
+                                        <span class="col-xs-3 leftinfotext">OPEN:</span>
                                         <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
 
                                     </div>
                                 </div>
                                 <div ng-switch-when="false">
                                     <div>
-                                        <span class="col-xs-3 leftinfotext">OPEN</span>
+                                        <span class="col-xs-3 leftinfotext">OPEN:</span>
                                         <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
                                     </div>
                                 </div>
@@ -154,14 +154,14 @@
                             <div ng-switch="{{restaurant.offersDelivery}}">
                                 <div ng-switch-when="true">
                                     <div>
-                                        <span class="col-xs-3 leftinfotext">DELIVERY</span>
+                                        <span class="col-xs-3 leftinfotext">DELIVERY:</span>
                                         <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
 
                                     </div>
                                 </div>
                                 <div ng-switch-when="false">
                                     <div>
-                                        <span class="col-xs-3 leftinfotext">DELIVERY</span>
+                                        <span class="col-xs-3 leftinfotext">DELIVERY:</span>
                                         <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
                                     </div>
                                 </div>
@@ -170,14 +170,14 @@
                             <div ng-switch="{{restaurant.offersPickup}}">
                                 <div ng-switch-when="true">
                                     <div >
-                                        <span class="col-xs-3 leftinfotext">PICKUP</span>
+                                        <span class="col-xs-3 leftinfotext">PICKUP:</span>
                                         <span class="col-xs-9 rightinfotext"  style="color: green">YES</span>
 
                                     </div>
                                 </div>
                                 <div ng-switch-when="false">
                                     <div>
-                                        <span class="col-xs-3 leftinfotext">PICKUP</span>
+                                        <span class="col-xs-3 leftinfotext">PICKUP:</span>
                                         <span  style="color: red;" class="col-xs-9 rightinfotext">NO</span>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                         <!--<div class="row">-->
                             <!--<div class="viewmenu">-->
                                 <!--<a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">-->
-                                    <!--<span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>-->
+                                    <!--<span  class="glyphicon glyphicon-menu-hamburger"></span>View menu</a>-->
                             <!--</div>-->
                         <!--</div>-->
                     </div>
@@ -303,7 +303,7 @@
                             <!--<div class="row">-->
                                 <!--<div class="viewmenu">-->
                                     <!--<a ng-click="model.viewMenu(restaurant.apiKey,restaurant.name)">-->
-                                        <!--<span  class="glyphicon glyphicon-menu-hamburger"></span>View Menu</a>-->
+                                        <!--<span  class="glyphicon glyphicon-menu-hamburger"></span>View menu</a>-->
                                 <!--</div>-->
                             <!--</div>-->
                         <!--</div>-->

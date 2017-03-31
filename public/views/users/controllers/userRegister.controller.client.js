@@ -2,10 +2,10 @@
     angular.module('ProjectMaker')
         .controller('userRegisterController', userRegisterController);
 
-    function userRegisterController ($location, userService, $timeout) {
+    function userRegisterController ($location, userService, $timeout, $routeParams) {
         var vm = this;
-        vm.viewId="userRegistration";
-
+         var role=$routeParams['role'];
+        vm.countries=['United States', 'Canada'];
         vm.createUser=createUser;
         function init() {
         }init();
@@ -13,6 +13,8 @@
 
         function createUser (user) {
             console.log(user);
+
+
             if(user){
 
                     if(user.password === user.password2 && user.password){
@@ -34,9 +36,17 @@
 
 
         function createNewUser(user) {
+            if(role==0){
+                user.role='USER';
+            }
+            else {
+                user.role = 'OWNER';
+            }
+
             var promise=userService.createUser(user);
             promise.success(function (user) {
-                $location.url('#/user/'+user._id);
+                // console.log(user);
+                $location.url('/user/'+user._id);
             }).error(function (err) {
                 console.log(err);
                 if (err==11000)

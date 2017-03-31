@@ -10,13 +10,38 @@ module.exports = function () {
 
     var api = {
         createUser: createUser,
-        findUserByUsername: findUserByUsername
+        findUserByUsername: findUserByUsername,
+        findUserById:findUserById,
+        findUserByCredentials:findUserByCredentials
     };
     return api;
 
+
+    function findUserByCredentials(username,password) {
+        var deferred=q.defer();
+
+
+        UserModel
+            .findOne({
+                username:username,
+                password:password
+            },function (err,user) {
+            if(err){
+                deferred.reject(err);
+            }else{
+                deferred.resolve(user);
+            }
+
+
+
+            });
+        return deferred.promise;
+    }
+
+
     function createUser(user) {
         var deferred=q.defer();
-        console.log("MODEL USER ",user);
+
         UserModel.create(user, function (err, user) {
             if(err){
                 deferred.reject(err);
@@ -41,6 +66,23 @@ module.exports = function () {
                 deferred.resolve(user);
             }
 
+        });
+        return deferred.promise;
+    }
+
+    function findUserById(userId) {
+        var deferred=q.defer();
+
+        UserModel.findOne({_id:userId}, function (err, user) {
+            if(err){
+                console.log(err);
+                deferred.reject(err);
+            }
+            else{
+                console.log(user);
+                deferred.resolve(user);
+
+            }
         });
         return deferred.promise;
     }

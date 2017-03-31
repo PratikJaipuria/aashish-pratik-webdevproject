@@ -1,5 +1,6 @@
 module.exports=function(){
     var mongoose = require('mongoose');
+    var role=['ADMIN', 'USER', 'OWNER', 'DELIVERYBOY'];
 
     var UserSchema = mongoose.Schema({
 
@@ -8,12 +9,20 @@ module.exports=function(){
         firstName: String,
         lastName: String,
         email: {type: String, index: {unique: true}},
+        role:{type: String, enum: role},
         phone: String,
-        address: [String],
+        address: String,
+
+        deliverAddress: [String],
         dateCreated: {type: Date, default: Date.now},
         city: String,
         country: String,
-        pin:String
+        pin:String,
+        currentOrderId: [String],
+        previousOrderId: [String],
+        restaurantID: [String]
+
+
     }, {collection: 'userdb'});
     // UserSchema.index( { "email": 1, "username": 1 }, { unique: true } );
     return UserSchema;

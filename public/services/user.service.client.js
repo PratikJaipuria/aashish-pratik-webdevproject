@@ -7,7 +7,9 @@
 
 
         var api = {
-            "createUser": createUser
+            "createUser": createUser,
+            "findUserByID":findUserByID,
+            "findUserByCredentials":findUserByCredentials
         };
 
 
@@ -15,6 +17,14 @@
 
         function createUser (user) {
             return $http.post('/api/user/', user);
+        }
+        function findUserByID (userId) {
+            return $http.get('/api/user/'+ userId);
+
+        }
+
+        function findUserByCredentials(username,password) {
+            return $http.get("/api/user?username="+username+"&password="+password);
         }
 
 
