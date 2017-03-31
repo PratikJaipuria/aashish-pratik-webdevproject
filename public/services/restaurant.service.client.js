@@ -12,12 +12,24 @@
         var api = {
             "createRestaurant": createRestaurant,
             "findRestaurantByOwner":findRestaurantByOwner,
-            "findRestaurantById":findRestaurantById
+            "findRestaurantById":findRestaurantById,
+            "updateRestaurant":updateRestaurant,
+            "deleteRestaurant":deleteRestaurant
 
         };
 
 
         return api;
+
+
+        function deleteRestaurant(restaurantId) {
+            return $http.delete('/api/restaurant/'+restaurantId);
+
+        }
+
+        function updateRestaurant(restaurantId,restaurant) {
+            return $http.put('/api/restaurant/'+restaurantId,restaurant);
+        }
 
         function createRestaurant (userId,restaurant) {
             return $http.post('/api/user/'+userId+'/restaurant/',restaurant);

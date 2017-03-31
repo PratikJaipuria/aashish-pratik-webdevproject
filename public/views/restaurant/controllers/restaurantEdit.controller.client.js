@@ -7,6 +7,7 @@
         var vm = this;
         var ownerId = $routeParams.uid;
         var restaurantId = $routeParams.rst;
+        vm.updateRestaurant = updateRestaurant;
         vm.deleteRestaurant=deleteRestaurant;
 
         function init(){
@@ -14,7 +15,7 @@
                 restaurantService
                     .findRestaurantById(restaurantId)
                     .success(function (restaurant) {
-                        vm.owner = restaurant;
+                        vm.restaurant = restaurant;
                         console.log("EDIT controller",restaurant);
                     })
             }
@@ -23,12 +24,28 @@
         }
         init();
 
-        function deleteRestaurant () {
+
+        function updateRestaurant(restaurant) {
+            console.log("update controller",restaurant);
+            restaurantService
+                .updateRestaurant(restaurantId,restaurant)
+                .success(function (restaurant) {
+                    vm.restaurant = restaurant;
+                })
+        }
+
+
+
+        function deleteRestaurant (restaurant) {
 
 
                 var r = confirm("You really want to delete this restaurant. This cannot be undone.");
                 if (r == true) {
-                    $location.url("/owner/123/restaurant");
+                    restaurantService
+                        .deleteRestaurant(restaurant._id)
+                        .success(function (response) {
+                        });
+                    $location.url("/user/"+ownerId+"/restaurant");
                 }
               // else {
                 //

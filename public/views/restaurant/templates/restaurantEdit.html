@@ -61,7 +61,7 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label for="rname"  class="wbdv-req-field">Restaurant Name:</label>
-                        <input ng-model="model.owner.rname"
+                        <input ng-model="model.restaurant.rname"
                                type="text" class="form-control"
                                id="rname"
                                name="rname"
@@ -74,7 +74,7 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label for="pin"  class="wbdv-req-field">PIN:</label>
-                        <input ng-model="model.owner.pin"
+                        <input ng-model="model.restaurant.pin"
                                type="text" class="form-control"
                                id="pin"
                                name="pin"
@@ -86,7 +86,7 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label for="phone"  class="wbdv-req-field">Phone:</label>
-                        <input ng-model="model.owner.phone"
+                        <input ng-model="model.restaurant.phone"
                                type="text" class="form-control"
                                id="phone"
                                name="phone"
@@ -100,7 +100,7 @@
                 <div class="col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label for="address"  class="wbdv-req-field">Address:</label>
-                        <textarea rows="5" ng-model="model.owner.address"
+                        <textarea rows="5" ng-model="model.restaurant.address"
                                   type="text" class="form-control"
                                   id="address"
                                   name="address"
@@ -114,7 +114,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
                             <label for="city" class="wbdv-req-field" style="color: white;">City:</label>
-                            <select ng-model="model.owner.city"
+                            <select ng-model="model.restaurant.city"
                                     id="city"
                                     name="city"
                                     class="form-control" placeholder="Restaurant City"
@@ -128,7 +128,7 @@
 
                         <div class="col-sm-6 col-xs-12">
                             <label for="country" class="wbdv-req-field" style="color: white;">Country:</label>
-                            <select ng-model="model.owner.country"
+                            <select ng-model="model.restaurant.country"
                                     id="country"
                                     name="country"
                                     class="form-control">
@@ -220,7 +220,7 @@
 
                                 <div class="col-xs-5 col-sm-4" id="startTimeDiv">
                                     <p for="stH" class="wbdv-req-field" style="color: white;">HH</p>
-                                    <select ng-model="model.owner.stH"
+                                    <select ng-model="model.restaurant.stH"
                                             id="stH"
                                             name="stH"
                                             class="form-control">
@@ -252,7 +252,7 @@
                                 </div>
                                 <div class="col-xs-5 col-sm-4">
                                     <p for="stM" class="wbdv-req-field" style="color: white;">MIN</p>
-                                    <select ng-model="model.owner.stM"
+                                    <select ng-model="model.restaurant.stM"
                                             id="stM"
                                             name="stH"
                                             class="form-control"
@@ -274,7 +274,7 @@
                                 <label for="etH">End Time</label>
                                 <div class="col-xs-5 col-sm-4" id="closeTime">
                                     <p for="etH" class="wbdv-req-field" style="color: white;">HH  </p>
-                                    <select ng-model="model.owner.etH"
+                                    <select ng-model="model.restaurant.etH"
                                             id="etH"
                                             name="etH"
                                             class="form-control"
@@ -307,7 +307,7 @@
                                 </div>
                                 <div class="col-sm-4 col-xs-5">
                                     <p for="etM" class="wbdv-req-field" style="color: white;">MIN</p>
-                                    <select ng-model="model.owner.etM"
+                                    <select ng-model="model.restaurant.etM"
                                             id="etM"
                                             name="etM"
                                             class="form-control"
@@ -335,13 +335,13 @@
             <div class="row wbdv-mar-top-15">
                 <div class="col-sm-6 col-xs-12">
                     <label for="del" class="wbdv-req-field" style="color: white;">Delivery</label>
-                    <select ng-model="model.owner.del"
+                    <select ng-model="model.restaurant.delivery"
                             id="del"
                             name="del"
                             class="form-control"
                             style="display: block;">
-                        <option  selected="selected" value="yes"> Yes.. We Deliver</option>
-                        <option value="no">No..this facility is not available right now</option>
+                        <option  selected="selected" value="true"> Yes.. We Deliver</option>
+                        <option value="false">No..this facility is not available right now</option>
                     </select>
                 </div>
             </div>
@@ -362,13 +362,13 @@
         <div  class="wbdv-mar-bottom-60  wbdv-mar-top-25">
             <div class="row">
                 <div class="col-sm-4 col-xs-12">
-                    <a href="#/owner/123/restaurant" class="btn btn-success btn-block form-control">Update</a>
+                    <a ng-click="model.updateRestaurant(model.restaurant)" class="btn btn-success btn-block form-control">Update</a>
                 </div>
                 <div class="col-sm-4 col-xs-12">
                     <a href="#/owner/123" class="btn btn-primary  btn-block">Cancel</a>
                 </div>
                 <div class="col-sm-4 col-xs-12">
-                    <a ng-click="model.deleteRestaurant()" class="btn btn-danger  btn-block">Delete</a>
+                    <a ng-click="model.deleteRestaurant(model.restaurant)" class="btn btn-danger  btn-block">Delete</a>
                 </div>
 
             </div>

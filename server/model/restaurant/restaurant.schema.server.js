@@ -19,7 +19,15 @@ module.exports=function(){
         pin:String,
         url:String,
         logo:String,
-        workinghrsperday:[String],
+        hours:{
+            "Monday":[String],
+            "Tueday":[String],
+            "Wednesday":[String],
+            "Thursday":[String],
+            "Friday":[String],
+            "Saturday":[String],
+            "Sunday":[String]
+        },
         speciality:[String],
         delivery:Boolean,
         pickup:Boolean,

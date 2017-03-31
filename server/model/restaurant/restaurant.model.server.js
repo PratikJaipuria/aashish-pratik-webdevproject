@@ -14,12 +14,50 @@ module.exports = function () {
         createRestaurant: createRestaurant,
         findRestaurantByName: findRestaurantByName,
         findRestaurantByOwner:findRestaurantByOwner,
-        findRestaurantById:findRestaurantById
+        findRestaurantById:findRestaurantById,
+        updateRestaurant:updateRestaurant,
+        deleteRestaurant:deleteRestaurant
+
 
     };
     return api;
 
 
+    function deleteRestaurant(restaurantId) {
+        var deferred = q.defer();
+        RestaurantModel
+            .remove({_id:restaurantId},function (err,result) {
+                if(err){
+                    deferred.reject()
+                }else{
+                    deferred.resolve(result)
+                }
+            });
+        return deferred.promise;
+    }
+
+    function updateRestaurant(restaurantId,restaurant) {
+        var deferred = q.defer();
+        RestaurantModel
+            .update({_id:restaurantId},{
+            $set: {
+                name:  restaurant.name,
+                phone: restaurant.phone,
+                address: restaurant.address,
+                city: restaurant.city,
+                country: restaurant.country,
+                pin:restaurant.pin,
+                url:restaurant.url
+            }
+            },function (err,restaurant) {
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(restaurant);
+                }
+            });
+        return deferred.promise;
+    }
     function findRestaurantById(restaurantId) {
         var deferred = q.defer();
         console.log("MODEL findRestaurantById", restaurantId);

@@ -10,13 +10,13 @@
         </div>
 
         <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a ng-click="model.createRestaurant(model.owner)">
+            <a ng-click="model.createRestaurant(model.restaurant)">
                 <span class="wbdv-text-clr-white" title="Save">Save Restaurant</span>
             </a>
         </div>
 
         <div  class="navbar-text navbar-link pull-right visible-xs">
-            <a ng-click="model.createRestaurant(model.owner)">
+            <a ng-click="model.createRestaurant(model.restaurant)">
                 <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Save"></span>
             </a>
         </div>
@@ -44,7 +44,7 @@
                     <div class="col-sm-4 col-xs-12">
                         <div class="form-group">
                             <label for="rname"  class="wbdv-req-field">Restaurant Name:</label>
-                            <input ng-model="model.owner.name"
+                            <input ng-model="model.restaurant.name"
                                    type="text" class="form-control"
                                    id="rname"
                                    name="rname"
@@ -57,7 +57,7 @@
                     <div class="col-sm-4 col-xs-12">
                         <div class="form-group">
                             <label for="pin"  class="wbdv-req-field">PIN:</label>
-                            <input ng-model="model.owner.pin"
+                            <input ng-model="model.restaurant.pin"
                                    type="text" class="form-control"
                                    id="pin"
                                    name="pin"
@@ -69,7 +69,7 @@
                     <div class="col-sm-4 col-xs-12">
                         <div class="form-group">
                             <label for="phone"  class="wbdv-req-field">Phone:</label>
-                            <input ng-model="model.owner.phone"
+                            <input ng-model="model.restaurant.phone"
                                    type="text" class="form-control"
                                    id="phone"
                                    name="phone"
@@ -83,7 +83,7 @@
                     <div class="col-sm-4 col-xs-12">
                         <div class="form-group">
                             <label for="address"  class="wbdv-req-field">Address:</label>
-                            <textarea rows="5" ng-model="model.owner.address"
+                            <textarea rows="5" ng-model="model.restaurant.address"
                                       type="text" class="form-control"
                                       id="address"
                                       name="address"
@@ -97,7 +97,7 @@
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
                                 <label for="city" class="wbdv-req-field" style="color: white;">City:</label>
-                                <select ng-model="model.owner.city"
+                                <select ng-model="model.restaurant.city"
                                         id="city"
                                         name="city"
                                         class="form-control"
@@ -112,7 +112,7 @@
 
                             <div class="col-sm-6 col-xs-12">
                                 <label for="country" class="wbdv-req-field" style="color: white;">Country:</label>
-                                <select ng-model="model.owner.country"
+                                <select ng-model="model.restaurant.country"
                                         id="country"
                                         name="country"
                                         class="form-control">
@@ -125,7 +125,7 @@
                         <div class="row wbdv-mar-top-5">
                             <div class="col-sm-12 col-xs-12 pull-left">
                                 <label for="restURL">Restaurant URL</label>
-                                <input ng-model="model.owner.url" id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
+                                <input ng-model="model.restaurant.url" id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
                             </div>
                         </div>
 
@@ -163,27 +163,142 @@
                 <!--style="padding-top: 2px; padding-right: 4px;"></span></a>-->
                 <!--</div>-->
 
-                <!--<div id="description" class="collapse"-->
-                <!--ng-model="model.owner.description"-->
-                <!--text-angular-->
-                <!--ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],-->
-                <!--['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],-->
-                <!--['indent','outdent'],['html']]">-->
-                <!--</div>-->
+                <div id="description" class="collapse"
+                ng-model="model.restaurant.description"
+                text-angular
+                ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                ['indent','outdent'],['html']]">
+                </div>
 
-                <!--<div class="form-group" style="display: none;">-->
-                <!--<label  for="html-text" class="wbdv-req-field">HTML Text:</label>-->
-                <!--<textarea row="4" ng-model="model.owner.description"-->
-                <!--type="text"-->
-                <!--class="form-control"-->
-                <!--id="html-text"-->
-                <!--placeholder="HTML Text"-->
-                <!--required></textarea>-->
-                <!--</div>-->
-                <!--</div>-->
+                <div class="form-group" style="display: none;">
+                <label  for="html-text" class="wbdv-req-field">HTML Text:</label>
+                <textarea row="4" ng-model="model.restaurant.description"
+                type="text"
+                class="form-control"
+                id="html-text"
+                placeholder="HTML Text"
+                required></textarea>
+                </div>
 
-                <!--<label for="workingDays" class="wbdv-mar-top-15">Working Days</label>-->
-                <!--<div class="row wbdv-mar-top-5" id="workingDays" style="background-color: black;">-->
+
+                <label for="workingDays" class="wbdv-mar-top-15">Working Days</label>
+                <div class="row wbdv-mar-top-5" id="workingDays">
+                    <ul class="list-group" style="margin-right: 23px;">
+
+                             <li class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                 <div class="row">
+                                 <div class="col-xs-4">
+                                 <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                                    <input type="checkbox" name="day" value="Monday" checked>Mon<br>
+                                 </div>
+                                 <div class="col-xs-4">
+                                     <div class="col-xs-2">
+                                         <select ng-model="model.restaurant.stH"
+                                                 id="stH"
+                                                 name="stH"
+                                                 class="form-control"
+                                                 style="display: block;">
+                                             <option value="1">1</option>
+                                             <option value="2">2</option>
+                                             <option value="3">3</option>
+                                             <option value="4">4</option>
+                                             <option value="1">5</option>
+                                             <option value="2">6</option>
+                                             <option value="3">7</option>
+                                             <option value="4">8</option>
+                                             <option value="1">9</option>
+                                             <option value="2">10</option>
+                                             <option value="3">11</option>
+                                             <option value="4">12</option>
+                                             <option value="13">13</option>
+                                             <option value="14">14</option>
+                                             <option value="15">15</option>
+                                             <option value="16">16</option>
+                                             <option value="17">17</option>
+                                             <option value="18">18</option>
+                                             <option value="19">19</option>
+                                             <option value="20">20</option>
+                                             <option value="21">21</option>
+                                             <option value="22">22</option>
+                                             <option value="23">23</option>
+                                             <option value="00">00</option>
+                                         </select>
+
+                                     </div>
+                                     <div class="col-xs-2">
+                                         <select
+                                                 id="stM"
+                                                 name="stH"
+                                                 class="form-control"
+                                                 style="display: block;">
+                                             <option value="00">00</option>
+                                             <option value="15">15</option>
+                                             <option value="30">30</option>
+                                             <option value="45">45</option>
+                                         </select>
+
+                                     </div>
+                                 </div>
+                             </li>
+                         </div>
+
+                         <div class="col-xs-4">
+
+                         </div>
+
+                     </div>
+
+                        <div>
+                            <li class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black" >
+                                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                                <input type="checkbox" name="day" value="Tuesday" checked>Tue<br>
+                                <!--</div>-->
+                            </li>
+                        </div>
+
+                        <div>
+                            <li class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                                <input type="checkbox" name="day" value="Wednesday" checked>Wed<br>
+                                <!--</div>-->
+                            </li>
+                        </div>
+
+                        <div>
+                            <li class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                                <input type="checkbox" name="day" value="Thursday" checked>Thu<br>
+                                <!--</div>-->
+                            </li>
+                        </div>
+
+                        <div>
+                            <li  class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                                <input type="checkbox" name="day" value="Friday" checked>Fri<br>
+                                <!--</div>-->
+                            </li>
+                        </div>
+
+                        <div>
+                            <li  class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                                <input type="checkbox" name="day" value="Saturday" checked>Sat<br>
+                                <!--</div>-->
+                            </li>
+                        </div>
+
+                        <div>
+                            <li  class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                                <input type="checkbox" name="day" value="Sunday" checked>Sun<br>
+                                <!--</div>-->
+                            </li>
+                        </div>
+
+
+                    </ul>
 
                 <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
                 <!--<input type="checkbox" name="day" value="mon" checked>Mon<br>-->
@@ -209,136 +324,136 @@
                 <!--<input type="checkbox" name="day" value="sun" checked>Sun<br>-->
                 <!--</div>-->
 
-                <!--</div>-->
+                </div>
 
-                <!--<div class="row wbdv-mar-top-5" >-->
-                <!--<div class="col-sm-6 col-xs-12">-->
-                <!--<h4 style="font-weight:700; font-size: 14px;">Start Time</h4>-->
-                <!--<div class="col-sm-3 col-xs-5" id="startTimeDiv">-->
-                <!--<label for="stH" class="wbdv-req-field" style="color: white;">HH</label>-->
-                <!--<select ng-model="model.owner.stH"-->
-                <!--id="stH"-->
-                <!--name="stH"-->
-                <!--class="form-control"-->
-                <!--style="display: block;">-->
-                <!--<option value="1">1</option>-->
-                <!--<option value="2">2</option>-->
-                <!--<option value="3">3</option>-->
-                <!--<option value="4">4</option>-->
-                <!--<option value="1">5</option>-->
-                <!--<option value="2">6</option>-->
-                <!--<option value="3">7</option>-->
-                <!--<option value="4">8</option>-->
-                <!--<option value="1">9</option>-->
-                <!--<option value="2">10</option>-->
-                <!--<option value="3">11</option>-->
-                <!--<option value="4">12</option>-->
-                <!--<option value="13">13</option>-->
-                <!--<option value="14">14</option>-->
-                <!--<option value="15">15</option>-->
-                <!--<option value="16">16</option>-->
-                <!--<option value="17">17</option>-->
-                <!--<option value="18">18</option>-->
-                <!--<option value="19">19</option>-->
-                <!--<option value="20">20</option>-->
-                <!--<option value="21">21</option>-->
-                <!--<option value="22">22</option>-->
-                <!--<option value="23">23</option>-->
-                <!--<option value="00">00</option>-->
-                <!--</select>-->
-                <!--</div>-->
-                <!--<div class="col-sm-3 col-xs-5">-->
-                <!--<label for="stM" class="wbdv-req-field" style="color: white;">MIN</label>-->
-                <!--&lt;!&ndash;ng-model="model.owner.stM"&ndash;&gt;-->
-                <!--<select-->
-                <!--id="stM"-->
-                <!--name="stH"-->
-                <!--class="form-control"-->
-                <!--style="display: block;">-->
-                <!--<option value="00">00</option>-->
-                <!--<option value="15">15</option>-->
-                <!--<option value="30">30</option>-->
-                <!--<option value="45">45</option>-->
-                <!--</select>-->
-                <!--</div>-->
-                <!--</div>-->
+                <div class="row wbdv-mar-top-5" >
+                <div class="col-sm-6 col-xs-12">
+                <h4 style="font-weight:700; font-size: 14px;">Start Time</h4>
+                <div class="col-sm-3 col-xs-5" id="startTimeDiv">
+                <label for="stH" class="wbdv-req-field" style="color: white;">HH</label>
+                <select ng-model="model.restaurant.stH"
+                id="stH"
+                name="stH"
+                class="form-control"
+                style="display: block;">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="1">5</option>
+                <option value="2">6</option>
+                <option value="3">7</option>
+                <option value="4">8</option>
+                <option value="1">9</option>
+                <option value="2">10</option>
+                <option value="3">11</option>
+                <option value="4">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="00">00</option>
+                </select>
+                </div>
+                <div class="col-sm-3 col-xs-5">
+                <label for="stM" class="wbdv-req-field" style="color: white;">MIN</label>
+                <!--ng-model="model.restaurant.stM"-->
+                <select
+                id="stM"
+                name="stH"
+                class="form-control"
+                style="display: block;">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+                </select>
+                </div>
+                </div>
 
-                <!--<div class="col-sm-6 col-xs-12">-->
-                <!--<h4 style="font-weight:700; font-size: 14px;">Close Time</h4>-->
-                <!--<div class="col-sm-3 col-xs-5">-->
-                <!--<label for="etH" class="wbdv-req-field" style="color: white;">HH</label>-->
-                <!--&lt;!&ndash;ng-model="model.owner.etH"&ndash;&gt;-->
-                <!--<select-->
-                <!--id="etH"-->
-                <!--name="etH"-->
-                <!--class="form-control"-->
-                <!--style="display: block;">-->
-                <!--<option value="1">1</option>-->
-                <!--<option value="2">2</option>-->
-                <!--<option value="3">3</option>-->
-                <!--<option value="4">4</option>-->
-                <!--<option value="1">5</option>-->
-                <!--<option value="2">6</option>-->
-                <!--<option value="3">7</option>-->
-                <!--<option value="4">8</option>-->
-                <!--<option value="1">9</option>-->
-                <!--<option value="2">10</option>-->
-                <!--<option value="3">11</option>-->
-                <!--<option value="4">12</option>-->
-                <!--<option value="13">13</option>-->
-                <!--<option value="14">14</option>-->
-                <!--<option value="15">15</option>-->
-                <!--<option value="16">16</option>-->
-                <!--<option value="17">17</option>-->
-                <!--<option value="18">18</option>-->
-                <!--<option value="19">19</option>-->
-                <!--<option value="20">20</option>-->
-                <!--<option value="21">21</option>-->
-                <!--<option value="22">22</option>-->
-                <!--<option value="23">23</option>-->
-                <!--<option value="00">00</option>-->
-                <!--</select>-->
-                <!--</div>-->
-                <!--<div class="col-sm-3 col-xs-5">-->
-                <!--<label for="etM" class="wbdv-req-field" style="color: white;">MIN</label>-->
-                <!--&lt;!&ndash;ng-model="model.owner.etM"&ndash;&gt;-->
-                <!--<select-->
-                <!--id="etM"-->
-                <!--name="etM"-->
-                <!--class="form-control"-->
-                <!--style="display: block;">-->
-                <!--<option value="00">00</option>-->
-                <!--<option value="15">15</option>-->
-                <!--<option value="30">30</option>-->
-                <!--<option value="45">45</option>-->
-                <!--</select>-->
-                <!--</div>-->
+                <div class="col-sm-6 col-xs-12">
+                <h4 style="font-weight:700; font-size: 14px;">Close Time</h4>
+                <div class="col-sm-3 col-xs-5">
+                <label for="etH" class="wbdv-req-field" style="color: white;">HH</label>
+                <!--ng-model="model.restaurant.etH"-->
+                <select
+                id="etH"
+                name="etH"
+                class="form-control"
+                style="display: block;">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="1">5</option>
+                <option value="2">6</option>
+                <option value="3">7</option>
+                <option value="4">8</option>
+                <option value="1">9</option>
+                <option value="2">10</option>
+                <option value="3">11</option>
+                <option value="4">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="00">00</option>
+                </select>
+                </div>
+                <div class="col-sm-3 col-xs-5">
+                <label for="etM" class="wbdv-req-field" style="color: white;">MIN</label>
+                <!--ng-model="model.restaurant.etM"-->
+                <select
+                id="etM"
+                name="etM"
+                class="form-control"
+                style="display: block;">
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+                </select>
+                </div>
 
-                <!--</div>-->
+                </div>
 
-                <!--</div>-->
-                <!--<div class="row wbdv-mar-top-15">-->
-                <!--<div class="col-sm-6 col-xs-12">-->
-                <!--<label for="del" class="wbdv-req-field" style="color: white;">Delivery</label>-->
-                <!--<select ng-model="model.owner.delivery"-->
-                <!--id="del"-->
-                <!--name="del"-->
-                <!--class="form-control"-->
-                <!--style="display: block;">-->
-                <!--<option  selected="selected" value="true"> Yes.. We Deliver</option>-->
-                <!--<option value="false">No..this facility is not available right now</option>-->
-                <!--</select>-->
-                <!--</div>-->
-                <!--</div>-->
+                </div>
+                <div class="row wbdv-mar-top-15">
+                <div class="col-sm-6 col-xs-12">
+                <label for="del" class="wbdv-req-field" style="color: white;">Delivery</label>
+                <select ng-model="model.restaurant.delivery"
+                id="del"
+                name="del"
+                class="form-control"
+                style="display: block;">
+                <option  selected="selected" value="true"> Yes.. We Deliver</option>
+                <option value="false">No..this facility is not available right now</option>
+                </select>
+                </div>
+                </div>
 
-                <!--<div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">-->
-                <!--<div class="col-sm-12 col-xs-12">-->
-                <!--<a class="btn btn-block btn-primary add_field_button">Add Speciality</a>-->
-                <!--</div>-->
-                <!--</div>-->
+                <div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">
+                <div class="col-sm-12 col-xs-12">
+                <a class="btn btn-block btn-primary add_field_button">Add Speciality</a>
+                </div>
+                </div>
 
-                <!--<div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">-->
-                <!--</div>-->
+                <div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">
+                </div>
 
 
 
