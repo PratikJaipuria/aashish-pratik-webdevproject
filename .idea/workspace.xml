@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a823cc7-e6cf-4f54-9a42-97e3f7d2af76" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/services/user.service.client.js" afterPath="$PROJECT_DIR$/public/services/user.service.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/users/controllers/userProfile.controller.client.js" afterPath="$PROJECT_DIR$/public/views/users/controllers/userProfile.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/users/controllers/userRegister.controller.client.js" afterPath="$PROJECT_DIR$/public/views/users/controllers/userRegister.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/users/templates/userProfile.html" afterPath="$PROJECT_DIR$/public/views/users/templates/userProfile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/users/templates/userRegister.html" afterPath="$PROJECT_DIR$/public/views/users/templates/userRegister.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/model/user/user.model.server.js" afterPath="$PROJECT_DIR$/server/model/user/user.model.server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/users/controllers/userLogin.controller.client.js" afterPath="$PROJECT_DIR$/public/views/users/controllers/userLogin.controller.client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/users/templates/login.html" afterPath="$PROJECT_DIR$/public/views/users/templates/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/services/user.service.server.js" afterPath="$PROJECT_DIR$/server/services/user.service.server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,16 +22,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="user.schema.server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/model/user/user.schema.server.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,8 +35,8 @@
       <file leaf-file-name="userRegister.controller.client.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/users/controllers/userRegister.controller.client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="103" column="39" lean-forward="false" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
+            <state relative-caret-position="16">
+              <caret line="99" column="1" lean-forward="false" selection-start-line="99" selection-start-column="1" selection-end-line="108" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -72,8 +57,28 @@
       <file leaf-file-name="userRegister.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/users/templates/userRegister.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+            <state relative-caret-position="44">
+              <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userLogin.controller.client.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/users/controllers/userLogin.controller.client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="38" column="53" lean-forward="false" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/users/templates/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -82,8 +87,8 @@
       <file leaf-file-name="user.model.server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/model/user/user.model.server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="53" column="37" lean-forward="false" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="37" />
+            <state relative-caret-position="379">
+              <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -92,18 +97,8 @@
       <file leaf-file-name="user.service.server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/services/user.service.server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="48" column="36" lean-forward="false" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.service.client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/services/user.service.client.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-254">
-              <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+            <state relative-caret-position="220">
+              <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -147,7 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ratin</find>
       <find>wbdv</find>
       <find>rightinf</find>
       <find>form-group</find>
@@ -177,6 +171,7 @@
       <find>console</find>
       <find>val</find>
       <find>modifyUser</find>
+      <find>crede</find>
     </findStrings>
     <replaceStrings>
       <replace>user</replace>
@@ -228,8 +223,6 @@
         <option value="$PROJECT_DIR$/public/controllers/restaurantEdit.controller.client.js" />
         <option value="$PROJECT_DIR$/public/views/restaurantEdit.html" />
         <option value="$PROJECT_DIR$/public/controllers/userRegister.controller.client.js" />
-        <option value="$PROJECT_DIR$/public/views/users/controllers/userLogin.controller.client.js" />
-        <option value="$PROJECT_DIR$/public/views/users/templates/login.html" />
         <option value="$PROJECT_DIR$/public/css/slideshow.css" />
         <option value="$PROJECT_DIR$/server/app.js" />
         <option value="$PROJECT_DIR$/server/model/user/user.schema.server.js" />
@@ -248,11 +241,13 @@
         <option value="$PROJECT_DIR$/public/views/restaurant/templates/restaurantList.html" />
         <option value="$PROJECT_DIR$/server/model/user/user.model.server.js" />
         <option value="$PROJECT_DIR$/public/services/user.service.client.js" />
-        <option value="$PROJECT_DIR$/server/services/user.service.server.js" />
         <option value="$PROJECT_DIR$/public/views/users/controllers/userRegister.controller.client.js" />
         <option value="$PROJECT_DIR$/public/views/users/templates/userProfile.html" />
         <option value="$PROJECT_DIR$/public/views/users/controllers/userProfile.controller.client.js" />
         <option value="$PROJECT_DIR$/public/views/users/templates/userRegister.html" />
+        <option value="$PROJECT_DIR$/public/views/users/templates/login.html" />
+        <option value="$PROJECT_DIR$/public/views/users/controllers/userLogin.controller.client.js" />
+        <option value="$PROJECT_DIR$/server/services/user.service.server.js" />
       </list>
     </option>
   </component>
@@ -299,6 +294,78 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aashish-pratik-webdevproject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -573,12 +640,12 @@
       <workItem from="1490764536957" duration="45270000" />
       <workItem from="1490902829894" duration="12686000" />
       <workItem from="1490923282886" duration="26279000" />
-      <workItem from="1490951926573" duration="6822000" />
+      <workItem from="1490951926573" duration="7558000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="275577000" />
+    <option name="totallyTimeSpent" value="276313000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -727,8 +794,6 @@
     <entry file="file://$PROJECT_DIR$/public/views/deliveryBoy/templates/deliveryPersonnalList.html" />
     <entry file="file://$PROJECT_DIR$/public/views/owner/templates/ownerRegister.html" />
     <entry file="file://$PROJECT_DIR$/public/views/owner/templates/ownerProfile.html" />
-    <entry file="file://$PROJECT_DIR$/public/views/users/controllers/userLogin.controller.client.js" />
-    <entry file="file://$PROJECT_DIR$/public/views/users/templates/login.html" />
     <entry file="file://$PROJECT_DIR$/public/css/slideshow.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -892,22 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/model/user/user.model.server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="53" column="37" lean-forward="false" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/services/user.service.server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="48" column="36" lean-forward="false" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/users/templates/userProfile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1628">
@@ -930,18 +979,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/users/templates/userRegister.html">
+    <entry file="file://$PROJECT_DIR$/public/views/users/controllers/userRegister.controller.client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+        <state relative-caret-position="16">
+          <caret line="99" column="1" lean-forward="false" selection-start-line="99" selection-start-column="1" selection-end-line="108" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/users/controllers/userRegister.controller.client.js">
+    <entry file="file://$PROJECT_DIR$/public/views/users/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="103" column="39" lean-forward="false" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
+        <state relative-caret-position="330">
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/users/templates/userRegister.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/users/controllers/userLogin.controller.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="38" column="53" lean-forward="false" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/model/user/user.model.server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/services/user.service.server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
           <folding />
         </state>
       </provider>

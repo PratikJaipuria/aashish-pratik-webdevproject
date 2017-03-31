@@ -28,15 +28,16 @@
 
 
 <div  class="container pageBackground" id="loginPage" >
-    <!--<div id="loginContent">-->
+    <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+        {{model.message}}
+    </div>
 
+    <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+        <div ng-repeat="e in model.error">
+            {{e}}
+        </div>
 
-
-    <!--<div ng-show="model.error" class="alert alert-danger" role="alert">-->
-        <!--{{model.error}}-->
-    <!--</div>-->
-    <!--background: rgb(0, 0, 0);-->
-
+    </div>
     <div  class="container blackContainer">
         <div class="contentContainer">
             <h1 class="pageHeading" >Login</h1>

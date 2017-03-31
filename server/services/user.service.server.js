@@ -19,11 +19,17 @@ module.exports=function(app,model){
         UserModel
             .findUserByCredentials(username,password)
             .then(function (user) {
-
+                if(user){
                     res.json(user);
+                }
+                else{
+                    res.sendStatus(404);
+                }
+
 
                 }, function (err) {
-                res.sendStatus(err);
+
+                res.sendStatus(404);
             });
     }
 
