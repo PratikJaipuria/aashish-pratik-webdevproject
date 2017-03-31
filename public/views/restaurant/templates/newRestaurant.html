@@ -1,7 +1,7 @@
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
         <div  class="navbar-text navbar-link pull-left">
-            <a href="#/owner/123">
+            <a href="#/user/{{model.user._id}}">
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
             </a>
         </div>
@@ -10,13 +10,13 @@
         </div>
 
         <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a href="#/owner/123/restaurant">
+            <a ng-click="model.createRestaurant(model.owner)">
                 <span class="wbdv-text-clr-white" title="Save">Save Restaurant</span>
             </a>
         </div>
 
         <div  class="navbar-text navbar-link pull-right visible-xs">
-            <a href="#/owner/123/restaurant">
+            <a ng-click="model.createRestaurant(model.owner)">
                 <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Save"></span>
             </a>
         </div>
@@ -25,336 +25,343 @@
     </div>
 </nav>
 
-<div class="container  wbdv-text-clr-white" >
+<div class="container  pageBackground" >
 
-
-    <div ng-show="model.message" class="alert alert-success" role="alert" >
-        {{model.message}}
-    </div>
-
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
-
-    <div class="container wbdv-mar-top-25 wbdv-pad-left-right">
-
-
-        <form name="RestaurantProfile">
-            <div class="row">
-                <div class="col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="rname"  class="wbdv-req-field">Restaurant Name:</label>
-                        <input ng-model="model.owner.rname"
-                               type="text" class="form-control"
-                               id="rname"
-                               name="rname"
-                               placeholder="Restaurant Name"
-                               required/>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="pin"  class="wbdv-req-field">PIN:</label>
-                        <input ng-model="model.owner.pin"
-                               type="text" class="form-control"
-                               id="pin"
-                               name="pin"
-                               placeholder="PIN"
-                               required/>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="phone"  class="wbdv-req-field">Phone:</label>
-                        <input ng-model="model.owner.phone"
-                               type="text" class="form-control"
-                               id="phone"
-                               name="phone"
-                               placeholder="Phone"
-                               required/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4 col-xs-12">
-                    <div class="form-group">
-                        <label for="address"  class="wbdv-req-field">Address:</label>
-                        <textarea rows="5" ng-model="model.owner.address"
-                                  type="text" class="form-control"
-                                  id="address"
-                                  name="address"
-
-                                  placeholder="Address"
-                                  required></textarea>
-                    </div>
-                </div>
-
-                <div class="col-sm-8 col-xs-12">
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            <label for="city" class="wbdv-req-field" style="color: white;">City:</label>
-                            <select ng-model="model.owner.city"
-                                    id="city"
-                                    name="city"
-                                    class="form-control" placeholder="Restaurant City"
-                                    style="display: block;">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-
-                        <div class="col-sm-6 col-xs-12">
-                            <label for="country" class="wbdv-req-field" style="color: white;">Country:</label>
-                            <select ng-model="model.owner.country"
-                                    id="country"
-                                    name="country"
-                                    class="form-control">
-                                <option value="1" selected="selected">United States</option>
-
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="row wbdv-mar-top-5">
-                        <div class="col-sm-12 col-xs-12 pull-left">
-                            <label for="restURL">Restaurant URL</label>
-                            <input id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class=" row wbdv-mar-top-5">
-
-                <div class="col-xs-6 col-sm-6 pull-left">
-                    <label for="uploadFile">Logo</label>
-                    <input
-                            id="uploadFile"
-                            type="file"
-                            ngf-select
-                            ng-model="model.file"
-                            name="file"
-                            ngf-pattern="'image/*'"
-                            accept="image/*"
-                            ngf-max-size="5MB"
-                            class="form-control"/>
-                </div>
-
-                <div class="col-xs-6 col-sm-6 pull-left" ng-if="model.file">
-                    <img style="width: 100px; height: 100px;" ngf-thumbnail="model.file || '../../../../../resources/thumb.jpg'"/>
-                </div>
-            </div>
-
-            <div class="wbdv-mar-top-15">
-                <div style="background-color: gray" data-toggle="collapse" data-target="#description">
-                    <label for="description" >Restaurant Description</label>
-                    <a href=""><span class="glyphicon glyphicon-chevron-down wbdv-text-clr-white pull-right"
-                                     style="padding-top: 2px; padding-right: 4px;"></span></a>
-                </div>
-
-                <div id="description" class="collapse"
-                     ng-model="model.restaurant.description"
-                     text-angular
-                     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
-            ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
-            ['indent','outdent'],['html']]">
-                </div>
-
-                <div class="form-group" style="display: none;">
-                    <label  for="html-text" class="wbdv-req-field">HTML Text:</label>
-                    <textarea row="4" ng-model="model.restaurant.description"
-                              type="text"
-                              class="form-control"
-                              id="html-text"
-                              placeholder="HTML Text"
-                              required></textarea>
-                </div>
-            </div>
-
-            <label for="workingDays" class="wbdv-mar-top-15">Working Days</label>
-            <div class="row wbdv-mar-top-5" id="workingDays" style="background-color: black;">
-
-                <div class="col-sm-2 col-xs-4 wbdv-mar-top-5">
-                    <input type="checkbox" name="day" value="mon" checked>Mon<br>
-                </div>
-                <div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">
-                    <input type="checkbox" name="day" value="tue" checked>Tue<br>
-                </div>
-                <div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">
-                    <input type="checkbox" name="day" value="wed" checked>Wed<br>
-                </div>
-
-
-                <div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">
-                    <input type="checkbox" name="day" value="thu" checked>Thu<br>
-                </div>
-                <div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">
-                    <input type="checkbox" name="day" value="fri" checked>Fri<br>
-                </div>
-                <div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">
-                    <input type="checkbox" name="day" value="sat" checked>Sat<br>
-                </div>
-                <div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">
-                    <input type="checkbox" name="day" value="sun" checked>Sun<br>
-                </div>
-
-            </div>
-
-            <div class="row wbdv-mar-top-5" >
-                <div class="col-sm-6 col-xs-12">
-                    <h4 style="font-weight:700; font-size: 14px;">Start Time</h4>
-                    <div class="col-sm-3 col-xs-5" id="startTimeDiv">
-                        <label for="stH" class="wbdv-req-field" style="color: white;">HH</label>
-                        <select ng-model="model.owner.stH"
-                                id="stH"
-                                name="stH"
-                                class="form-control"
-                                style="display: block;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="1">5</option>
-                            <option value="2">6</option>
-                            <option value="3">7</option>
-                            <option value="4">8</option>
-                            <option value="1">9</option>
-                            <option value="2">10</option>
-                            <option value="3">11</option>
-                            <option value="4">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="00">00</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3 col-xs-5">
-                        <label for="stM" class="wbdv-req-field" style="color: white;">MIN</label>
-                        <select ng-model="model.owner.stM"
-                                id="stM"
-                                name="stH"
-                                class="form-control"
-                                style="display: block;">
-                            <option value="00">00</option>
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-xs-12">
-                    <h4 style="font-weight:700; font-size: 14px;">Close Time</h4>
-                    <div class="col-sm-3 col-xs-5">
-                        <label for="etH" class="wbdv-req-field" style="color: white;">HH</label>
-                        <select ng-model="model.owner.etH"
-                                id="etH"
-                                name="etH"
-                                class="form-control"
-                                style="display: block;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="1">5</option>
-                            <option value="2">6</option>
-                            <option value="3">7</option>
-                            <option value="4">8</option>
-                            <option value="1">9</option>
-                            <option value="2">10</option>
-                            <option value="3">11</option>
-                            <option value="4">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="00">00</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3 col-xs-5">
-                        <label for="etM" class="wbdv-req-field" style="color: white;">MIN</label>
-                        <select ng-model="model.owner.etM"
-                                id="etM"
-                                name="etM"
-                                class="form-control"
-                                style="display: block;">
-                            <option value="00">00</option>
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="row wbdv-mar-top-15">
-                <div class="col-sm-6 col-xs-12">
-                    <label for="del" class="wbdv-req-field" style="color: white;">Delivery</label>
-                    <select ng-model="model.owner.del"
-                            id="del"
-                            name="del"
-                            class="form-control"
-                            style="display: block;">
-                        <option  selected="selected" value="yes"> Yes.. We Deliver</option>
-                        <option value="no">No..this facility is not available right now</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">
-                <div class="col-sm-12 col-xs-12">
-                    <a class="btn btn-block btn-primary add_field_button">Add Speciality</a>
-                </div>
-            </div>
-
-            <div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">
-            </div>
-
-
-
-        </form>
-        <div  class="wbdv-mar-bottom-60  wbdv-mar-top-25">
-            <div class="row">
-                <div class="col-sm-4 col-xs-12">
-                    <a href="#/owner/123/restaurant" class="btn btn-success btn-block form-control">Update</a>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <a href="#/owner/123" class="btn btn-primary  btn-block">Cancel</a>
-                </div>
-                <div class="col-sm-4 col-xs-12">
-                    <a ng-click="model.deleteRestaurant()" class="btn btn-danger  btn-block">Delete</a>
-                </div>
-
-            </div>
-
+    <div class="container blackContainer">
+        <div ng-show="model.message" class="alert alert-success" role="alert" >
+            {{model.message}}
         </div>
 
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
 
+        <div class="container  contentContainer">
+
+
+            <form name="RestaurantProfile">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="rname"  class="wbdv-req-field">Restaurant Name:</label>
+                            <input ng-model="model.owner.name"
+                                   type="text" class="form-control"
+                                   id="rname"
+                                   name="rname"
+                                   placeholder="Restaurant Name"
+                                   required/>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="pin"  class="wbdv-req-field">PIN:</label>
+                            <input ng-model="model.owner.pin"
+                                   type="text" class="form-control"
+                                   id="pin"
+                                   name="pin"
+                                   placeholder="PIN"
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="phone"  class="wbdv-req-field">Phone:</label>
+                            <input ng-model="model.owner.phone"
+                                   type="text" class="form-control"
+                                   id="phone"
+                                   name="phone"
+                                   placeholder="Phone"
+                                   required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="address"  class="wbdv-req-field">Address:</label>
+                            <textarea rows="5" ng-model="model.owner.address"
+                                      type="text" class="form-control"
+                                      id="address"
+                                      name="address"
+
+                                      placeholder="Address"
+                                      required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8 col-xs-12">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <label for="city" class="wbdv-req-field" style="color: white;">City:</label>
+                                <select ng-model="model.owner.city"
+                                        id="city"
+                                        name="city"
+                                        class="form-control"
+                                        placeholder="Restaurant City"
+                                        style="display: block;">
+                                    <option value="1">Boston</option>
+                                    <option value="2">New York</option>
+                                    <option value="3">San Jose</option>
+                                    <option value="4">Iowa</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-6 col-xs-12">
+                                <label for="country" class="wbdv-req-field" style="color: white;">Country:</label>
+                                <select ng-model="model.owner.country"
+                                        id="country"
+                                        name="country"
+                                        class="form-control">
+                                    <option value="1" selected="selected">United States</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row wbdv-mar-top-5">
+                            <div class="col-sm-12 col-xs-12 pull-left">
+                                <label for="restURL">Restaurant URL</label>
+                                <input ng-model="model.owner.url" id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class=" row wbdv-mar-top-5">
+
+                    <div class="col-xs-6 col-sm-6 pull-left">
+                        <label for="uploadFile">Logo</label>
+                        <input
+                                id="uploadFile"
+                                type="file"
+                                ngf-select
+                                ng-model="model.file"
+                                name="file"
+                                ngf-pattern="'image/*'"
+                                accept="image/*"
+                                ngf-max-size="5MB"
+                                class="form-control"/>
+                    </div>
+
+
+                    <div class="col-xs-6 col-sm-6 pull-left" ng-if="model.file">
+                        <img style="width: 100px; height: 100px;" ngf-thumbnail="model.file || '../../../../../resources/thumb.jpg'"/>
+                    </div>
+                </div>
+
+                <!--<div class="wbdv-mar-top-15">-->
+                <!--<div style="background-color: gray" data-toggle="collapse" data-target="#description">-->
+                <!--<label for="description" >Restaurant Description</label>-->
+                <!--<a href=""><span class="glyphicon glyphicon-chevron-down wbdv-text-clr-white pull-right"-->
+                <!--style="padding-top: 2px; padding-right: 4px;"></span></a>-->
+                <!--</div>-->
+
+                <!--<div id="description" class="collapse"-->
+                <!--ng-model="model.owner.description"-->
+                <!--text-angular-->
+                <!--ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],-->
+                <!--['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],-->
+                <!--['indent','outdent'],['html']]">-->
+                <!--</div>-->
+
+                <!--<div class="form-group" style="display: none;">-->
+                <!--<label  for="html-text" class="wbdv-req-field">HTML Text:</label>-->
+                <!--<textarea row="4" ng-model="model.owner.description"-->
+                <!--type="text"-->
+                <!--class="form-control"-->
+                <!--id="html-text"-->
+                <!--placeholder="HTML Text"-->
+                <!--required></textarea>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<label for="workingDays" class="wbdv-mar-top-15">Working Days</label>-->
+                <!--<div class="row wbdv-mar-top-5" id="workingDays" style="background-color: black;">-->
+
+                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5">-->
+                <!--<input type="checkbox" name="day" value="mon" checked>Mon<br>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">-->
+                <!--<input type="checkbox" name="day" value="tue" checked>Tue<br>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">-->
+                <!--<input type="checkbox" name="day" value="wed" checked>Wed<br>-->
+                <!--</div>-->
+
+
+                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">-->
+                <!--<input type="checkbox" name="day" value="thu" checked>Thu<br>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">-->
+                <!--<input type="checkbox" name="day" value="fri" checked>Fri<br>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">-->
+                <!--<input type="checkbox" name="day" value="sat" checked>Sat<br>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2 col-xs-4 wbdv-mar-top-5 pull-left">-->
+                <!--<input type="checkbox" name="day" value="sun" checked>Sun<br>-->
+                <!--</div>-->
+
+                <!--</div>-->
+
+                <!--<div class="row wbdv-mar-top-5" >-->
+                <!--<div class="col-sm-6 col-xs-12">-->
+                <!--<h4 style="font-weight:700; font-size: 14px;">Start Time</h4>-->
+                <!--<div class="col-sm-3 col-xs-5" id="startTimeDiv">-->
+                <!--<label for="stH" class="wbdv-req-field" style="color: white;">HH</label>-->
+                <!--<select ng-model="model.owner.stH"-->
+                <!--id="stH"-->
+                <!--name="stH"-->
+                <!--class="form-control"-->
+                <!--style="display: block;">-->
+                <!--<option value="1">1</option>-->
+                <!--<option value="2">2</option>-->
+                <!--<option value="3">3</option>-->
+                <!--<option value="4">4</option>-->
+                <!--<option value="1">5</option>-->
+                <!--<option value="2">6</option>-->
+                <!--<option value="3">7</option>-->
+                <!--<option value="4">8</option>-->
+                <!--<option value="1">9</option>-->
+                <!--<option value="2">10</option>-->
+                <!--<option value="3">11</option>-->
+                <!--<option value="4">12</option>-->
+                <!--<option value="13">13</option>-->
+                <!--<option value="14">14</option>-->
+                <!--<option value="15">15</option>-->
+                <!--<option value="16">16</option>-->
+                <!--<option value="17">17</option>-->
+                <!--<option value="18">18</option>-->
+                <!--<option value="19">19</option>-->
+                <!--<option value="20">20</option>-->
+                <!--<option value="21">21</option>-->
+                <!--<option value="22">22</option>-->
+                <!--<option value="23">23</option>-->
+                <!--<option value="00">00</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--<div class="col-sm-3 col-xs-5">-->
+                <!--<label for="stM" class="wbdv-req-field" style="color: white;">MIN</label>-->
+                <!--&lt;!&ndash;ng-model="model.owner.stM"&ndash;&gt;-->
+                <!--<select-->
+                <!--id="stM"-->
+                <!--name="stH"-->
+                <!--class="form-control"-->
+                <!--style="display: block;">-->
+                <!--<option value="00">00</option>-->
+                <!--<option value="15">15</option>-->
+                <!--<option value="30">30</option>-->
+                <!--<option value="45">45</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="col-sm-6 col-xs-12">-->
+                <!--<h4 style="font-weight:700; font-size: 14px;">Close Time</h4>-->
+                <!--<div class="col-sm-3 col-xs-5">-->
+                <!--<label for="etH" class="wbdv-req-field" style="color: white;">HH</label>-->
+                <!--&lt;!&ndash;ng-model="model.owner.etH"&ndash;&gt;-->
+                <!--<select-->
+                <!--id="etH"-->
+                <!--name="etH"-->
+                <!--class="form-control"-->
+                <!--style="display: block;">-->
+                <!--<option value="1">1</option>-->
+                <!--<option value="2">2</option>-->
+                <!--<option value="3">3</option>-->
+                <!--<option value="4">4</option>-->
+                <!--<option value="1">5</option>-->
+                <!--<option value="2">6</option>-->
+                <!--<option value="3">7</option>-->
+                <!--<option value="4">8</option>-->
+                <!--<option value="1">9</option>-->
+                <!--<option value="2">10</option>-->
+                <!--<option value="3">11</option>-->
+                <!--<option value="4">12</option>-->
+                <!--<option value="13">13</option>-->
+                <!--<option value="14">14</option>-->
+                <!--<option value="15">15</option>-->
+                <!--<option value="16">16</option>-->
+                <!--<option value="17">17</option>-->
+                <!--<option value="18">18</option>-->
+                <!--<option value="19">19</option>-->
+                <!--<option value="20">20</option>-->
+                <!--<option value="21">21</option>-->
+                <!--<option value="22">22</option>-->
+                <!--<option value="23">23</option>-->
+                <!--<option value="00">00</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--<div class="col-sm-3 col-xs-5">-->
+                <!--<label for="etM" class="wbdv-req-field" style="color: white;">MIN</label>-->
+                <!--&lt;!&ndash;ng-model="model.owner.etM"&ndash;&gt;-->
+                <!--<select-->
+                <!--id="etM"-->
+                <!--name="etM"-->
+                <!--class="form-control"-->
+                <!--style="display: block;">-->
+                <!--<option value="00">00</option>-->
+                <!--<option value="15">15</option>-->
+                <!--<option value="30">30</option>-->
+                <!--<option value="45">45</option>-->
+                <!--</select>-->
+                <!--</div>-->
+
+                <!--</div>-->
+
+                <!--</div>-->
+                <!--<div class="row wbdv-mar-top-15">-->
+                <!--<div class="col-sm-6 col-xs-12">-->
+                <!--<label for="del" class="wbdv-req-field" style="color: white;">Delivery</label>-->
+                <!--<select ng-model="model.owner.delivery"-->
+                <!--id="del"-->
+                <!--name="del"-->
+                <!--class="form-control"-->
+                <!--style="display: block;">-->
+                <!--<option  selected="selected" value="true"> Yes.. We Deliver</option>-->
+                <!--<option value="false">No..this facility is not available right now</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">-->
+                <!--<div class="col-sm-12 col-xs-12">-->
+                <!--<a class="btn btn-block btn-primary add_field_button">Add Speciality</a>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">-->
+                <!--</div>-->
+
+
+
+            </form>
+            <div  class="wbdv-mar-bottom-60  wbdv-mar-top-25">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <a href="#/owner/123/restaurant" class="btn btn-success btn-block form-control">Update</a>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <a href="#/owner/123" class="btn btn-primary  btn-block">Cancel</a>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <a ng-click="model.deleteRestaurant()" class="btn btn-danger  btn-block">Delete</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
 
     </div>
 
@@ -365,7 +372,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/{{model.user._id}}" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

@@ -75,11 +75,11 @@ module.exports = function () {
 
         UserModel.findOne({_id:userId}, function (err, user) {
             if(err){
-                console.log(err);
+                // console.log(err);
                 deferred.reject(err);
             }
             else{
-                console.log(user);
+                // console.log(user);
                 deferred.resolve(user);
 
             }

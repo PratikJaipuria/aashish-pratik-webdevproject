@@ -1,31 +1,33 @@
 (function (){
     angular
         .module("ProjectMaker")
-        .controller("restaurantEditController",restaurantEditController);
+        .controller("restaurantNewController",restaurantNewController);
 
-    function restaurantEditController($routeParams, $location){
+    function restaurantNewController($routeParams, restaurantService,$location){
         var vm = this;
-        vm.deleteRestaurant=deleteRestaurant;
 
+        var ownerId = $routeParams.uid;
+        vm.createRestaurant = createRestaurant;
         function init(){
+
 
         }
         init();
 
-        function deleteRestaurant () {
+        function createRestaurant(restaurant) {
+            console.log(restaurant);
+            // restaurant.ownerId = ownerId;
+            restaurantService
+                .createRestaurant(ownerId,restaurant)
+                .success(function (restaurant) {
+                    console.log("REST created successfully @ controller");
+                    console.log(restaurant);
+                    $location.url("/user/"+ownerId+"/restaurant");
 
-
-                var r = confirm("You really want to delete this restaurant. This cannot be undone.");
-                if (r == true) {
-                    $location.url("/owner/123/restaurant");
-                }
-              // else {
-                //
-                // }
-
-
+                });
 
         }
+
 
         $(document).ready(function() {
             var max_fields      = 6; //maximum input boxes allowed
@@ -40,8 +42,8 @@
                 if(vm.x < max_fields){ //max input box allowed
                     vm.x++; //text box increment
                     $(wrapper).append('' +
-                        '<div class="pull-left col-sm-4 col-xs-12" style="position: relative">' +
-                        '<input type="text" ng-model="model.speciality.{{model.x}}"  class="wbdv-mar-top-5" style="color: black; width:175px; height: 40px; margin-left: 20px;"/>' +
+                        '<div class=" pull-left col-sm-4 col-xs-12" style="position: relative">' +
+                        '<input type="text" ng-model="model.speciality.{{model.x}}"  name="mytext[]" class="wbdv-mar-top-5" style="color: black; width:175px; height: 40px; margin-left: 20px;"/>' +
                         '<a href="#" class="wbdv-toolbar"><span class="glyphicon glyphicon-remove-circle remove_field" ' +
                         'style="height: 10px; color: black;"></span></a>' +
                         '</div>'); //add input box
