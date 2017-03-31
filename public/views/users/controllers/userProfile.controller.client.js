@@ -60,14 +60,15 @@
                 var promise=userService.updateUser(userId,user);
                 promise.success(function (user) {
                     vm.user=user;
+                    outputMsg("SUCCESS","Profile updated successfully");
                 }).error(function (err) {
                     error="unable to update User";
                     errors.push(error);
-                    throwError(errors);
+                    outputMsg("ERROR",errors);
                 })
             }
             else {
-                throwError(errors);
+                outputMsg("ERROR",errors);
             }
 
 
@@ -82,15 +83,19 @@
             })
         }
 
-        function throwError(errorMsg){
-            vm.error=errorMsg;
-
-
-            $timeout(clearError, 5000);
+        function outputMsg(msgType,msg){
+            if(msgType=='SUCCESS'){
+                vm.message=msg;
+            }
+            else{
+                vm.error=msg;
+            }
+            $timeout(clearMessage, 5000);
         }
 
-        function clearError() {
+        function clearMessage() {
             vm.error='';
+            vm.message='';
         }
     };
 })();

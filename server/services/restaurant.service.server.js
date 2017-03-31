@@ -11,6 +11,7 @@ module.exports=function(app,model) {
 
 
     var RestaurantModel = model.RestaurantModel;
+    var UserModel = model.UserModel;
 
 
 
@@ -40,28 +41,47 @@ module.exports=function(app,model) {
             });
     }
 
-    function createRestaurant(req,res) {
-        var ownerId = req.params.userId;
-        var restaurant = req.body;
-        restaurant.ownerId = ownerId;
-        RestaurantModel
-            .createRestaurant(restaurant)
-            .then(function (response) {
-                RestaurantModel
-                    .findRestaurantByName(response.name)
-                    .then(function (restaurant) {
-                        res.json(restaurant);
-                    }, function (err) {
-                        res.sendStatus(err.code);
-                })
+    // function createRestaurant(req,res) {
+    //     var ownerId = req.params.userId;
+    //     var restaurant = req.body;
+    //     restaurant.ownerId = ownerId;
+    //     RestaurantModel
+    //         .createRestaurant(restaurant)
+    //         .then(function (response) {
+    //             RestaurantModel
+    //                 .findRestaurantByName(response.name)
+    //                 .then(function (restaurant) {
+    //                     res.json(restaurant);
+    //                 }, function (err) {
+    //                     res.sendStatus(err.code);
+    //             })
+    //             }, function (err) {
+    //                 res.sendStatus(err.code);
+    //             })
+    // }
+    
+    
+    function createRestaurant(req, res) {
+            var ownerId = req.params.userId;
+            var restaurant = req.body;
+            restaurant.ownerId = ownerId;
+            RestaurantModel.createRestaurant(restaurant)
+                .then(function (restaurant) {
+                    UserModel.addRestaurant(ownerId,restaurant._id)
+                        .then(function (response) {
+                            res.send(200);
+                        }, function (err) {
+                            res.sendStatus(404).send(err);
+                        })
+                    
                 }, function (err) {
-                    res.sendStatus(err.code);
+                    res.sendStatus(404).send(err);
                 })
     }
 
     function findRestaurantByOwner(req,res) {
         var ownerId = req.params.userId;
-        console.log("SERVER findRestaurantByOwner", ownerId);
+
         RestaurantModel
             .findRestaurantByOwner(ownerId)
             .then(function (response) {
@@ -77,7 +97,7 @@ module.exports=function(app,model) {
 
     function findRestaurantById(req,res) {
         var restaurantId = req.params.restaurantId;
-        console.log("SERVER findRestaurantById", restaurantId);
+
         RestaurantModel
             .findRestaurantById(restaurantId)
             .then(function (response) {

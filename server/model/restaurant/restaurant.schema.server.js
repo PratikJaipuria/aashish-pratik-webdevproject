@@ -28,10 +28,11 @@ module.exports=function(){
             "Saturday":[String],
             "Sunday":[String]
         },
-        speciality:[String],
+        foodTypes:[String],
         delivery:Boolean,
         pickup:Boolean,
-        dateCreated: {type: Date, default: Date.now}
+        dateCreated: {type: Date, default: Date.now},
+        url: String
     }, {collection: 'restaurantdb'});
     // UserSchema.index( { "email": 1, "username": 1 }, { unique: true } );
     return RestaurantSchema;

@@ -16,7 +16,7 @@
                 .findRestaurantByOwner(ownerId)
                 .success(function (restaurants) {
                     vm.restaurants = restaurants;
-                    console.log(restaurants);
+
                 })
         }
         init();

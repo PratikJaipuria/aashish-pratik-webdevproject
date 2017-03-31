@@ -94,17 +94,13 @@ module.exports=function(app,model){
 
     function deleteUser (req, res) {
         var userId = req.params['uid'];
-
         UserModel.deleteUser(userId)
             .then(function (response) {
                 res.send(200);
-
             }, function (err) {
                 res.send(err);
             })
     }
-
-
 
 
 

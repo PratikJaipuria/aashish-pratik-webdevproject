@@ -12,7 +12,6 @@ module.exports=function(){
         role:{type: String, enum: role},
         phone: String,
         address: String,
-
         deliverAddress: [String],
         dateCreated: {type: Date, default: Date.now},
         city: String,
@@ -20,7 +19,7 @@ module.exports=function(){
         pin:String,
         currentOrderId: [String],
         previousOrderId: [String],
-        restaurantID: [String]
+        restaurantID: [{type: mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'}]
 
 
     }, {collection: 'userdb'});

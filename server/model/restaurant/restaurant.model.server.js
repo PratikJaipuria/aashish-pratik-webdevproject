@@ -60,14 +60,14 @@ module.exports = function () {
     }
     function findRestaurantById(restaurantId) {
         var deferred = q.defer();
-        console.log("MODEL findRestaurantById", restaurantId);
+
         RestaurantModel
             .findOne({_id:restaurantId},function (err,restaurant) {
                 if (err) {
-                    console.log("ERROR",err);
+
                     deferred.reject();
                 }else{
-                    console.log("resolve", restaurant);
+
                     deferred.resolve(restaurant);
                 }
             });
@@ -77,7 +77,7 @@ module.exports = function () {
 
     function findRestaurantByOwner(ownerId) {
         var deferred = q.defer();
-        console.log("MODEL findRestaurantByOwner",ownerId);
+
         RestaurantModel
             .find({ownerId:ownerId},function (err,restaurants) {
                 if(err){
@@ -94,8 +94,8 @@ module.exports = function () {
     function createRestaurant(restaurant) {
         var deferred=q.defer();
 
-        console.log("Model",restaurant);
-        RestaurantModel.create(restaurant, function (err, user) {
+
+        RestaurantModel.create(restaurant, function (err, restaurant) {
             if(err){
                 deferred.reject(err);
 

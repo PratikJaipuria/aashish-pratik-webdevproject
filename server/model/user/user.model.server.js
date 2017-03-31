@@ -14,7 +14,8 @@ module.exports = function () {
         findUserById:findUserById,
         findUserByCredentials:findUserByCredentials,
         updateUser:updateUser,
-        deleteUser:deleteUser
+        deleteUser:deleteUser,
+        addRestaurant:addRestaurant
 
     };
     return api;
@@ -114,6 +115,21 @@ module.exports = function () {
     function deleteUser(userId) {
         var deferred=q.defer();
         UserModel.remove({_id:userId}, function (err, response) {
+            if(err){
+
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(response);
+
+            }
+        })
+        return deferred.promise;
+    }
+
+    function addRestaurant(ownerId, restaurantId) {
+        var deferred=q.defer();
+        UserModel.update({_id:ownerId}, {$push: {restaurantID: restaurantId}}, function (err, response) {
             if(err){
 
                 deferred.reject(err);

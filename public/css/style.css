@@ -7,7 +7,12 @@
     margin-top: 30px;
     background: rgba(0, 0, 0, 0.6);
 }
-
+.wbdv-speciality-remove{
+    position: relative;
+    right: 30px;
+    font-size: 30px;
+    top: 10px;
+}
 .contentContainer{
     padding-right:35px;
     padding-left:35px;
