@@ -9,7 +9,9 @@
         var api = {
             "createUser": createUser,
             "findUserByID":findUserByID,
-            "findUserByCredentials":findUserByCredentials
+            "findUserByCredentials":findUserByCredentials,
+            "updateUser":updateUser,
+            "deleteUser": deleteUser
         };
 
 
@@ -27,9 +29,13 @@
             return $http.get("/api/user?username="+username+"&password="+password);
         }
 
+        function updateUser(userId, user) {
+            return $http.put("/api/user/"+userId, user);
+        }
 
-
-
+        function deleteUser(userId) {
+           return $http.delete("/api/user/"+userId);
+        }
 
     }
 })();

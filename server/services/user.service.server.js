@@ -1,10 +1,11 @@
 module.exports=function(app,model){
     // app.get("/api/user", findUser);
     app.post("/api/user", createUser);
-    // app.put("/api/user/:userId", updateUser);
-    // app.delete("/api/user/:userId", deleteUser);
+    app.put("/api/user/:uid", updateUser);
+    app.delete("/api/user/:uid", deleteUser);
     app.get("/api/user/:uid", findUserById);
     app.get("/api/user",findUserByCredentials);
+
 
     var UserModel = model.UserModel;
 
@@ -45,8 +46,7 @@ module.exports=function(app,model){
                         res.sendStatus(err.code);
                     })
             }, function (err) {
-
-                res.sendStatus(err.code);
+                 res.sendStatus(404).send(err);
             })
 
         };
@@ -61,6 +61,39 @@ module.exports=function(app,model){
                 res.json(user);
             }, function (err) {
 
+                res.send(err);
+            })
+    }
+
+    function updateUser (req, res) {
+        var userId = req.params['uid'];
+        var user=req.body;
+        UserModel.updateUser(userId, user)
+            .then(function (user) {
+
+                UserModel.findUserById(userId)
+                    .then(function (user) {
+
+
+                        res.json(user);
+                    }, function (err) {
+
+                        res.send(err);
+                    })
+
+            }, function (err) {
+                res.send(err);
+            })
+    }
+
+    function deleteUser (req, res) {
+        var userId = req.params['uid'];
+
+        UserModel.deleteUser(userId)
+            .then(function (response) {
+                res.send(200);
+
+            }, function (err) {
                 res.send(err);
             })
     }

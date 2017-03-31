@@ -12,22 +12,67 @@
 
 
         function createUser (user) {
-            console.log(user);
+            var errors=[];
+            var error='';
+
+            if(!user.username){
+                error="Username cannot be empty";
+                errors.push(error);
+            }
+
+            if(!user.firstName){
+                error="FirstName is invalid";
+                errors.push(error);
+            }
+
+            if(!user.lastName){
+                error="LastName is invalid";
+                errors.push(error);
+            }
+
+            if(!user.email){
+
+                error="Email is invalid";
+                errors.push(error);
+            }
+
+            if(!user.phone){
+                error="Phone is invalid";
+                errors.push(error);
+            }
+
+            if(!user.pin){
+                error="PIN is invalid";
+                errors.push(error);
+            }
+
+            if(!user.address){
+                error="Address is invalid";
+                errors.push(error);
+            }
+
+            if(!user.city){
+                error="City is invalid";
+                errors.push(error);
+            }
 
 
-            if(user){
+            if(errors.length == 0){
 
                     if(user.password === user.password2 && user.password){
                          createNewUser(user);
                     }else{
-                        throwError('Password does not match');
+                        error='Password does not match';
+                        errors.push(error);
+                        throwError(errors);
 
                     }
 
             }
 
+
             else{
-                throwError('Please enter details');
+                throwError(errors);
 
             }
 
@@ -45,18 +90,18 @@
 
             var promise=userService.createUser(user);
             promise.success(function (user) {
-                // console.log(user);
+                console.log(user);
                 $location.url('/user/'+user._id);
             }).error(function (err) {
-                console.log(err);
-                if (err==11000)
-                throwError('Either this username or email already taken.');
+                   throwError('Either this username or email already taken.');
             })
         }
 
         function throwError(errorMsg){
             vm.error=errorMsg;
-            $timeout(clearError, 3000);
+
+
+            $timeout(clearError, 5000);
         }
 
         function clearError() {

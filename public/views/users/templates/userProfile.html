@@ -10,12 +10,12 @@
                 <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Profile </span>
             </div>
             <div  class="navbar-text navbar-link pull-right hidden-xs">
-                <a ng-click="model.modifyUser(model.user)">
+                <a ng-click="model.updateUser(model.user._id,model.user)">
                     <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
                 </a>
             </div>
             <div  class="navbar-text navbar-link pull-right visible-xs">
-                <a ng-click="model.modifyUser(model.user)">
+                <a ng-click="model.updateUser(model.user._id,model.user)">
                     <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
                 </a>
             </div>
@@ -34,7 +34,7 @@
                     <span class="wbdv-text-clr-white" title="Add Restaurant">Add Restaurant</span>
                 </a>
 
-                <a ng-click="model.modifyUser(model.user)" >
+                <a ng-click="model.updateUser(model.user._id, model.user)" >
                     <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
                 </a>
 
@@ -49,7 +49,7 @@
                     <span class="glyphicon glyphicon-plus wbdv-text-clr-white" title="Add Restaurant"></span>
                 </a>
 
-                <a ng-click="model.modifyUser(model.user)" >
+                <a ng-click="model.updateUser(model.user._id,model.user)" >
                     <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
                 </a>
 
@@ -63,12 +63,15 @@
 <div class="container pageBackground">
 
 
-    <div ng-show="model.message" class="alert alert-success" role="alert" >
+    <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
         {{model.message}}
     </div>
 
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
+    <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+        <div ng-repeat="e in model.error">
+            {{e}}
+        </div>
+
     </div>
 
     <div class="container blackContainer">
@@ -125,7 +128,8 @@
                                    type="email" class="form-control"
                                    id="email"
                                    value="singh.aa@husky.neu.edu"
-                                   placeholder="Email Id"/>
+                                   placeholder="Email Id"
+                            ng-disabled="model.user.email"/>
                         </div>
 
 
@@ -197,7 +201,7 @@
                 </form>
                 <div class="row wbdv-mar-bottom-30 wbdv-mar-top-5">
                     <div class="col-sm-6 col-xs-12">
-                        <a ng-click="model.searchRest(model.user.firstName)" class="btn btn-success btn-block form-control">Update</a>
+                        <a ng-click="model.updateUser(model.user._id,model.user)" class="btn btn-success btn-block form-control">Update</a>
                     </div>
                     <div class="col-sm-6 col-xs-12">
                         <a href="#/login" class="btn btn-danger  btn-block">Logout</a>
@@ -223,11 +227,8 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
-                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
-                        </span>
-                </a>
-                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
+
+                <a ng-click="model.deleteUser(model.user._id)" class="wbdv-mar-left-5 pull-left">
                         <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

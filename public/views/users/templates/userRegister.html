@@ -29,14 +29,18 @@
 
 
 <div class="container pageBackground">
-    <div class="container blackContainer">
-        <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
-            {{model.message}}
+    <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+        {{model.message}}
+    </div>
+
+    <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+        <div ng-repeat="e in model.error">
+            {{e}}
         </div>
 
-        <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
-            {{model.error}}
-        </div>
+    </div>
+
+    <div class="container blackContainer">
 
         <div class="row wbdv-pad-left-right contentContainer">
             <h1 class="wbdv-text-clr-white pageHeading">Registeration</h1>
@@ -48,7 +52,7 @@
                         <input ng-model="model.user.username"
                                type="text" class="form-control"
                                id="username"
-                               value="aashishsingh"
+
                                placeholder="Username"
                                required/>
                     </div>
@@ -59,7 +63,7 @@
                                type="text" class="form-control"
                                id="firstName"
                                name="firstName"
-                               value="Aashish Vikram"
+
                                placeholder="First Name"
                                required/>
                     </div>
@@ -70,7 +74,7 @@
                                type="text" class="form-control"
                                id="lastName"
                                name="lastName"
-                               value="Singh"
+
                                placeholder="Last Name"
                                required/>
                     </div>
@@ -84,7 +88,7 @@
                                type="password" class="form-control"
                                id="password"
                                name="password"
-                               value="Singh"
+
                                placeholder="Password"
                                required/>
                     </div>
@@ -95,7 +99,7 @@
                                type="password" class="form-control"
                                id="password2"
                                name="password2"
-                               value="Singh"
+
                                placeholder="Verify Password"
                                required/>
                     </div>
@@ -106,7 +110,7 @@
                         <input ng-model="model.user.email"
                                type="email" class="form-control"
                                id="email"
-                               value="singh.aa@husky.neu.edu"
+
                                placeholder="Email Id"
                                required/>
                     </div>

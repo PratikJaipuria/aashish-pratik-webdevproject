@@ -12,7 +12,10 @@ module.exports = function () {
         createUser: createUser,
         findUserByUsername: findUserByUsername,
         findUserById:findUserById,
-        findUserByCredentials:findUserByCredentials
+        findUserByCredentials:findUserByCredentials,
+        updateUser:updateUser,
+        deleteUser:deleteUser
+
     };
     return api;
 
@@ -75,15 +78,51 @@ module.exports = function () {
 
         UserModel.findOne({_id:userId}, function (err, user) {
             if(err){
-                // console.log(err);
+
                 deferred.reject(err);
             }
             else{
-                // console.log(user);
+
                 deferred.resolve(user);
 
             }
         });
+        return deferred.promise;
+    }
+
+    function updateUser (userId,user) {
+
+        var deferred=q.defer();
+        UserModel.update({_id: userId},{$set: {password:user.password, firstName:user.firstName, lastName:user.lastName,
+                                                email:user.email, phone: user.phone, address: user.address, deliverAddress:user.deliverAddress,
+                                                city: user.city, country: user.country, pin: user.pin }},function (err, response) {
+                if(err){
+
+                    deferred.reject(err);
+                }
+                else {
+                      deferred.resolve(response);
+
+                }
+        })
+
+        return deferred.promise;
+
+
+    }
+
+    function deleteUser(userId) {
+        var deferred=q.defer();
+        UserModel.remove({_id:userId}, function (err, response) {
+            if(err){
+
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(response);
+
+            }
+        })
         return deferred.promise;
     }
 
