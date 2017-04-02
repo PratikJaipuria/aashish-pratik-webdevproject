@@ -6,7 +6,15 @@
     function restaurantOrderTrackController(orderTrackService,userService, $location, $routeParams, $timeout){
         var vm =this;
         var restaurantId=$routeParams['rst'];
+        var scheduledOrder=[];
+        var notScheduled=[];
+        vm.scheduled=[];
+        vm.notscheduled=[];
+        vm.getScheduled=getScheduled;
+        vm.getNotScheduled=getNotScheduled;
+
         vm.assignDelivery=assignDelivery;
+
 
         function init() {
 
@@ -14,9 +22,27 @@
             var promise=orderTrackService.findOrdersForThisRestaurant(restaurantId);
             promise.success(function (restOrders) {
                 if (restOrders.length>0){
-                    console.log(restOrders);
+                    // console.log(restOrders);
                     vm.orders=restOrders[0].orderId;
-                    console.log(vm.orders);
+                     // console.log(vm.orders);
+
+
+                    for (var o in restOrders[0].orderId){
+                        if(restOrders[0].orderId[o].scheduled){
+                            // console.log(restOrders[0]);
+                            scheduledOrder.push(restOrders[0].orderId[o]);
+                        }
+                        else{
+                            notScheduled.push(restOrders[0].orderId[o]);
+                        }
+                    }
+                    // vm.scheduled=scheduledOrder;
+                    // vm.notscheduled=notScheduled;
+                    // console.log(vm.scheduled);
+
+
+
+
                     var promise=userService.findActiveDeliveryBoyByRestaurant(restaurantId);
                     promise.success(function (delBoys) {
 
@@ -27,7 +53,7 @@
                         }
                         vm.delBoys=delBoys;
                         vm.db=dbNameAvail;
-                        console.log(vm.db);
+                        // console.log(vm.db);
                     }).error(function (err) {
                         vm.error="Unable to fetch delivery Boys";
                     })
@@ -47,20 +73,37 @@
 
         function assignDelivery (order) {
 
-
-            for (var boy in vm.delBoys){
-                if ((vm.delBoys[boy].firstName+' '+vm.delBoys[boy].lastName)==order.dbName){
-                    order.dbId=vm.delBoys[boy]._id;
+            if(order.dbName){
+                for (var boy in vm.delBoys){
+                    if ((vm.delBoys[boy].firstName+' '+vm.delBoys[boy].lastName)==order.dbName){
+                        order.dbId=vm.delBoys[boy]._id;
+                    }
                 }
+                // console.log(order);
+
+                var promise=orderTrackService.assignDelivery(order);
+                promise.success(function (res) {
+                    init();
+                }).error(function (err) {
+                    vm.error="Unable to assign "+order._id+" to "+order.dbName;
+                })
             }
-            console.log(order);
+            else {
+                vm.error="select a delivery boy";
+            }
 
-            var promise=orderTrackService.assignDelivery(order);
-            promise.success(function (res) {
-            }).error(function (err) {
-                vm.error="Unable to assign "+order._id+" to "+order.dbName;
-            })
 
+        }
+
+        function getScheduled() {
+
+            vm.orders=scheduledOrder;
+            console.log(vm.orders);
+        }
+
+        function getNotScheduled() {
+            vm.orders=notScheduled;
+            console.log(vm.orders);
         }
 
     }
