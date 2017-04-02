@@ -28,11 +28,12 @@ module.exports = function (app) {
     app.post('/api/restaurant/upload', function(req, res) {
         upload(req,res,function(err){
             if(err){
+                console.log("error");
+                console.log(err);
                 res.json({error_code:1,err_desc:err});
                 return;
             }
             var new_url = res.req.protocol+'://'+res.req.get('host')+'/uploads/'+res.req.file.filename;
-
             res.json({error_code:0,err_desc:null,fileUrl:new_url});
         })
     });
