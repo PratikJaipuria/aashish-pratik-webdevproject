@@ -13,6 +13,48 @@
     font-size: 30px;
     top: 10px;
 }
+
+.wbdv-pad-0{
+padding: 0px;
+}
+
+.wbdv-text-align-center{
+ text-align: center;
+}
+
+.wbdv-avail-true{
+    color: green;
+}
+
+.wbdv-avail-false{
+    color: red;
+}
+
+.wbdv-pad-left-30{
+    padding-left: 30px;
+}
+
+.wbdv-expand{
+    padding-top: 2px;
+    padding-right: 4px;
+}
+
+.wbdv-pad-left-24{
+    padding-left: 24px;
+}
+
+
+.wbdv-left-margin-52
+{
+    margin-left: 52px;
+}
+
+.wbdv-rest-header{
+    border-bottom: solid 1px white;
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
 .contentContainer{
     padding-right:35px;
     padding-left:35px;

@@ -18,6 +18,8 @@
         vm.increaseItemCount=increaseItemCount;
         vm.decreaseItemCount=decreaseItemCount;
         vm.checkOut=checkOut;
+        vm.navigateBack=navigateBack;
+
 
         function init() {
 
@@ -30,6 +32,7 @@
             var promise = restaurantSearchMenuService.searchMenu(restaurantId);
             promise
                 .success(function (response) {
+                    console.log(response.length);
                     vm.menu=response;
 
                 }).error(function (err) {
@@ -100,13 +103,9 @@
                 }
 
                 sessionHolderService.setCart(cartDetails);
+                $location.url(navigationPreffix()+'/restaurant/'+restaurantId+'/'+restaurantName+'/menu/cart')
 
-                if(name){
-                    $location.url('/searchResult/name/'+name+'/address/'+address+'/restaurant/'+restaurantId+'/'+restaurantName+'/menu/cart');
-                }
-                else{
-                    $location.url('/searchResult/address/'+address+'/restaurant/'+restaurantId+'/'+restaurantName+'/menu/cart');
-                }
+
             }
 
             else {
@@ -120,6 +119,32 @@
 
         function clearError() {
             vm.error="";
+        }
+
+
+        function navigateBack() {
+         $location.url(navigationPreffix());
+        }
+
+        function navigationPreffix() {
+            if(userId){
+
+                if(name){
+                    return ('/user/'+userId+'/searchResult/name/'+name+'/address/'+address);
+                }
+                else{
+                    return ('/user/'+userId+'/searchResult/address/'+address);
+                }
+
+            }else{
+
+                if(name){
+                    return ('/searchResult/name/'+name+'/address/'+address);
+                }
+                else{
+                   return ('/searchResult/address/'+address);
+                }
+            }
         }
 
     }

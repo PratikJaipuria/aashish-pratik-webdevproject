@@ -1,6 +1,4 @@
-/**
- * Created by Pratik on 3/26/2017.
- */
+
 (function () {
     angular
         .module("ProjectMaker")

@@ -2,13 +2,14 @@
     angular
         .module("ProjectMaker")
         .controller("searchResultController", searchResultController);
-    function searchResultController(SearchService, $location, $routeParams){
+    function searchResultController(SearchService, $location, $routeParams, $timeout){
 
 
         var vm = this;
         var address=$routeParams['add'];
         var name= $routeParams['rn'];
         var userId=$routeParams['uid'];
+
 
         vm.search={
             name: name,
@@ -17,13 +18,15 @@
 
         vm.searchRestaurant=searchRestaurant;
         vm.viewMenu=viewMenu;
+        vm.navigateToProfile=navigateToProfile;
+
         function init() {
 
             searchRestaurant(vm.search);
             $(document).ready(function () {
                 setTimeout(function () {
                     $('#mainCOntainer').show(500);
-                }, 1000);
+                }, 2000);
             })
 
 
@@ -39,14 +42,17 @@
                 promise
                     .success(function (response) {
                         console.log(response);
+
                         formatData(response.restaurants);
 
                     }).error(function (err) {
-                    vm.error='Unable to find the restaurnts. Please verify your search or try again in sometime.';
+                    throwError('Unable to find the restaurnts. Please verify your search or try again in sometime.');
+                    $location.url("/");
                 })
             }
             else{
-                vm.error('Please enter location.');
+                throwError('Please enter location.');
+                $location.url("/");
             }
 
         }
@@ -84,6 +90,26 @@
                 $location.url('/searchResult/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
             }
 
+        }
+
+        function navigateToProfile() {
+            if (userId){
+                $location.url("/user/"+userId);
+            }
+            else{
+                $location.url("/");
+            }
+        }
+
+        function throwError(errorMsg){
+            vm.error=errorMsg;
+
+
+            $timeout(clearError);
+        }
+
+        function clearError() {
+            vm.error='';
         }
     }
 })();

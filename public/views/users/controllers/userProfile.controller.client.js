@@ -9,6 +9,7 @@
         vm.countries=['United States', 'Canada'];
         vm.updateUser=updateUser;
         vm.deleteUser=deleteUser;
+        vm.userId=userId;
 
         function init () {
             var promise=userService.findUserByID(userId);

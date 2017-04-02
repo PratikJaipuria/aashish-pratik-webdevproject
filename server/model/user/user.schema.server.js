@@ -17,9 +17,9 @@ module.exports=function(){
         city: String,
         country: String,
         pin:String,
-        currentOrderId: [String],
-        previousOrderId: [String],
-        restaurantID: [{type: mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'}]
+        OrderId: [{type: mongoose.Schema.Types.ObjectId, ref: 'OrderModel'}],
+
+        restaurantID: [{type: String}]
 
 
     }, {collection: 'userdb'});

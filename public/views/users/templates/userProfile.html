@@ -9,6 +9,18 @@
             <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
                 <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Profile </span>
             </div>
+
+            <div  class="navbar-text navbar-link pull-right hidden-xs">
+                <a href="#/user/{{model.userId}}/searchResult">
+                    <span class="wbdv-text-clr-white" title="Update Profile">Search</span>
+                </a>
+            </div>
+            <div  class="navbar-text navbar-link pull-right visible-xs">
+                <a href="#/user/{{model.userId}}/searchResult">
+                    <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Search"></span>
+                </a>
+            </div>
+
             <div  class="navbar-text navbar-link pull-right hidden-xs">
                 <a ng-click="model.updateUser(model.user._id,model.user)">
                     <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
@@ -19,6 +31,7 @@
                     <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
                 </a>
             </div>
+
         </div>
         <div ng-show="model.user.role=='OWNER'">
             <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">

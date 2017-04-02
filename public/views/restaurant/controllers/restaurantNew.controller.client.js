@@ -5,6 +5,8 @@
 
     function restaurantNewController($routeParams, restaurantService,$location, Upload, $timeout){
         var vm = this;
+        vm.url='';
+
         var day=['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday'];
         vm.count=0;
         vm.hours=["HH","00","01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20", "21", "22","23"];
@@ -14,14 +16,12 @@
         vm.country=["United States"];
         vm.booleanVal=['Yes','No'];
         vm.speciality=[];
-        vm.url='';
-
-
 
         var ownerId = $routeParams.uid;
         vm.createRestaurant = createRestaurant;
         vm.addNewSpeciality=addNewSpeciality;
         vm.deleteSpeciality=deleteSpeciality;
+        vm.uploadImage=uploadImage;
 
 
 
@@ -34,7 +34,8 @@
                     stH:'',
                     stM:'',
                     etH:'',
-                    etM:''
+                    etM:'',
+                    bool:''
                 };
                   dayContainer.push(temp);
 
@@ -54,9 +55,10 @@
 
                 restaurant=formatTiming(newRestaurant);
                 restaurant.foodTypes=[];
-                restaurant=setFoodTypes(newRestaurant);
-                restaurant=setDeliveryAndPickupFlag(newRestaurant);
+                restaurant=setFoodTypes(restaurant);
+                restaurant=setDeliveryAndPickupFlag(restaurant);
                 restaurant.ownerId = ownerId;
+                restaurant.logoUrl=vm.url;
 
                 if(!restaurant.name){
                  error="Invalid Restaurant Name";
@@ -126,7 +128,6 @@
 
             };
 
-            console.log(vm.days);
             for(var i in vm.days){
                 if(vm.days[i].selected && vm.days[i].stH !== 'HH' && vm.days[i].stM !== 'MM' && vm.days[i].etH !== 'HH' && vm.days[i].etM !== 'MM' ){
                     var formattedTime='';
@@ -164,36 +165,77 @@
                     if(vm.days[i].key == 'Monday'){
                         restaurant.hours.Monday=[];
                         restaurant.hours.Monday.push(formattedTime);
+                        restaurant.hours.Monday.push(vm.days[i].stH);
+                        restaurant.hours.Monday.push(vm.days[i].stM);
+                        restaurant.hours.Monday.push(vm.days[i].etH);
+                        restaurant.hours.Monday.push(vm.days[i].etM);
+                        restaurant.hours.Monday.push("true");
+
 
                     }
                     if(vm.days[i].key == 'Tuesday'){
                         restaurant.hours.Tuesday=[];
                         restaurant.hours.Tuesday.push(formattedTime);
+                        restaurant.hours.Tuesday.push(vm.days[i].stH);
+                        restaurant.hours.Tuesday.push(vm.days[i].stM);
+                        restaurant.hours.Tuesday.push(vm.days[i].etH);
+                        restaurant.hours.Tuesday.push(vm.days[i].etM);
+                        restaurant.hours.Tuesday.push("true");
+
 
                     }
                     if(vm.days[i].key == 'Wednesday'){
                         restaurant.hours.Wednesday=[];
                         restaurant.hours.Wednesday.push(formattedTime);
+                        restaurant.hours.Wednesday.push(vm.days[i].stH);
+                        restaurant.hours.Wednesday.push(vm.days[i].stM);
+                        restaurant.hours.Wednesday.push(vm.days[i].etH);
+                        restaurant.hours.Wednesday.push(vm.days[i].etM);
+                        restaurant.hours.Wednesday.push("true");
+
+
 
                     }
                     if(vm.days[i].key == 'Thursday'){
                         restaurant.hours.Thursday=[];
                         restaurant.hours.Thursday.push(formattedTime);
+                        restaurant.hours.Thursday.push(vm.days[i].stH);
+                        restaurant.hours.Thursday.push(vm.days[i].stM);
+                        restaurant.hours.Thursday.push(vm.days[i].etH);
+                        restaurant.hours.Thursday.push(vm.days[i].etM);
+                        restaurant.hours.Thursday.push("true");
+
 
                     }
                     if(vm.days[i].key == 'Friday'){
                         restaurant.hours.Friday=[];
                         restaurant.hours.Friday.push(formattedTime);
-
+                        restaurant.hours.Friday.push(vm.days[i].stH);
+                        restaurant.hours.Friday.push(vm.days[i].stM);
+                        restaurant.hours.Friday.push(vm.days[i].etH);
+                        restaurant.hours.Friday.push(vm.days[i].etM);
+                        restaurant.hours.Friday.push("true");
+                        restaurant.hours.Friday.push("1");
                     }
                     if(vm.days[i].key == 'Saturday'){
                         restaurant.hours.Saturday=[];
                         restaurant.hours.Saturday.push(formattedTime);
+                        restaurant.hours.Saturday.push(vm.days[i].stH);
+                        restaurant.hours.Saturday.push(vm.days[i].stM);
+                        restaurant.hours.Saturday.push(vm.days[i].etH);
+                        restaurant.hours.Saturday.push(vm.days[i].etM);
+                        restaurant.hours.Saturday.push("true");
 
                     }
                     if(vm.days[i].key == 'Sunday'){
                         restaurant.hours.Sunday=[];
                         restaurant.hours.Sunday.push(formattedTime);
+                        restaurant.hours.Sunday.push(vm.days[i].stH);
+                        restaurant.hours.Sunday.push(vm.days[i].stM);
+                        restaurant.hours.Sunday.push(vm.days[i].etH);
+                        restaurant.hours.Sunday.push(vm.days[i].etM);
+                        restaurant.hours.Sunday.push("true");
+
 
                     }
 
@@ -241,6 +283,7 @@
 
         vm.upload = function (file) {
 
+
             Upload.upload({
                 url: '/api/restaurant/upload',
                 data:{file:file}
@@ -250,6 +293,10 @@
                     vm.error="";
                     vm.success = 'Image successfully uploaded.';
                     vm.url = resp.data.fileUrl;
+                    // console.log(vm.logoUrl);
+                    // console.log(vm.url);
+
+
                 } else {
                     vm.message="";
                     vm.error = 'An error occurred';

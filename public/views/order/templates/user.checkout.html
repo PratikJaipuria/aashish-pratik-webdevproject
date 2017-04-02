@@ -1,8 +1,8 @@
 <nav class="navbar navbar_container navbar-fixed-top ">
     <div class="container-fluid">
 
-        <div class=" navbar-text pull-left wbdv-mar-left-0 ">
-            <a href="">
+        <div class="navbar-text pull-left wbdv-mar-left-0 ">
+            <a ng-click="model.navigateToMenu()">
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
             </a>
         </div>
@@ -13,12 +13,12 @@
 
 
         <div class="navbar-text navbar-link pull-right hidden-xs">
-            <a nhref="">
+            <a ng-click="model.navigateToMenu()">
                 <span class="wbdv-text-clr-white" title="cancel">Cancel</span>
             </a>
         </div>
         <div class="navbar-text navbar-link pull-right visible-xs">
-            <a href="">
+            <a ng-click="model.navigateToMenu()">
                 <span class="glyphicon glyphicon-remove wbdv-text-clr-white" title="cancel"></span>
             </a>
         </div>
@@ -27,6 +27,17 @@
 </nav>
 
 <div class="container wbdv-pad-left-right wbdv-mar-top-25  wbdv-background-black">
+
+    <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+        {{model.message}}
+    </div>
+
+    <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+
+            {{model.error}}
+
+
+    </div>
 
         <div style="width: 100%;  top: 50%; left: 50%;" class=" wbdv-text-clr-white">
 
@@ -136,10 +147,10 @@
             <div  class="wbdv-mar-bottom-60 wbdv-pad-left-right wbdv-mar-top-25">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                        <a href="" class="btn btn-success btn-block">ORDER</a>
+                        <a ng-click="model.purchase()" class="btn btn-success btn-block">ORDER</a>
                     </div>
                     <div class="col-sm-6 col-xs-12">
-                        <a href="" class="btn btn-danger  btn-block">CANCEL</a>
+                        <a ng-click="model.navigateToMenu()" class="btn btn-danger  btn-block">CANCEL</a>
                     </div>
                 </div>
             </div>
@@ -156,7 +167,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/{{model.userId}}" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

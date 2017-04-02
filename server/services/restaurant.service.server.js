@@ -65,6 +65,8 @@ module.exports=function(app,model) {
             var ownerId = req.params.userId;
             var restaurant = req.body;
             restaurant.ownerId = ownerId;
+            var apiKey=restaurant.apiKey;
+            restaurant._id=apiKey;
             RestaurantModel.createRestaurant(restaurant)
                 .then(function (restaurant) {
                     UserModel.addRestaurant(ownerId,restaurant._id)

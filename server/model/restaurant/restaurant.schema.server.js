@@ -7,21 +7,21 @@ module.exports=function(){
 
 
     var RestaurantSchema = mongoose.Schema({
-
-        name:  {type: String, index: {unique: true}},
-        ownerId : {type: mongoose.Schema.ObjectId, ref: "UserSchema"},
+        _id: {type:String, index: {unique: true}},
+        name:  String,
+        ownerId : String,
         menuId : [String],
+        orderId:[{type: mongoose.Schema.Types.ObjectId, ref: 'OrderModel'}],
         deliveryBoysId : [String],
         phone: String,
         address: String,
         city: String,
         country: String,
         pin:String,
-        url:String,
-        logo:String,
+        logoUrl:String,
         hours:{
             "Monday":[String],
-            "Tueday":[String],
+            "Tuesday":[String],
             "Wednesday":[String],
             "Thursday":[String],
             "Friday":[String],

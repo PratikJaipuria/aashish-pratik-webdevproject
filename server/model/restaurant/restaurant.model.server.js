@@ -16,7 +16,8 @@ module.exports = function () {
         findRestaurantByOwner:findRestaurantByOwner,
         findRestaurantById:findRestaurantById,
         updateRestaurant:updateRestaurant,
-        deleteRestaurant:deleteRestaurant
+        deleteRestaurant:deleteRestaurant,
+        addOrdertoRestaurant:addOrdertoRestaurant
 
 
     };
@@ -47,7 +48,11 @@ module.exports = function () {
                 city: restaurant.city,
                 country: restaurant.country,
                 pin:restaurant.pin,
-                url:restaurant.url
+                url:restaurant.url,
+                logoUrl: restaurant.logoUrl,
+                foodTypes: restaurant.foodTypes,
+                delivery: restaurant.delivery,
+                pickup: restaurant.pickup
             }
             },function (err,restaurant) {
                 if(err){
@@ -122,6 +127,86 @@ module.exports = function () {
     }
 
 
+    function addOrdertoRestaurant(resId, order) {
 
-};
+        var deferred=q.defer();
+        RestaurantModel.update({_id: resId},{$set: { name: order.restName}, $push: {orderId: order._id}},{upsert: true},function (err, restaurant) {
+                    if(err){
+
+                        deferred.reject(err);
+                    }
+                    else{
+
+
+                        deferred.resolve(restaurant);
+                    }})
+
+        return deferred.promise;
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // function addOrdertoRestaurant(resId, order) {
+    //     console.log("RES ID: ",resId);
+    //     console.log(order);
+    //     // console.log(err);
+    //     var deferred=q.defer();
+    //     RestaurantModel.findOne({_id: resId},function (err, restaurant) {
+    //         if(err){
+    //             console.log("this is findOne error", err);
+    //             deferred.reject(err);
+    //         }
+    //
+    //         else{
+    //             if(restaurant == null){
+    //                 console.log("I am NULL");
+    //                 RestaurantModel.update({_id: resId},{$set: { name: order.restName}, $push: {orderId: order._id}},{upsert: true},function (err, restaurant) {
+    //                     if(err){
+    //                     console.log("I am from upsert error:  ", err);
+    //                     deferred.reject(err);
+    //                     }
+    //                     else{
+    //
+    //                         console.log("created new:  ", restaurant);
+    //                         deferred.resolve(restaurant);
+    //                     }})}
+    //                 else{
+    //                     RestaurantModel.update({_id: resId}, {$push: {orderId: order._id}}, function (err, restaurant) {
+    //                         if(err){
+    //                         console.log("I am available but wont help u", err);
+    //                         deferred.reject(err);
+    //                         }
+    //                         else{
+    //
+    //                             console.log("upadated Old:  ", restaurant);
+    //                             deferred.resolve(restaurant);
+    //                         }
+    //                     }
+    //                     )
+    //                 }
+    //
+    //                 }
+    //
+    //
+    //     });
+    //     return deferred.promise;
+    //
+    // }
+
+    // RestaurantModel.update({_id: resId},{$set: {name: order.restName, orderId: order._id}},{upsert: true}
+
+
 

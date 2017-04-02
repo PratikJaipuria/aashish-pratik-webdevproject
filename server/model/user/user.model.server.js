@@ -15,7 +15,9 @@ module.exports = function () {
         findUserByCredentials:findUserByCredentials,
         updateUser:updateUser,
         deleteUser:deleteUser,
-        addRestaurant:addRestaurant
+        addRestaurant:addRestaurant,
+        addOrdertoCustomer:addOrdertoCustomer
+
 
     };
     return api;
@@ -136,6 +138,22 @@ module.exports = function () {
             }
             else {
                 deferred.resolve(response);
+
+            }
+        })
+        return deferred.promise;
+    }
+
+    function addOrdertoCustomer(userId, oId) {
+        var deferred=q.defer();
+        UserModel.update({_id: userId},{$push: {OrderId: oId}}, function (err,res) {
+            if(err){
+                console.log(err);
+                deferred.reject();
+            }
+            else {
+                console.log(res);
+                deferred.resolve(res);
 
             }
         })

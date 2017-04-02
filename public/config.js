@@ -55,6 +55,10 @@
                 controller: "searchResultController",
                 controllerAs: "model"})
 
+            .when("/user/:uid/searchResult",{
+                templateUrl: "views/home.html",
+                controller: "homeController",
+                controllerAs: "model"})
 
 
 
@@ -88,12 +92,23 @@
 
 
 
-            .when("/searchResult/address/:add/restaurant/:rid/:rname/menu/cart",{
+            .when("/searchResult/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl:"views/order/templates/user.checkout.html",
                 controller: "checkOutController",
                 controllerAs: "model"})
 
-            .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu/cart",{
+            .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
+                templateUrl:"views/order/templates/user.checkout.html",
+                controller: "checkOutController",
+                controllerAs: "model"})
+
+
+            .when("/user/:uid/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu/cart",{
+                templateUrl:"views/order/templates/user.checkout.html",
+                controller: "checkOutController",
+                controllerAs: "model"})
+
+            .when("/user/:uid/searchResult/address/:add/restaurant/:rid/:rname/menu/cart",{
                 templateUrl:"views/order/templates/user.checkout.html",
                 controller: "checkOutController",
                 controllerAs: "model"})
@@ -157,7 +172,7 @@
                 controller: "restaurantEditController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/restaurant/:rst/menu/cat/:cat",{
+            .when("/user/:uid/restaurant/:rst/menu/cart/:cat",{
                 templateUrl: "views/restaurant/templates/menuCategoryEdit.html"
             })
 

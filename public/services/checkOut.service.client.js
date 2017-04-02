@@ -3,11 +3,13 @@
         .module("ProjectMaker")
         .factory("checkOutService",checkOutService);
 
-    function checkOutService () {
+    function checkOutService ($http) {
 
 
         var api = {
-            "calculateTotalCost":calculateTotalCost
+            "calculateTotalCost":calculateTotalCost,
+            "createOrder":createOrder
+
         };
 
 
@@ -20,29 +22,21 @@
 
             for (item in items){
                 totPrice=items[item].basePrice * items[item].totCount;
-                items[item].totPrice=totPrice;
+                items[item].totPrice=Number(totPrice).toFixed(2);
                 amount+=totPrice;
             }
             cart.items=items;
-            cart.amount=amount;
+            cart.amount=Number(amount).toFixed(2);
             return cart;
 
 
         }
-        // basePrice
-        //     :
-        //     3.5
-        // categoryId
-        //     :
-        //     "5523f3ac54910ed5fdb3aba31c19a8a7344acb796c2ba6d6"
-        // itemId
-        //     :
-        //     "7585295"
-        // name
-        //     :
-        //     "Mango Smoothie"
-        // totCount
-        //     :
-        //     3
+
+
+        function createOrder(cart) {
+
+            return $http.post("/api/restaurant/checkout", cart);
+        }
+
     }
 })();
