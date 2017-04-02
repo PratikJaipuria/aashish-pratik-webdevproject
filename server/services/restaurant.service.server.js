@@ -62,21 +62,41 @@ module.exports=function(app,model) {
     
     
     function createRestaurant(req, res) {
+
             var ownerId = req.params.userId;
             var restaurant = req.body;
             restaurant.ownerId = ownerId;
-            var apiKey=restaurant.apiKey;
-            restaurant._id=apiKey;
+
+            // if(restaurant.apiKey){
+            //     var apiKey=restaurant.apiKey;
+            // }
+
+            var currtime=(new Date()).getTime().toString();
+        restaurant._id=currtime;
+
+            restaurant.timestamp=currtime;
+        console.log(restaurant);
             RestaurantModel.createRestaurant(restaurant)
                 .then(function (restaurant) {
-                    UserModel.addRestaurant(ownerId,restaurant._id)
-                        .then(function (response) {
-                            res.send(200);
-                        }, function (err) {
-                            res.sendStatus(404).send(err);
-                        })
+                    RestaurantModel
+                        .findRestaurantBytimestamp(ownerId,currtime)
+                        .then(function (restaurant) {
+                            UserModel.addRestaurant(ownerId,restaurant._id)
+                                .then(function (response) {
+                                    res.send(200);
+                                }, function (err) {
+                                    console.log(err);
+                                    res.sendStatus(404).send(err);
+                                })
+
+
+                        },function (err) {
+                            res.sendStatus(404);
+                        });
+
                     
                 }, function (err) {
+                    console.log(err);
                     res.sendStatus(404).send(err);
                 })
     }

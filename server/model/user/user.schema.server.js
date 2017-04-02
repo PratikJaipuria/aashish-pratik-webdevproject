@@ -12,6 +12,7 @@ module.exports=function(){
         role:{type: String, enum: role},
         phone: String,
         address: String,
+        db_avail:{type:Number, default:0},
         deliverAddress: [String],
         dateCreated: {type: Date, default: Date.now},
         city: String,

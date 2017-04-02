@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <div class="navbar-text pull-right visible-xs">
-            <a href="#/owner/123/restaurant/123/menu/new">
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/new">
                 <span class="glyphicon glyphicon-plus wbdv-text-clr-white" title="Add new menu"></span>
             </a>
         </div>
@@ -10,14 +10,14 @@
 
 
         <div class="navbar-text pull-right hidden-xs">
-            <a href="#/owner/123/restaurant/123/menu/new">
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/new">
                 <span class="wbdv-text-clr-white" title="Add new menu">Add Item</span>
             </a>
         </div>
 
 
         <div class="navbar-text pull-left wbdv-mar-left-0">
-            <a href="#/owner/123/restaurant/123/order">
+            <a href="#/user/123/restaurant/123/order">
                     <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
             </a>
         </div>
@@ -28,269 +28,83 @@
     </div>
 </nav>
 
-<div class="container wbdv-pad-left-right wbdv-mar-top-50">
-    <ul id="ownerRestaurantsRegistered" class="list-group">
-        <li class="list-group-item"  style="color: black; background-color: lightslategray">
-            <div class="row">
-                <div class="col-xs-6 pull-left">
-                    CUISINES
-                </div>
-
-                    <div class="col-xs-6 pull-left">
-                        Total Items
-                    </div>
-
-            </div>
-        </li>
-
-        <li class="list-group-item" >
-            <div class="row">
-                <div class="col-xs-6 pull-left" data-toggle="collapse" data-target="#{{model.id[0]}}">
-                    INDIAN
-                </div>
-                <div class="col-xs-6 pull-left">
+<div class="container pageBackground">
+    <div class="blackContainer">
+        <div class="contentContainer">
+            <ul id="ownerRestaurantsRegistered" class="list-group">
+                <li class="list-group-item"  style="color: black; background-color: lightslategray; margin-bottom: 5px;">
                     <div class="row">
-                        <div class="col-xs-9 pull-left"  data-toggle="collapse" data-target="#{{model.id[0]}}">
-                            6
+                        <div class="col-xs-6 pull-left">
+                            CUISINES
                         </div>
-                        <div class="col-xs-3 pull-right">
-                            <a href="#/owner/123/restaurant/123/menu/cat/1">
-                                <span class="glyphicon glyphicon-folder-open  pull-right "></span>
-                            </a>
+
+                        <div class="col-xs-6 pull-left">
+                            Total Items
+                        </div>
+
+                    </div>
+                </li>
+
+                <!--{{model.result}}-->
+                <li ng-repeat ="category in model.result" class="list-group-item wbdv-text-clr-white" style="background-color: black; " >
+                    <div class="row">
+                        <div class="col-xs-6 pull-left" data-toggle="collapse" data-target="#{{category.group}}">
+                            {{category.group}}
+                        </div>
+                        <div class="col-xs-6 pull-left">
+                            <div class="row">
+                                <div class="col-xs-9 pull-left"  data-toggle="collapse" data-target="#{{category.group}}">
+                                    {{category.entry.length}}
+                                </div>
+                                <div class="col-xs-3 pull-right">
+                                    <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/category/{{category.group}}">
+                                        <span class="glyphicon glyphicon-folder-open wbdv-text-clr-white pull-right "></span>
+                                    </a>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
-
-
-                </div>
-            </div>
-            <div id="{{model.id[0]}}" class="collapse">
-                <ul class="list-group">
-                    <li class="list-group-item" style="color: black; background-color: gray">
-                        <div class="row">
-                            <div class="col-xs-6 pull-left">
-                                <span>item1</span>
-                            </div>
-                            <div class="col-xs-6 pull-left">
+                    <div id="{{category.group}}" class="collapse">
+                        <ul class="list-group">
+                            <li ng-repeat="entries in category.entry" class="list-group-item" style="color: black; background-color: gray">
                                 <div class="row">
-                                    <div class="col-xs-9 pull-left">
-                                        <span class="glyphicon glyphicon-usd"></span>
-                                        <span>123</span>
+                                    <div class="col-xs-6 pull-left">
+                                        <span>{{entries[0]}}</span>
                                     </div>
-                                    <div class="col-xs-3">
-                                        <a href="#/owner/123/restaurant/123/menu/new">
-                                            <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
-                                        </a>
+                                    <div class="col-xs-6 pull-left">
+                                        <div class="row">
+                                            <div class="col-xs-9 pull-left">
+                                                <span class="glyphicon glyphicon-usd"></span>
+                                                <span>{{entries[1]}}</span>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/{{entries[2]}}/item">
+                                                    <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </li>
+                        </ul>
 
-                            </div>
-
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
-        </li>
-
-        <li class="list-group-item" >
-            <div class="row">
-                <div class="col-xs-6 pull-left" data-toggle="collapse" data-target="#{{model.id[1]}}">
-                    CHINEESE
-                </div>
-                <div class="col-xs-6 pull-left">
-                    <div class="row">
-                        <div class="col-xs-9 pull-left"  data-toggle="collapse" data-target="#{{model.id[1]}}">
-                            6
-                        </div>
-                        <div class="col-xs-3 pull-right">
-                            <a href="">
-                                <span class="glyphicon glyphicon-folder-open  pull-right "></span>
-                            </a>
-                        </div>
                     </div>
-
-
-                </div>
-            </div>
-            <div id="{{model.id[1]}}" class="collapse">
-                <ul class="list-group">
-                    <li class="list-group-item" style="color: black; background-color: gray">
-                        <div class="row">
-                            <div class="col-xs-6 pull-left">
-                                <span>item1</span>
-                            </div>
-                            <div class="col-xs-6 pull-left">
-                                <div class="row">
-                                    <div class="col-xs-9 pull-left">
-                                        <span class="glyphicon glyphicon-usd"></span>
-                                        <span>256</span>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a href="#/owner/123/restaurant/123/menu/new">
-                                            <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
-        </li>
-
-        <li class="list-group-item" >
-            <div class="row">
-                <div class="col-xs-6 pull-left" data-toggle="collapse" data-target="#{{model.id[2]}}">
-                    MEXICAN
-                </div>
-                <div class="col-xs-6 pull-left">
-                    <div class="row">
-                        <div class="col-xs-9 pull-left"  data-toggle="collapse" data-target="#{{model.id[2]}}">
-                            6
-                        </div>
-                        <div class="col-xs-3 pull-right">
-                            <a href="">
-                                <span class="glyphicon glyphicon-folder-open  pull-right "></span>
-                            </a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-            <div id="{{model.id[2]}}" class="collapse">
-                <ul class="list-group">
-                    <li class="list-group-item" style="color: black; background-color: gray">
-                        <div class="row">
-                            <div class="col-xs-6 pull-left">
-                                <span>item3</span>
-                            </div>
-                            <div class="col-xs-6 pull-left">
-                                <div class="row">
-                                    <div class="col-xs-9 pull-left">
-                                        <span class="glyphicon glyphicon-usd"></span>
-                                        <span>20</span>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a href="#/owner/123/restaurant/123/menu/new">
-                                            <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
-        </li>
-    </ul>
+                </li>
+        </div>
+    </div>
 
 
 
-        <!--<ul id="ownerRestaurantsRegistered" class="list-group">-->
-        <!--<li class="list-group-item" >-->
-            <!--<a href="">-->
-                <!--<div class="row">-->
 
-                    <!--<div class="col-xs-8 pull-left">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-7 pull-left">-->
-                                <!--<span>item1</span>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-5 pull-right">-->
-                                <!--<span class="glyphicon glyphicon-usd"></span>-->
-                                <!--<span>123</span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-
-                    <!--<div class="col-xs-4 pull-right">-->
-                        <!--<a href="">-->
-                            <!--<span class="glyphicon glyphicon-remove pull-right "></span>-->
-                        <!--</a>-->
-                        <!--<a href="">-->
-                            <!--<span class="glyphicon glyphicon-cog  pull-right "></span>-->
-                        <!--</a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</a>-->
-
-        <!--</li>-->
-
-        <!--<li class="list-group-item" >-->
-            <!--<a href="">-->
-                <!--<div class="row">-->
-
-                    <!--<div class="col-xs-8 pull-left">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-7 pull-left">-->
-                                <!--<span>item1</span>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-5 pull-right">-->
-                                <!--<span class="glyphicon glyphicon-usd"></span>-->
-                                <!--<span>123</span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-
-                    <!--<div class="col-xs-4 pull-right">-->
-                        <!--<a href="">-->
-                            <!--<span class="glyphicon glyphicon-remove pull-right "></span>-->
-                        <!--</a>-->
-                        <!--<a href="">-->
-                            <!--<span class="glyphicon glyphicon-cog  pull-right "></span>-->
-                        <!--</a>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-            <!--</a>-->
-
-        <!--</li>-->
-
-        <!--<li class="list-group-item" >-->
-        <!--<a href="">-->
-            <!--<div class="row">-->
-
-                <!--<div class="col-xs-8 pull-left">-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-xs-7 pull-left">-->
-                            <!--<span>item1</span>-->
-                        <!--</div>-->
-                        <!--<div class="col-xs-5 pull-right">-->
-                            <!--<span class="glyphicon glyphicon-usd"></span>-->
-                            <!--<span>123</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-
-                <!--<div class="col-xs-4 pull-right">-->
-                    <!--<a href="">-->
-                        <!--<span class="glyphicon glyphicon-remove pull-right "></span>-->
-                    <!--</a>-->
-                    <!--<a href="">-->
-                        <!--<span class="glyphicon glyphicon-cog  pull-right "></span>-->
-                    <!--</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</a>-->
-        <!--</li>-->
-    <!--</ul>-->
 </div>
 
 
 <nav class="navbar navbar-fixed-bottom bg-primary">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/owner/123">
+            <a href="#/user/123">
                 <span class="glyphicon glyphicon-user wbdv-text-clr-white"></span>
             </a>
         </div>

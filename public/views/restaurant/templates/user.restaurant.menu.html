@@ -36,7 +36,24 @@
         {{model.error}}
     </div>
 <div class="blackContainer">
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-xs-3 col-sm-3">
+            <img ng-src="https://eatstreet-static.s3.amazonaws.com/assets/images/restaurant_logos/the-no-1-food-16262_1402350187715.png" class="wbdv-menu-logo">
+
+        </div>
+        <div class="col-xs-7 col-sm-7" style="vertical-align: middle; margin-left:20px;">
+            <!--<div class="row">-->
+                <span >MY RESTAURANT..............</span>
+            <br/>
+            <!--</div>-->
+            <!--<div class="row">-->
+                <span>Restaurant address..............................</span>
+            <!--</div>-->
+        </div>
+
+    </div>
     <div class="contentContainer">
+
         <div ng-repeat="mn in model.menu">
             <div class="row wbdv-pad-left-15 wbdv-mar-top-5" style="background-color: chocolate;height: auto; ">
                 <div class="wbdv-text-clr-white" style="font-size: x-large;font-weight: bold; color: whitesmoke">{{mn.name}}</div>
@@ -59,27 +76,33 @@
                                     </div>
                                 </div>
                             </div>
-                            <div  id ="{{item.apiKey}}" class="collapse row" style="margin-top:5px;">
-
-
-                                    <div class="col-xs-4 col-sm-4" >
+                            <div  id ="{{item.apiKey}}" class="collapse row container" style="margin-top:10px; margin-left: 5px; margin-right:5px;">
+                                <div class="col-xs-6 col-sm-4 pull-right">
+                                    <div class="col-xs-2 col-sm-1 pull-left" style="width: 30px;" >
                                         <a ng-click="model.increaseItemCount(mn.apiKey, item.apiKey, model.countCom, item.name, item.basePrice)">
-                                            <span   class="glyphicon glyphicon-plus-sign wbdv-text-clr-white pull-left"></span>
+                                            <span   class="glyphicon glyphicon-plus-sign wbdv-text-clr-white pull-left" style=" font-size: 20px;padding: 0px; margin:0px;"></span>
                                         </a>
                                     </div>
 
 
 
-                                    <div  id = "{{'count-'+item.apiKey}}" class="col-xs-4 col-sm-4 wbdv-text-clr-white" style="padding-left: 0;margin-right:1px;" class="col-xs-2 col-sm-2 wbdv-text-clr-white">
+                                    <div  id = "{{'count-'+item.apiKey}}"  style="width: 30px;" class="col-xs-2 col-sm-2 wbdv-text-clr-white pull-right">
 
                                     </div>
 
 
-                                    <div class="col-xs-4 col-sm-4 pull-right">
+                                    <div class="col-xs-2 col-sm-1 pull-right" style="width: 30px;">
                                         <a ng-click="model.decreaseItemCount(mn.apiKey, item.apiKey, model.countCom, item.name, item.basePrice)">
-                                            <span   class="glyphicon glyphicon-minus-sign pull-right wbdv-text-clr-white "></span>
+                                            <span   class="glyphicon glyphicon-minus-sign pull-right wbdv-text-clr-white " style="margin:0px;padding: 0px; font-size: 20px;"></span>
                                         </a>
                                     </div>
+                                </div>
+
+
+
+
+
+
 
 
 

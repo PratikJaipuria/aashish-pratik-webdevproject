@@ -1,12 +1,12 @@
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
         <div  class="navbar-text navbar-link pull-left">
-            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu">
+            <a href="#/owner/123/restaurant/123/menu">
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
             </a>
         </div>
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Edit Category</span>
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Edit Category </span>
         </div>
 
     </div>
@@ -17,29 +17,26 @@
         <div style="width: 100%; top: 50%; left: 50%;" class="blackContainer">
 
             <div>
-                <label for="prevCat">Previous Category</label>
-                <input id="prevCat" ng-model="model.catname" ng-disabled="model.catname"  class="form-control">
+                <label for="prevCat">Item Name</label>
+                <input id="prevCat" ng-model="model.menu.itemName" class="form-control">
             </div>
-
             <div>
-                <label for="newCat">New Category</label>
-                <input id="newCat" ng-model="model.menu.newcat" class="form-control">
+                <label for="newCat" class="wbdv-req-field wbdv-mar-top-5">Price:</label>
+                <input id="newCat" ng-model="model.menu.price" class="form-control" type="Number" placeholder="New Category Name">
             </div>
-
         </div>
 
     </form>
     <div  class="wbdv-mar-bottom-60 wbdv-pad-left-right wbdv-mar-top-25">
         <div class="row">
             <div class="col-sm-6 col-xs-12">
-                <a ng-click="model.updateMenuCategory(model.menu)" class="btn btn-success btn-block">Update</a>
+                <a ng-click="model.updateMenuItem(model.menu)" class="btn btn-success btn-block">Update</a>
             </div>
             <div class="col-sm-6 col-xs-12">
-                <a ng-click="model.deleteMenuCategory(model.catname)" class="btn btn-success btn-block">Delete</a>
+                <a ng-click="model.deleteMenuItem(model.menu)" class="btn btn-danger btn-block">Delete</a>
             </div>
-
             <div class="col-sm-6 col-xs-12">
-                <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu" class="btn btn-danger  btn-block">Cancel</a>
+                <a href="#/owner/123/restaurant/123/menu" class="btn btn-primary  btn-block">Cancel</a>
             </div>
         </div>
     </div>
@@ -53,7 +50,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

@@ -1,14 +1,16 @@
+/**
+ * Created by Pratik on 3/31/2017.
+ */
 (function (){
     angular.module('ProjectMaker')
-        .controller('userRegisterController', userRegisterController);
+        .controller('deliveryBoyRegisterController', deliveryBoyRegisterController);
 
-    function userRegisterController ($location, userService, $timeout, $routeParams) {
+    function deliveryBoyRegisterController ($location, userService, $timeout, $routeParams) {
         var vm = this;
-         var role=$routeParams['role'];
-
+        var role=$routeParams['role'];
         var restaurantId = $routeParams['rst'];
         vm.restaurantId = restaurantId;
-
+        console.log("Restaurant ID:",vm.restaurantId);
         vm.countries=['United States', 'Canada'];
         vm.createUser=createUser;
         function init() {
@@ -18,6 +20,7 @@
         function createUser (user) {
             var errors=[];
             var error='';
+
 
             if(!user.username){
                 error="Username cannot be empty";
@@ -63,14 +66,14 @@
 
             if(errors.length == 0){
 
-                    if(user.password === user.password2 && user.password){
-                         createNewUser(user);
-                    }else{
-                        error='Password does not match';
-                        errors.push(error);
-                        throwError(errors);
+                if(user.password === user.password2 && user.password){
+                    createNewUser(user);
+                }else{
+                    error='Password does not match';
+                    errors.push(error);
+                    throwError(errors);
 
-                    }
+                }
 
             }
 
@@ -92,14 +95,23 @@
                 user.role = 'OWNER';
             }else if(role==2){
                 user.role = 'DELIVERYBOY';
+                var restID = [];
+                restID[0] = restaurantId;
+                user.restaurantID = restID;
+                console.log(user);
             }
 
             var promise=userService.createUser(user);
             promise.success(function (user) {
-                console.log(user);
-                $location.url('/user/'+user._id);
+                 console.log("CREATE DELI BOY",user);
+                if(user.role='DELIVERYBOY'){
+                    $location.url('/user/'+user._id+'/restaurant/'+restaurantId+'/db');
+                }else{
+                    $location.url('/user/'+user._id);
+                }
+
             }).error(function (err) {
-                   throwError('Either this username or email already taken.');
+                throwError('Either this username or email already taken.');
             })
         }
 
@@ -114,7 +126,7 @@
             vm.error='';
         }
 
-    };
+    }
 })();
 
 

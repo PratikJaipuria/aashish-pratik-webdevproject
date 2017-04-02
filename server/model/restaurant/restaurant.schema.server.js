@@ -19,6 +19,7 @@ module.exports=function(){
         country: String,
         pin:String,
         logoUrl:String,
+        timestamp:String,
         hours:{
             "Monday":[String],
             "Tuesday":[String],
@@ -32,7 +33,8 @@ module.exports=function(){
         delivery:Boolean,
         pickup:Boolean,
         dateCreated: {type: Date, default: Date.now},
-        url: String
+        url: String,
+        partner: Boolean
     }, {collection: 'restaurantdb'});
     // UserSchema.index( { "email": 1, "username": 1 }, { unique: true } );
     return RestaurantSchema;

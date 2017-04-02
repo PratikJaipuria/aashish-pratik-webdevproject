@@ -16,11 +16,51 @@ module.exports = function () {
         updateUser:updateUser,
         deleteUser:deleteUser,
         addRestaurant:addRestaurant,
-        addOrdertoCustomer:addOrdertoCustomer
+        addOrdertoCustomer:addOrdertoCustomer,
+        findUserByDeliveryboy:findUserByDeliveryboy,
+        updateAvailabiltyofDB:updateAvailabiltyofDB
+
 
 
     };
     return api;
+
+
+
+    function updateAvailabiltyofDB(userId,user) {
+        var deferred = q.defer();
+
+        UserModel
+            .update({_id:userId},{
+                $set: {db_avail:user.db_avail}},function (err,response) {
+                if(err){
+                    deferred.reject();
+                }else{
+                    deferred.resolve(response);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+
+    function findUserByDeliveryboy(users) {
+        var deferred = q.defer();
+
+        UserModel.find({_id: {$in: users}}, function (err, listUser) {
+            if (err){
+                deferred.reject();
+            }else{
+                // console.log("MODEL delivery boy",listUser);
+                deferred.resolve(listUser);
+
+            }
+        });
+
+        return deferred.promise;
+    }
+
+
 
 
     function findUserByCredentials(username,password) {

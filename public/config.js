@@ -161,59 +161,78 @@
             })
 
 
-            .when("/user/:uid/restaurant/:rst/menu",{
-                templateUrl: "views/restaurant/templates/restaurantMenu.html",
-                controller: "restaurantMenuController",
-                controllerAs: "model"
-            })
+            // .when("/user/:uid/restaurant/:rst/menu",{
+            //     templateUrl: "views/restaurant/templates/restaurantMenu.html",
+            //     controller: "restaurantMenuController",
+            //     controllerAs: "model"
+            // })
 
             .when("/user/:uid/restaurant/:rst",{
                 templateUrl: "views/restaurant/templates/restaurantEdit.html",
                 controller: "restaurantEditController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/restaurant/:rst/menu/cart/:cat",{
-                templateUrl: "views/restaurant/templates/menuCategoryEdit.html"
+            // .when("/user/:uid/restaurant/:rst/menu/cart/:cat",{
+            //     templateUrl: "views/restaurant/templates/menuCategoryEdit.html"
+            // })
+
+            .when("/user/:uid/restaurant/:rst/menu/:mid/item",{
+                templateUrl: "views/restaurant/templates/menuItemEdit.html",
+                controller: "editMenuController",
+                controllerAs: "model"
+            })
+
+            .when("/user/:uid/restaurant/:rst/menu/category/:catname",{
+                templateUrl: "views/restaurant/templates/menuCategoryEdit.html",
+                controller: "editMenuController",
+                controllerAs: "model"
+            })
+
+            .when("/user/:uid/restaurant/:rst/menu",{
+                templateUrl: "views/restaurant/templates/restaurantMenu.html",
+                controller: "restaurantMenuController",
+                controllerAs: "model"
             })
 
             .when("/user/:uid/restaurant/:rst/menu/new",{
-                templateUrl: "views/restaurant/templates/newMenu.html"
-                // controller: "restaurantEdit",
-                // controllerAs: "model"
+                templateUrl: "views/restaurant/templates/newMenu.html",
+                controller: "newMenuController",
+                controllerAs: "model"
             })
+
             .when("/user/:uid/restaurant/:rst/db",{
-                templateUrl: "views/deliveryBoy/templates/deliveryPersonnalList.html"
-                // controller: "restaurantEdit",
-                // controllerAs: "model"
+                templateUrl: "views/users/templates/deliveryPersonnalList.html",
+                controller: "deliveryBoyListController",
+                controllerAs: "model"
             })
-            .when("/user/:uid/restaurant/:rst/db/new",{
-                templateUrl: "views/deliveryBoy/templates/deliveryPersonnalRegister.html"
-                // controller: "restaurantEdit",
-                // controllerAs: "model"
+
+            .when("/user/:uid/restaurant/:rst/db/:role",{
+                templateUrl: "views/users/templates/userRegister.html",
+                controller: "deliveryBoyRegisterController",
+                controllerAs: "model"
             })
 
             //change this to profile standard path
-            .when("/user/:uid/restaurant/:rst/db/:uid",{
+            .when("/user/:uid/restaurant/:rst/editdb/:dbid",{
                 ///deliveryPersonnal/:db
-                templateUrl: "views/deliveryBoy/templates/deliveryPersonnalProfile.html"
-                // controller: "restaurantEdit",
-                // controllerAs: "model"
+                templateUrl: "views/users/templates/dbProfileforOwner.html",
+                controller: "deliveryBoyProfileController",
+                controllerAs: "model"
             })
+            //
+            // .when("/db/:uid",{
+            //     ///deliveryPersonnal/:db
+            //     templateUrl: "views/deliveryBoy/templates/deliveryPersonnalProfile.html"
+            //     // controller: "restaurantEdit",
+            //     // controllerAs: "model"
+            // })
 
-            .when("/db/:uid",{
-                ///deliveryPersonnal/:db
-                templateUrl: "views/deliveryBoy/templates/deliveryPersonnalProfile.html"
-                // controller: "restaurantEdit",
-                // controllerAs: "model"
-            })
-
-            .when("/db/:uid/order",{
+            .when("/user/:uid/dborders",{
                 ///deliveryPersonnal/:db
                 templateUrl: "views/order/templates/deliveryPersonnalOrder.html",
                 controller: "deliveryPersonnalOrderController",
                 controllerAs: "model"
             });
-
 
 
     }})();

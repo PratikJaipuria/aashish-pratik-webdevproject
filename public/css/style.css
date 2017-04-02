@@ -1,5 +1,5 @@
 .blackContainer{
-    margin-top: 100px;
+    margin-top: 20px;
     background: rgba(0, 0, 0, 0.6);
 }
 
@@ -264,6 +264,18 @@ body {
     width: 50px;
 
 }
+
+
+
+.wbdv-menu-logo{
+    border: 1px hidden #ddd;
+    border-radius: 4px;
+    /*padding: 5px;*/
+    width: 100px;
+    height: 100px;
+
+}
+
 
 .wbdv-rest-menu{
     /*border: 1px hidden #ddd;*/

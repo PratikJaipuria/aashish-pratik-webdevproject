@@ -5,9 +5,49 @@ module.exports=function(app,model){
     app.delete("/api/user/:uid", deleteUser);
     app.get("/api/user/:uid", findUserById);
     app.get("/api/user",findUserByCredentials);
+    app.get("/api/users/:rst",findDeliveryBoyByRestaurant);
+    app.put("/api/users/:uid",updateAvailabiltyofDB);
+
 
 
     var UserModel = model.UserModel;
+    var RestaurantModel = model.RestaurantModel;
+
+
+    function updateAvailabiltyofDB(req,res) {
+        var userId = req.params['uid'];
+        var user = req.body;
+        console.log(user);
+        UserModel
+            .updateAvailabiltyofDB(userId,user)
+            .then(function (response) {
+                res.json(response)
+
+            },function (err) {
+                res.send(err);
+
+            });
+    }
+
+
+    function findDeliveryBoyByRestaurant(req,res) {
+        var restaurantID = req.params['rst'];
+        // console.log("SERVER findDeliveryBoyByRestaurant", restaurantID);
+        // dbs = [];
+        RestaurantModel
+            .findRestaurantById(restaurantID)
+            .then(function (restaurant) {
+                // console.log("SERVER REST findRestaurantByOwner", restaurant);
+                UserModel
+                    .findUserByDeliveryboy(restaurant.deliveryBoysId)
+                    .then(function (response) {
+                        // console.log("RESULT in server from model",response);
+                        res.json(response);
+                    }, function (err) {
+                        res.send(err);
+                    })
+            });}
+
 
 
 
@@ -40,22 +80,46 @@ module.exports=function(app,model){
     function createUser(req, res){
         var user=req.body;
 
-        UserModel
-            .createUser(user)
-            .then(function (reponse) {
-                UserModel.findUserByUsername(reponse.username)
-                    .then(function (user) {
+        if(user.role=="DELIVERYBOY"){
+            UserModel
+                .createUser(user)
+                .then(function (reponse) {
+                    UserModel.findUserByUsername(reponse.username)
+                        .then(function (user) {
+                            RestaurantModel
+                                .addDeliveryBoy(user)
+                                .then(function (response1) {
+                                    res.json(user);
+                                });
 
-                        res.json(user);
-                    }, function (err) {
+                        }, function (err) {
 
-                        res.sendStatus(err.code);
-                    })
-            }, function (err) {
-                 res.sendStatus(404).send(err);
-            })
+                            res.sendStatus(err.code);
+                        })
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                })
 
-        };
+        }else{
+            UserModel
+                .createUser(user)
+                .then(function (reponse) {
+                    UserModel.findUserByUsername(reponse.username)
+                        .then(function (user) {
+
+
+                            res.json(user);
+                        }, function (err) {
+
+                            res.sendStatus(err.code);
+                        })
+                }, function (err) {
+                    res.sendStatus(404).send(err);
+                })
+        }
+
+    };
+
 
     function findUserById(req, res) {
         var userId= req.params['uid'];

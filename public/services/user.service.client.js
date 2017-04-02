@@ -11,11 +11,28 @@
             "findUserByID":findUserByID,
             "findUserByCredentials":findUserByCredentials,
             "updateUser":updateUser,
-            "deleteUser": deleteUser
+            "deleteUser": deleteUser,
+            "findDeliveryBoyByRestaurant":findDeliveryBoyByRestaurant,
+            "updateAvailabiltyofDB":updateAvailabiltyofDB
         };
 
 
         return api;
+
+
+        function updateAvailabiltyofDB(userId,user) {
+            console.log("hello");
+            console.log(userId);
+            console.log(user);
+            return $http.put('/api/users/'+userId,user);
+        }
+
+
+        function findDeliveryBoyByRestaurant(restaurantId) {
+            // console.log("CLIENT",restaurantId);
+            return $http.get('/api/users/'+ restaurantId);
+        }
+
 
         function createUser (user) {
             return $http.post('/api/user/', user);

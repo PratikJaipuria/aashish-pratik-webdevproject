@@ -1,0 +1,76 @@
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/owner/123/restaurant/123/order">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
+            </a>
+        </div>
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Registered Delivery Personnals</span>
+        </div>
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/db/2">
+                <span class="wbdv-text-clr-white" title="Add New Delivery Personnal">Add New Delivery Personnal</span>
+            </a>
+        </div>
+        <div  class="navbar-text navbar-link pull-right visible-xs">
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/db/2">
+                <span class="glyphicon glyphicon-plus wbdv-text-clr-white" title="Add New Delivery Personnal"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container pageBackground">
+    <div class="blackContainer">
+        <div class="contentContainer">
+            <ul id="ownerRestaurantsRegistered" class="list-group">
+                <li class="list-group-item"  style="color: black; background-color: lightslategray">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            Delivery Boys
+                        </div>
+
+                    </div>
+                </li>
+                <li ng-repeat="db in model.dbs" class="list-group-item" style="background-color: black">
+
+                    <div class="row">
+
+                        <div class="col-xs-8 pull-left">
+                            <span>{{db.firstName}} {{db.lastName}}</span>
+                        </div>
+
+
+                        <div class="col-xs-4 pull-right">
+
+                            <a href="#/user/{{model.userId}}/restaurant/{{db.restaurantID[0]}}/editdb/{{db._id}}">
+                                <span class="glyphicon glyphicon-cog pull-right wbdv-text-clr-white" title="Edit"></span>
+                            </a>
+
+                        </div>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

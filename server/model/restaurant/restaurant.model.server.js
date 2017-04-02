@@ -17,11 +17,67 @@ module.exports = function () {
         findRestaurantById:findRestaurantById,
         updateRestaurant:updateRestaurant,
         deleteRestaurant:deleteRestaurant,
-        addOrdertoRestaurant:addOrdertoRestaurant
+        addOrdertoRestaurant:addOrdertoRestaurant,
+        addDeliveryBoy:addDeliveryBoy,
+        insertMenuId:insertMenuId,
+        findRestaurantBytimestamp:findRestaurantBytimestamp
+
 
 
     };
     return api;
+
+
+
+    function findRestaurantBytimestamp(ownerId,currtime) {
+        var deferred=q.defer();
+        RestaurantModel.findOne({ownerId: ownerId, timestamp:currtime}, function (err, restaurant) {
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(restaurant);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function insertMenuId(menu) {
+        console.log("REST",menu);
+        var deferred = q.defer();
+        RestaurantModel
+            .update({_id:menu[0].restaurantId},{
+                $push:{menuId:menu[0]._id}
+            },function (err,rest) {
+                if(err){
+                    // console.log("rest error updates",err);
+                    deferred.reject(err);
+                }else{
+                    // console.log("rest updates",rest);
+                    deferred.resolve(rest);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function addDeliveryBoy(user){
+        var deferred = q.defer();
+        // console.log("REST MODEL USER",user.restaurantID[0]);
+        RestaurantModel
+            .update({_id: user.restaurantID[0]},{
+                $push: {deliveryBoysId:user._id}
+            },function (err,restaurant) {
+                if(err){
+                    // console.log("err rest model add");
+                    deferred.reject(err);
+                }else{
+                    // console.log("successrest model add",restaurant);
+                    deferred.resolve(restaurant);
+                }
+            });
+        return deferred.promise;
+    }
+
 
 
     function deleteRestaurant(restaurantId) {
@@ -130,14 +186,15 @@ module.exports = function () {
     function addOrdertoRestaurant(resId, order) {
 
         var deferred=q.defer();
+        console.log(resId);
         RestaurantModel.update({_id: resId},{$set: { name: order.restName}, $push: {orderId: order._id}},{upsert: true},function (err, restaurant) {
                     if(err){
-
+                        console.log(err);
                         deferred.reject(err);
                     }
                     else{
 
-
+                        console.log(err);
                         deferred.resolve(restaurant);
                     }})
 

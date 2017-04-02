@@ -10,17 +10,76 @@
         vm.updateUser=updateUser;
         vm.deleteUser=deleteUser;
         vm.userId=userId;
+        vm.available=available;
 
         function init () {
             var promise=userService.findUserByID(userId);
             promise.success(function (user) {
                 vm.user=user;
-                console.log()
+                if(user.role=='DELIVERYBOY'){
+                    currentAvailability();
+                }
+                // console.log()
 
             }).error(function (err) {
 
             })
            } init();
+
+
+        function currentAvailability() {
+            var curr_status=vm.user.db_avail;
+            if(curr_status){
+                $('#delBoyAvail').bootstrapToggle('on');
+
+            }
+            else{
+                $('#delBoyAvail').bootstrapToggle('off');
+            }
+        }
+
+        function available() {
+            console.log(vm.user.db_avail);
+            var val = vm.user.db_avail;
+            console.log(val);
+            var num;
+
+            if(val){
+                num = 1;
+            }else{
+                num = 0;
+            }
+
+            if (vm.user.db_avail){
+                $('#delBoyAvail').bootstrapToggle('off');
+                vm.user.db_avail=0;
+
+                var promise=userService.updateAvailabiltyofDB(userId,vm.user);
+                promise.success(function (response) {
+                    // vm.user.db_avail = response;
+
+                }).error(function (err) {
+                    // error="unable to update User";
+                    // errors.push(error);
+                    // outputMsg("ERROR",errors);
+                });
+                //send to db with false
+            } else{
+                $('#delBoyAvail').bootstrapToggle('on');
+                vm.user.db_avail=1;
+                //send to db with true
+                var promise=userService.updateAvailabiltyofDB(userId,vm.user);
+                promise.success(function (response) {
+                    // vm.user.db_avail=response;
+                    // console.log("SUCCESS",vm.user.db_avail);
+                }).error(function (err) {
+                    // error="unable to update User";
+                    // errors.push(error);
+                    // outputMsg("ERROR",errors);
+                });
+
+            }
+        }
 
 
         function updateUser(userId, user) {
