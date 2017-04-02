@@ -23,11 +23,11 @@ padding: 0px;
 }
 
 .wbdv-avail-true{
-    color: green;
+    color: green !important;
 }
 
 .wbdv-avail-false{
-    color: red;
+    color: red !important;
 }
 
 .wbdv-pad-left-30{

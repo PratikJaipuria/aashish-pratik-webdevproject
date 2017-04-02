@@ -29,6 +29,10 @@
         init();
 
         function searchMenuForThisRestaurant () {
+            // var restDetails = sessionHolderService.getRestToGetMenu();
+            // vm.logoUrl=restDetails.logoUrl;
+            // vm.address=restDetails.restAddress;
+            // vm.name=restDetails.name;
             var promise = restaurantSearchMenuService.searchMenu(restaurantId);
             promise
                 .success(function (response) {

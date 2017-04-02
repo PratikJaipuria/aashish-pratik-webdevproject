@@ -5,7 +5,9 @@ module.exports=function(){
     var OrderSchema = mongoose.Schema({
         restaurantId:  {type: String},
         dbId: {type: String},
+        dbName:String,
         userId: {type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
+        userFullName:String,
         deliverAddress: String,
         dateCreated: {type: Date, default: Date.now},
         items:[],
@@ -13,7 +15,9 @@ module.exports=function(){
         delivered: {type: Boolean, default: false},
         restLogo:String,
         restName:String,
-        timestamp:String
+        timestamp:String,
+        scheduled:{type: Boolean, default: false},
+
 
     }, {collection: 'orderdb'});
 

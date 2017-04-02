@@ -55,6 +55,11 @@
                 controller: "searchResultController",
                 controllerAs: "model"})
 
+
+
+
+
+
             .when("/user/:uid/searchResult",{
                 templateUrl: "views/home.html",
                 controller: "homeController",
@@ -117,7 +122,9 @@
             // '/user/'+userId+'/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey
 
                 .when("/user/:uid/restaurant/:rst/order",{
-                templateUrl: "views/order/templates/resturant.order.tracking.html"})
+                templateUrl: "views/order/templates/resturant.order.tracking.html",
+                controller: 'restaurantOrderTrackController',
+                controllerAs: 'model'})
 
 
             // .when("/register",{

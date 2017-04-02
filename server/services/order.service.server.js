@@ -1,6 +1,8 @@
 module.exports=function(app,model){
     // app.get("/api/user", findUser);
     app.post("/api/restaurant/checkout", createOrder);
+    app.get('/api/restaurant/:rst/orders', getOrdersForThisRestaurant);
+    app.put('/api/restaurant/:rst/orders/delivery', assignDelivery);
     // app.put("/api/restaurant/customerOrder", addOrderToCustomer);
     // app.delete("/api/user/:uid", deleteUser);
     // app.get("/api/user/:uid", findUserById);
@@ -52,6 +54,33 @@ module.exports=function(app,model){
             })
 
     };
+
+
+    function getOrdersForThisRestaurant (req, res) {
+        var rid=req.params['rst'];
+        RestaurantModel.getOrdersForThisRestaurant(rid)
+            .then(function (ordersList) {
+                res.json(ordersList);
+            }, function (err) {
+                res.sendStatus(404);
+            })
+
+    }
+
+    function assignDelivery (req, res) {
+        var order=req.body;
+        OrderModel.updateOrderWithDB(order)
+            .then(function (response) {
+               UserModel.updateDBwithOrder(order.dbId, order._id)
+                   .then(function (response) {
+                       res.sendStatus(200);
+                   }, function (err) {
+                       res.sendStatus(404);
+                   })
+            }, function (err) {
+                res.sendStatus(404);
+            })
+    }
 
 
 

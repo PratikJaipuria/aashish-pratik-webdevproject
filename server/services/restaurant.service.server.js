@@ -73,6 +73,7 @@ module.exports=function(app,model) {
 
             var currtime=(new Date()).getTime().toString();
         restaurant._id=currtime;
+        restaurant.partner=true;
 
             restaurant.timestamp=currtime;
         console.log(restaurant);

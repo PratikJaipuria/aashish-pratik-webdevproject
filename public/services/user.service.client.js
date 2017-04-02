@@ -13,7 +13,8 @@
             "updateUser":updateUser,
             "deleteUser": deleteUser,
             "findDeliveryBoyByRestaurant":findDeliveryBoyByRestaurant,
-            "updateAvailabiltyofDB":updateAvailabiltyofDB
+            "updateAvailabiltyofDB":updateAvailabiltyofDB,
+            "findActiveDeliveryBoyByRestaurant":findActiveDeliveryBoyByRestaurant
         };
 
 
@@ -53,6 +54,11 @@
         function deleteUser(userId) {
            return $http.delete("/api/user/"+userId);
         }
+
+        function findActiveDeliveryBoyByRestaurant(restaurantId) {
+            return $http.get( "/api/users/activedelboys/"+restaurantId);
+        }
+
 
     }
 })();

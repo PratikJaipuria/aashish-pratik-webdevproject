@@ -20,7 +20,8 @@ module.exports = function () {
         addOrdertoRestaurant:addOrdertoRestaurant,
         addDeliveryBoy:addDeliveryBoy,
         insertMenuId:insertMenuId,
-        findRestaurantBytimestamp:findRestaurantBytimestamp
+        findRestaurantBytimestamp:findRestaurantBytimestamp,
+        getOrdersForThisRestaurant:getOrdersForThisRestaurant
 
 
 
@@ -202,68 +203,28 @@ module.exports = function () {
         }
 
 
+        function getOrdersForThisRestaurant (restaurantId) {
+            var deferred=q.defer();
+            RestaurantModel.find({_id: restaurantId})
+                .populate('orderId')
+                .exec(function (err, response) {
+                    if(err){
+                        console.log(err);
+                        deferred.reject(err);
+                    }
+                    else{
+                        console.log(response);
+                        deferred.resolve(response);
+                    }
+                })
+            return deferred.promise;
+        }
+
+
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-    // function addOrdertoRestaurant(resId, order) {
-    //     console.log("RES ID: ",resId);
-    //     console.log(order);
-    //     // console.log(err);
-    //     var deferred=q.defer();
-    //     RestaurantModel.findOne({_id: resId},function (err, restaurant) {
-    //         if(err){
-    //             console.log("this is findOne error", err);
-    //             deferred.reject(err);
-    //         }
-    //
-    //         else{
-    //             if(restaurant == null){
-    //                 console.log("I am NULL");
-    //                 RestaurantModel.update({_id: resId},{$set: { name: order.restName}, $push: {orderId: order._id}},{upsert: true},function (err, restaurant) {
-    //                     if(err){
-    //                     console.log("I am from upsert error:  ", err);
-    //                     deferred.reject(err);
-    //                     }
-    //                     else{
-    //
-    //                         console.log("created new:  ", restaurant);
-    //                         deferred.resolve(restaurant);
-    //                     }})}
-    //                 else{
-    //                     RestaurantModel.update({_id: resId}, {$push: {orderId: order._id}}, function (err, restaurant) {
-    //                         if(err){
-    //                         console.log("I am available but wont help u", err);
-    //                         deferred.reject(err);
-    //                         }
-    //                         else{
-    //
-    //                             console.log("upadated Old:  ", restaurant);
-    //                             deferred.resolve(restaurant);
-    //                         }
-    //                     }
-    //                     )
-    //                 }
-    //
-    //                 }
-    //
-    //
-    //     });
-    //     return deferred.promise;
-    //
-    // }
-
-    // RestaurantModel.update({_id: resId},{$set: {name: order.restName, orderId: order._id}},{upsert: true}
 
 
 

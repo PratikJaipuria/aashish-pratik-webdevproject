@@ -26,102 +26,78 @@
     </div>
 </nav>
 
-<div class="container wbdv-pad-left-right wbdv-mar-top-25  wbdv-background-black">
+{{model.message}}
 
-    <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
-        {{model.message}}
-    </div>
+<div class="container pageBackground">
+    <div class="blackContainer">
+        <div class="contentContainer">
+            <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+                {{model.message}}
+            </div>
 
-    <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+            <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
 
-            {{model.error}}
+                {{model.error}}
 
-
-    </div>
-
-        <div style="width: 100%;  top: 50%; left: 50%;" class=" wbdv-text-clr-white">
-
-            <div class="row wbdv-text-clr-white" style="background-color: red; height: 60px;">
-                <div style="text-align: center;padding-top: 25px;">YOUR ORDER DETAILS</div>
 
             </div>
-            <div class=" wbdv-mar-top-10">
-                <div class="row">
-                    <div class="col-xs-4 pull-left">
-                        <span><h4>Restaurant:</h4></span>
-                    </div>
-                    <div class="col-xs-8 pull-left">
-                        <span><h4><em>{{model.restaurantName}}</em></em></h4></span>
-                    </div>
+
+            <div style="width: 100%;  top: 50%; left: 50%;" class=" wbdv-text-clr-white">
+
+                <div class="row wbdv-text-clr-white" style="height: 60px; font-size: x-large; mso-ansi-font-style: ">
+                    <div style="text-align: center;padding-top: 25px;">YOUR ORDER DETAILS</div>
+
                 </div>
-
-                <ul class="list-group wbdv-mar-top-15">
-                    <li class="list-group-item" style="color: black;">
-                        <div class="row">
-                            <div class="col-xs-5">
-                                <span>Items</span>
-                            </div>
-                            <div class="col-xs-2" style="padding-left: 0px;">
-                                <span>UnitPrice</span>
-                            </div>
-                            <div class="col-xs-2">
-                                <span>Quantity</span>
-                            </div>
-                            <div class="col-xs-3">
-                                <span>Total ($)</span>
-                            </div>
+                <div class=" wbdv-mar-top-10">
+                    <div class="row">
+                        <div class="col-xs-4 pull-left">
+                            <span><h4>Restaurant:</h4></span>
                         </div>
-                    </li>
-                </ul>
-
-                <ul class="list-group" >
-                    <li class="list-group-item" style="background-color: black;" ng-repeat="item in model.cart.items">
-                        <div class="row">
-                            <div class="col-xs-5">
-                                <span>{{item.name}}</span>
-                            </div>
-                            <div class="col-xs-2">
-                                <span>{{item.basePrice}}</span>
-                            </div>
-                            <div class="col-xs-2">
-                                <span>{{item.totCount}}</span>
-                            </div>
-                            <div class="col-xs-3">
-                                <span>{{item.totPrice}}</span>
-                            </div>
+                        <div class="col-xs-8 pull-left">
+                            <span><h4><em>{{model.restaurantName}}</em></em></h4></span>
                         </div>
-                    </li>
-                </ul>
-                <!--<div class="row wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color: green;height: 60px;">-->
-                    <!--<div>-->
-                        <!--&lt;!&ndash;style="margin-left: auto;  margin-right: auto;  display: table;"&ndash;&gt;-->
-                        <!--<div class="col-xs-6 pull-left" style="padding-top: 25px;text-align: right;">-->
-                        <!--<span>-->
-                            <!--<strong>Total:</strong>-->
-                        <!--</span>-->
-                        <!--</div>-->
+                    </div>
 
-                        <!--<div class="col-xs-6 pull-left" style="padding-top: 25px;">-->
-                            <!--<div class="row" >-->
-                                <!--<div class="col-xs-1" style="text-align: left;">-->
-                                    <!--<span class="glyphicon glyphicon-usd"></span>-->
+                    <ul class="list-group wbdv-mar-top-15">
+                        <li class="list-group-item" style="color: black;">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span>Items</span>
+                                </div>
+                                <div class="col-xs-2" style="padding-left: 0px;">
+                                    <span>UnitPrice</span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <span>Quantity</span>
+                                </div>
+                                <div class="col-xs-3">
+                                    <span>Total ($)</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
 
-                                <!--</div>-->
-                                <!--<div class="col-xs-3" style="text-align: left;">-->
-                                    <!--<span>-->
-                                        <!--<strong>{{model.cart.amount}}</strong>-->
-                                    <!--</span>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                    <ul class="list-group" >
+                        <li class="list-group-item" style="background-color: black;" ng-repeat="item in model.cart.items">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <span>{{item.name}}</span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <span>{{item.basePrice}}</span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <span>{{item.totCount}}</span>
+                                </div>
+                                <div class="col-xs-3">
+                                    <span>{{item.totPrice}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
 
 
-                        <!--</div>-->
-                    <!--</div>-->
-
-
-                <!--</div>-->
-
-                <div class="wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color: green;height: 60px;">
+                    <div class="wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color:dimgray  ;height: 60px;">
 
                         <!--style="margin-left: auto;  margin-right: auto;  display: table;"-->
 
@@ -135,7 +111,7 @@
                                 <strong>{{model.cart.amount}}</strong>
                             </span>
                         </span>
-                </div>
+                    </div>
 
 
 
@@ -155,10 +131,12 @@
                 </div>
             </div>
         </div>
+    </div>
+
+
+
 </div>
-
-
-
+    </div>
 
 </div>
 

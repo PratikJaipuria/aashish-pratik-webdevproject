@@ -7,6 +7,7 @@ module.exports=function(app,model){
     app.get("/api/user",findUserByCredentials);
     app.get("/api/users/:rst",findDeliveryBoyByRestaurant);
     app.put("/api/users/:uid",updateAvailabiltyofDB);
+    app.get("/api/users/activedelboys/:rst",findActiveDeliveryBoyByRestaurant);
 
 
 
@@ -119,8 +120,6 @@ module.exports=function(app,model){
         }
 
     };
-
-
     function findUserById(req, res) {
         var userId= req.params['uid'];
 
@@ -165,6 +164,28 @@ module.exports=function(app,model){
                 res.send(err);
             })
     }
+
+    function findActiveDeliveryBoyByRestaurant(req,res) {
+        var restaurantID = req.params['rst'];
+        var activeDelBoys=[];
+        RestaurantModel
+            .findRestaurantById(restaurantID)
+            .then(function (restaurant) {
+                // console.log("SERVER REST findRestaurantByOwner", restaurant);
+                UserModel
+                    .findUserByDeliveryboy(restaurant.deliveryBoysId)
+                    .then(function (response) {
+                        for (var i in response){
+                            if(response[i].db_avail==1){
+                                activeDelBoys.push(response[i]);
+                            }
+
+                        }
+                        res.send(activeDelBoys);
+                    }, function (err) {
+                        res.send(err);
+                    })
+            });}
 
 
 

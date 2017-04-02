@@ -2,7 +2,7 @@
     angular
         .module("ProjectMaker")
         .controller("searchResultController", searchResultController);
-    function searchResultController(SearchService, $location, $routeParams, $timeout){
+    function searchResultController(SearchService, $location, $routeParams, $timeout, sessionHolderService){
 
 
         var vm = this;
@@ -74,8 +74,15 @@
             vm.restaurants= result;
         }
 
-        function viewMenu (apiKey, restName) {
+        function viewMenu (apiKey, restName, logoUrl, streetAddress, city, state) {
             var restaurantName=restName.replace(/#/g,'-');
+            var resturantDetails={
+                name: restaurantName,
+                logoUrl: logoUrl,
+                restAddress: streetAddress+' '+city+' '+state
+            };
+
+            sessionHolderService.setRestToGetMenu(resturantDetails);
             if(userId && name){
                 $location.url('/user/'+userId+'/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
             }

@@ -18,7 +18,8 @@ module.exports = function () {
         addRestaurant:addRestaurant,
         addOrdertoCustomer:addOrdertoCustomer,
         findUserByDeliveryboy:findUserByDeliveryboy,
-        updateAvailabiltyofDB:updateAvailabiltyofDB
+        updateAvailabiltyofDB:updateAvailabiltyofDB,
+        updateDBwithOrder:updateDBwithOrder
 
 
 
@@ -200,5 +201,20 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function updateDBwithOrder (delBoyId, orderId) {
+        var deferred=q.defer();
+        UserModel.update({_id: delBoyId},{$push: {OrderId: orderId}}, function (err,res) {
+            if(err){
+
+                deferred.reject();
+            }
+            else {
+
+                deferred.resolve(res);
+
+            }
+        })
+        return deferred.promise;
+    }
 
 };

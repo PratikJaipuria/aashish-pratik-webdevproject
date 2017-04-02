@@ -34,7 +34,7 @@ module.exports=function(){
         pickup:Boolean,
         dateCreated: {type: Date, default: Date.now},
         url: String,
-        partner: Boolean
+        partner: {type: Boolean, default: false}
     }, {collection: 'restaurantdb'});
     // UserSchema.index( { "email": 1, "username": 1 }, { unique: true } );
     return RestaurantSchema;

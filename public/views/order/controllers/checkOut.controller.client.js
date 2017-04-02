@@ -3,7 +3,7 @@
         .module("ProjectMaker")
         .controller("checkOutController", checkOutController);
 
-    function checkOutController(checkOutService,sessionHolderService,$location, $routeParams, $timeout){
+    function checkOutController(checkOutService,userService,sessionHolderService,$location, $routeParams, $timeout){
 
 
         var vm = this;
@@ -21,11 +21,13 @@
         var cart={
             restaurantId:'',
             userId:'',
+            userFullName:'',
             // deliverAddress:'',
             items:[],
             totalAmount:'',
             // restLogo:'',
             restName:'',
+
 
         }
 
@@ -55,15 +57,33 @@
             cart.restName=vm.cart.rName;
             cart.items=vm.cart.items;
 
+            var promise=userService.findUserByID(vm.userId)
+            promise.success(function(user){
+                cart.userFullName=user.firstName+' '+user.lastName;
+                var promise=checkOutService.createOrder(cart);
+                promise.success(function (order) {
+                    outputMsg('SUCCESS','Your order has been successfully placed');
 
-            var promise=checkOutService.createOrder(cart);
-            promise.success(function (order) {
+                    navigateToMenu();
+                }).error(function (err) {
+                    outputMsg("ERROR","We are unable to process your Order currently, sorry for inconvenience");
+                    navigateToMenu();
 
-                navigateToMenu();
+                })
             }).error(function (err) {
-                navigateToMenu();
-                outputMsg("ERROR","We are unable to process your Order currently, sorry for inconvenience");
+                outputMsg("ERROR","Unable to fetch your details");
             })
+
+            // var promise=checkOutService.createOrder(cart);
+            // promise.success(function (order) {
+            //     outputMsg('SUCCESS','Your order has been successfully placed');
+            //
+            //     navigateToMenu();
+            // }).error(function (err) {
+            //     outputMsg("ERROR","We are unable to process your Order currently, sorry for inconvenience");
+            //     navigateToMenu();
+            //
+            // })
         }
 
         function navigateToMenu() {

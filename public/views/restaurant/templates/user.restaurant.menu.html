@@ -38,16 +38,16 @@
 <div class="blackContainer">
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-xs-3 col-sm-3">
-            <img ng-src="https://eatstreet-static.s3.amazonaws.com/assets/images/restaurant_logos/the-no-1-food-16262_1402350187715.png" class="wbdv-menu-logo">
+            <img ng-src="{{model.logoUrl}}">
 
         </div>
         <div class="col-xs-7 col-sm-7" style="vertical-align: middle; margin-left:20px;">
             <!--<div class="row">-->
-                <span >MY RESTAURANT..............</span>
+                <span >{{model.name}}</span>
             <br/>
             <!--</div>-->
             <!--<div class="row">-->
-                <span>Restaurant address..............................</span>
+                <span>{{model.address}}</span>
             <!--</div>-->
         </div>
 

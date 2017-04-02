@@ -8,10 +8,12 @@
 
         var api = {
             "setCart": setCart,
-            "getCart":getCart
+            "getCart":getCart,
+            "setRestToGetMenu":setRestToGetMenu,
+            "getRestToGetMenu":getRestToGetMenu
         };
         var cart;
-
+        var restObj;
         return api;
 
         function setCart(tempObj) {
@@ -24,7 +26,15 @@
             return cartToSend;
         }
 
+        function setRestToGetMenu (rObj) {
+            restObj=rObj;
+        }
 
+        function getRestToGetMenu() {
+            var restDetails=restObj;
+            restObj='';
+            return restDetails;
+        }
 
     }
 })();
