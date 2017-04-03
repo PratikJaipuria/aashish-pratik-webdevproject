@@ -8,6 +8,7 @@ module.exports=function(app,model){
     app.get("/api/users/:rst",findDeliveryBoyByRestaurant);
     app.put("/api/users/:uid",updateAvailabiltyofDB);
     app.get("/api/users/activedelboys/:rst",findActiveDeliveryBoyByRestaurant);
+    app.get( "/api/users/:uid/orders",getAllOrdersForThisDeliveryBoy);
 
 
 
@@ -186,6 +187,19 @@ module.exports=function(app,model){
                         res.send(err);
                     })
             });}
+
+
+            function getAllOrdersForThisDeliveryBoy(req,res) {
+        // console.log("inside get all orders");
+                var userId = req.params['uid'];
+                UserModel.getOrders(userId)
+                    .then(function (userAndOrder) {
+                        // console.log(userAndOrder);
+                        res.json(userAndOrder);
+                    }, function (err) {
+                        res.send(err);
+                    })
+            }
 
 
 

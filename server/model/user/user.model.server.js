@@ -19,7 +19,8 @@ module.exports = function () {
         addOrdertoCustomer:addOrdertoCustomer,
         findUserByDeliveryboy:findUserByDeliveryboy,
         updateAvailabiltyofDB:updateAvailabiltyofDB,
-        updateDBwithOrder:updateDBwithOrder
+        updateDBwithOrder:updateDBwithOrder,
+        getOrders:getOrders
 
 
 
@@ -214,6 +215,21 @@ module.exports = function () {
 
             }
         })
+        return deferred.promise;
+    }
+
+    function getOrders(userId) {
+        var deferred=q.defer();
+        UserModel.findOne({_id: userId}).populate("OrderId")
+            .exec(function (err, userAndOrder) {
+                if(err){
+                    deferred.reject(err);
+
+                }
+                else{
+                    deferred.resolve(userAndOrder);
+                }
+            });
         return deferred.promise;
     }
 

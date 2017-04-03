@@ -9,6 +9,7 @@ module.exports=function () {
     var api = {
         createOrder: createOrder,
         getCurrentOrder: getCurrentOrder,
+        markOrderDelivered: markOrderDelivered,
         // findUserByUsername: findUserByUsername,
         // findUserById:findUserById,
         // findUserByCredentials:findUserByCredentials,
@@ -59,6 +60,21 @@ module.exports=function () {
                 deferred.reject(err);
             }
             else {
+                deferred.resolve(order)
+            }
+        });
+        return deferred.promise;
+    }
+
+    function markOrderDelivered (order) {
+        var deferred = q.defer();
+        OrderModel.update({_id: order._id},{$set: {delivered: true}}, function (err, order) {
+            if (err) {
+                console.log("***************************ERROR", err);
+                deferred.reject(err);
+            }
+            else {
+                console.log("***************************ORDER", order);
                 deferred.resolve(order)
             }
         });

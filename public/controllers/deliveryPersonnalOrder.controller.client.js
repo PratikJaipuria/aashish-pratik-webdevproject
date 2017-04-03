@@ -3,60 +3,51 @@
         .module("ProjectMaker")
         .controller("deliveryPersonnalOrderController", deliveryPersonnalOrderController);
     
-    function deliveryPersonnalOrderController () {
+    function deliveryPersonnalOrderController (orderTrackService,userService, $location, $routeParams, $timeout) {
         var vm = this;
-        // var ids = ["1","2","3"];
-        // vm.id=ids;
-
-        var orders=[{
-                        name: "abc",
-                        address:"germain",
-                        orderNum: 1,
-                        phone: 123,
-                        amount: "1000",
-                        flag:0
-                    },{
-                        name: "def",
-                        address:"huntington",
-                        orderNum: 2,
-                        phone: 456,
-                        amount: "7000",
-                        flag:0}];
+        var userId=$routeParams['uid'];
 
 
-        vm.delivered=delivered;
+        vm.orderDelivered=orderDelivered;
         vm.enableButton=enableButton;
         function init() {
-            vm.orders=orders;
+           var promise= userService.getAllOrdersForThisDeliveryBoy(userId);
+            promise.success(function (userAndorders) {
+                    vm.orders=userAndorders.OrderId;
+                    console.log("Orders for this guy:  ",vm.orders);
+            }).error(function (err) {
+                vm.error="Unable to fetch your orders";
+            });
         }
         init();
 
-        function enableButton (orderId,orderFlag) {
-            // console.log( vm.orders);
-            if (orderFlag==0){
-                $('#delivery-' + orderId).bootstrapToggle('on');
-                // for (order in vm.orders){
-                //     if (vm.orders[order].orderNum == orderId){
-                //         vm.orders[order].flag=1;
-                //     }
-                // }
+        function enableButton (orderId,order) {
 
+            if (order.delivered==false){
+                $('#delivery-' + orderId).bootstrapToggle('on');
+             }
+             else {
+                $('#delivery-' + orderId).bootstrapToggle('off').bootstrapToggle('disable');
             }
 
-            // console.log(vm.orders);
 
 
         }
         
-        function delivered (orderId, orderFlag) {
-            console.log( vm.orders);
-            $('#delivery-' + orderId).bootstrapToggle('off').bootstrapToggle('disable');
+        function orderDelivered (orderId, order) {
+            console.log(orderId);
 
-                for ( var order in vm.orders){
-                    if (vm.orders[order].orderNum == orderId){
-                        vm.orders[order].flag=1;
-                    }
-                }
+
+            var promise=orderTrackService.orderedDelivered(order);
+            promise.success(function (res) {
+                order.delivered=true;
+                $('#delivery-' + orderId).bootstrapToggle('off').bootstrapToggle('disable');
+
+            }).error(function (err) {
+                vm.error="Unable to mark the order as delivered";
+            });
+
+
             console.log( vm.orders);
 
 

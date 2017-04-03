@@ -14,7 +14,8 @@
             "deleteUser": deleteUser,
             "findDeliveryBoyByRestaurant":findDeliveryBoyByRestaurant,
             "updateAvailabiltyofDB":updateAvailabiltyofDB,
-            "findActiveDeliveryBoyByRestaurant":findActiveDeliveryBoyByRestaurant
+            "findActiveDeliveryBoyByRestaurant":findActiveDeliveryBoyByRestaurant,
+            "getAllOrdersForThisDeliveryBoy":getAllOrdersForThisDeliveryBoy
         };
 
 
@@ -57,6 +58,10 @@
 
         function findActiveDeliveryBoyByRestaurant(restaurantId) {
             return $http.get( "/api/users/activedelboys/"+restaurantId);
+        }
+        function getAllOrdersForThisDeliveryBoy(userId) {
+            console.log("hello");
+            return $http.get( "/api/users/"+userId+"/orders/");
         }
 
 

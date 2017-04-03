@@ -8,8 +8,12 @@
         var restaurantId=$routeParams['rst'];
         var scheduledOrder=[];
         var notScheduled=[];
+        var delivered=[];
+        var notDelivered=[];
         vm.scheduled=[];
         vm.notscheduled=[];
+        vm.delivered=[];
+        vm.notDelivered=[];
         vm.getScheduled=getScheduled;
         vm.getNotScheduled=getNotScheduled;
 
@@ -22,9 +26,9 @@
             var promise=orderTrackService.findOrdersForThisRestaurant(restaurantId);
             promise.success(function (restOrders) {
                 if (restOrders.length>0){
-                    // console.log(restOrders);
+                    console.log(restOrders);
                     vm.orders=restOrders[0].orderId;
-                     // console.log(vm.orders);
+
 
 
                     for (var o in restOrders[0].orderId){
@@ -35,10 +39,22 @@
                         else{
                             notScheduled.push(restOrders[0].orderId[o]);
                         }
+
+                        if(restOrders[0].orderId[o].delivery){
+                            delivered.push(restOrders[0].orderId[o]);
+
+                        }
+
+                        else {
+                            notDelivered.push(restOrders[0].orderId[o]);
+                        }
+
+
                     }
                     // vm.scheduled=scheduledOrder;
                     // vm.notscheduled=notScheduled;
-                    // console.log(vm.scheduled);
+                    console.log("not delivered",notDelivered);
+                    console.log("delivered",delivered);
 
 
 
@@ -53,7 +69,7 @@
                         }
                         vm.delBoys=delBoys;
                         vm.db=dbNameAvail;
-                        // console.log(vm.db);
+                        console.log(vm.db);
                     }).error(function (err) {
                         vm.error="Unable to fetch delivery Boys";
                     })
@@ -83,7 +99,7 @@
 
                 var promise=orderTrackService.assignDelivery(order);
                 promise.success(function (res) {
-                    init();
+                  order.scheduled=true;
                 }).error(function (err) {
                     vm.error="Unable to assign "+order._id+" to "+order.dbName;
                 })

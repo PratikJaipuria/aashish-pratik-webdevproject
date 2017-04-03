@@ -127,8 +127,8 @@
                                             </select>
                                         </div>
 
-                                        <div class=" col-xs-6 col-sm-2 wbdv-mar-top-3">
-                                            <a ng-click="model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>
+                                        <div ng-show="order.delivered==false" class=" col-xs-6 col-sm-2 wbdv-mar-top-3">
+                                            <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>
                                         </div>
                                     </div>
 
