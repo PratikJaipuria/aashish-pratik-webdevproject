@@ -71,222 +71,109 @@
 
 
 
-<div class="container wbdv-mar-top-25">
-    <div id="menu" class="prevent-overflow">
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="m in model.orders" style="background-color: white">
-        <div  data-toggle="collapse" data-target="#{{m.orderNum}}" data-parent="#menu" ng-click="model.enableButton(m.orderNum,m.flag)">{{m.address}} <span class="glyphicon glyphicon-envelope pull-right"></span></div>
 
-        <div id="{{m.orderNum}}" class="sublinks collapse" >
-            <div class="list-group-item small">
-                <div class="row ">
-                    <div>
-                        <span class="col-xs-6 col-sm-4 leftinfotext">OrderID</span>
-                        <span class="col-xs-6 col-sm-8 rightinfotext" >{{m.orderNum}}</span>
 
-                    </div>
+<div class="container pageBackground">
 
-                    <div>
-                        <span class="col-xs-6 col-sm-4 leftinfotext">Customer Name</span>
-                        <span class="col-xs-6 col-sm-8 rightinfotext">{{m.name}}</span>
-                    </div>
 
-                    <div>
-                        <span class="col-xs-6 col-sm-4 leftinfotext">Phone Number</span>
-                        <span class="col-xs-6 col-sm-8 rightinfotext">{{m.phone}}</span>
-                    </div>
+    <div id="menu" class="blackContainer">
 
-                    <div>
-                        <span class="col-xs-6 col-sm-4 leftinfotext">Address</span>
-                        <span class="col-xs-6 col-sm-8 rightinfotext">{{m.address}}</span>
-                    </div>
+        <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+            {{model.error}}
 
-                    <div>
-                        <span class="col-xs-6 col-sm-4 leftinfotext">Amount</span>
-                        <span class="col-xs-6 col-sm-8 rightinfotext">{{m.amount}}</span>
+        </div>
+
+
+        <div ng-repeat="order in model.orders" class="list-group prevent-overflow">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a  class="list-group-item"
+                        data-toggle="collapse"
+                        style="background-color: black; color: white" data-target="#{{order._id}}"
+                        data-parent="#menu"
+                        ng-click="model.enableButton(order._id, order)">
+                        {{order.userFullName}}
+                        <span class="glyphicon glyphicon-envelope pull-right"></span></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div id="{{order._id}}" class="collapse wbdv-text-clr-white">
+                        <div class="list-group-item small"  style="background-color: black">
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-12 prevent-overflow">
+                                    <div class="row form-group"  style="border-bottom: double">
+                                        <div class="col-xs-5 col-sm-3 leftinfotext">OrderID :</div>
+                                        <div class="col-xs-7 col-sm-3 rightinfotext">{{order._id}}</div>
+                                        <div class="col-xs-5 col-sm-3 leftinfotext">Customer :</div>
+                                        <div class="col-xs-7 col-sm-3 rightinfotext">{{order.userFullName}}</div>
+                                        <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
+                                        <div class="col-xs-7 col-sm-3 rightinfotext">1234</div>
+                                        <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
+                                        <div class="col-xs-5 col-sm-3 rightinfotext"
+                                             style="background-color: white; color: black; font-size: 20px; text-align:center">{{order.totalAmount}}</div>
+                                        <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
+                                        <div class="col-xs-7 col-sm-9 rightinfotext">{{order.address}}</div>
+                                    </div>
+
+                                    <div class="row wbdv-mar-top-5 form-group" style="background-color: #888888;">
+                                        <div class="col-xs-12 col-sm-12 leftinfotext">Orders :</div>
+
+                                        <div class="col-xs-12 col-sm-12 leftinfotext" ng-repeat="item in order.items">
+                                            <div class="row" style="border-bottom: dotted; ">
+                                                <div class="col-xs-5 col-sm-2">
+                                                    item:
+                                                </div>
+                                                <div class="col-xs-7 col-sm-2">
+                                                    {{item.name}}
+                                                </div>
+                                                <div class="col-xs-5 col-sm-2">
+                                                    unitPrice :
+                                                </div>
+                                                <div class="col-xs-7 col-sm-2">
+                                                    {{item.basePrice}}
+                                                </div>
+                                                <div class="col-xs-5 col-sm-2">
+                                                    Units:
+                                                </div>
+                                                <div class="col-xs-7 col-sm-2">
+                                                    {{item.totCount}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wbdv-mar-top-5" ng-click="order.delivered==false && model.orderDelivered(order._id, order)">
+                                        <input id =  "{{'delivery-'+order._id}}"
+                                               type="checkbox"
+                                               checked
+                                               data-toggle="toggle"
+                                               data-on="ND"
+                                               data-off="Del"
+                                               data-onstyle="danger"
+                                               data-offstyle="success"
+                                               data-size="large"
+                                               class="form-control"
+                                        >
+                                    </div>
+
+                                        <!--<div class=" col-xs-6 col-sm-2 wbdv-mar-top-3">-->
+                                            <!--<a ng-click="model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>-->
+                                        <!--</div>-->
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="wbdv-mar-top-5" ng-click="m.flag==0 && model.delivered(m.orderNum, m.flag)">
-                    <input id =  "{{'delivery-'+m.orderNum}}"
-                           type="checkbox"
-                           checked
-                           data-toggle="toggle"
-                           data-on="ND"
-                           data-off="Del"
-                           data-onstyle="danger"
-                           data-offstyle="success"
-                           data-size="large"
-                           class="form-control"
-                           >
-                </div>
-
             </div>
         </div>
-    </li>
-</ul>
+    </div>
 
-
-
-        <!--*******************************************************************************************************-->
-    <!--<div id="menu">-->
-        <!--<div class="panel list-group prevent-overflow">-->
-            <!--<div ng-repeat="m in model.orders">-->
-                <!--<div   class="list-group-item" data-toggle="collapse" data-target="#{{m.orderNum}}" data-parent="#menu" ng-click="model.enableButton(m.orderNum,m.flag)">{{m.address}} <span class="glyphicon glyphicon-envelope pull-right"></span></div>-->
-                <!--<div id="{{m.orderNum}}" class="sublinks collapse" >-->
-                    <!--<div class="list-group-item small">-->
-                        <!--<div class="row ">-->
-                            <!--<div>-->
-                                <!--<span class="col-xs-6 col-sm-4 leftinfotext">OrderID</span>-->
-                                <!--<span class="col-xs-6 col-sm-8 rightinfotext" >{{m.orderNum}}</span>-->
-
-                            <!--</div>-->
-
-                            <!--<div>-->
-                                <!--<span class="col-xs-6 col-sm-4 leftinfotext">Customer Name</span>-->
-                                <!--<span class="col-xs-6 col-sm-8 rightinfotext">{{m.name}}</span>-->
-                            <!--</div>-->
-
-                            <!--<div>-->
-                                <!--<span class="col-xs-6 col-sm-4 leftinfotext">Phone Number</span>-->
-                                <!--<span class="col-xs-6 col-sm-8 rightinfotext">{{m.phone}}</span>-->
-                            <!--</div>-->
-
-                            <!--<div>-->
-                                <!--<span class="col-xs-6 col-sm-4 leftinfotext">Address</span>-->
-                                <!--<span class="col-xs-6 col-sm-8 rightinfotext">{{m.address}}</span>-->
-                            <!--</div>-->
-
-                            <!--<div>-->
-                                <!--<span class="col-xs-6 col-sm-4 leftinfotext">Amount</span>-->
-                                <!--<span class="col-xs-6 col-sm-8 rightinfotext">{{m.amount}}</span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-
-                        <!--<div class="wbdv-mar-top-5">-->
-                            <!--<input id =  "{{'delivery-'+m.orderNum}}"-->
-
-                                   <!--type="checkbox"-->
-                                   <!--checked-->
-                                   <!--data-toggle="toggle"-->
-                                   <!--data-on="ND"-->
-                                   <!--data-off="Del"-->
-                                   <!--data-onstyle="danger"-->
-                                   <!--data-offstyle="success"-->
-                                   <!--data-size="large"-->
-                                   <!--class="form-control"-->
-                                   <!--ng-click="model.delivered(m.orderNum, m.flag)">-->
-                        <!--</div>-->
-
-                    <!--</div>-->
-                <!--</div>-->
-
-            <!--</div>-->
-
-<!--****************************************************************-->
-
-            <!--<a  class="list-group-item" data-toggle="collapse" data-target="#{{ 'object' + model.id[1] }}" data-parent="#menu">ORDERS2 <span class="glyphicon glyphicon-envelope pull-right"></span></a>-->
-            <!--<div ng-attr-id="{{ 'object' + model.id[1] }}" class="sublinks collapse">-->
-
-
-                <!--<div class="list-group-item small">-->
-                    <!--<div class="row ">-->
-                        <!--<div>-->
-                            <!--<span class="col-xs-6 col-sm-4 leftinfotext">OrderID</span>-->
-                            <!--<span class="col-xs-6 col-sm-8 rightinfotext">123456789</span>-->
-
-                        <!--</div>-->
-
-                        <!--<div>-->
-                            <!--<span class="col-xs-6 col-sm-4 leftinfotext">Customer Name</span>-->
-                            <!--<span class="col-xs-6 col-sm-8 rightinfotext">Donald Trump</span>-->
-                        <!--</div>-->
-
-                        <!--<div>-->
-                            <!--<span class="col-xs-6 col-sm-4 leftinfotext">Phone Number</span>-->
-                            <!--<span class="col-xs-6 col-sm-8 rightinfotext">987654321</span>-->
-                        <!--</div>-->
-
-                        <!--<div>-->
-                            <!--<span class="col-xs-6 col-sm-4 leftinfotext">Address</span>-->
-                            <!--<span class="col-xs-6 col-sm-8 rightinfotext"> {{ 'delivery' + model.id[1] }}</span>-->
-                        <!--</div>-->
-
-                        <!--<div>-->
-                            <!--<span class="col-xs-6 col-sm-4 leftinfotext">Amount</span>-->
-                            <!--<span class="col-xs-6 col-sm-8 rightinfotext">$600</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <!--<div class="wbdv-mar-top-5">-->
-                        <!--<input ng-attr-id = "{{ 'delivery' + model.id[1] }}"-->
-                               <!--ng-model="deliveryStatus"-->
-                               <!--type="checkbox"-->
-                               <!--checked-->
-                               <!--data-toggle="toggle"-->
-                               <!--data-on="ND"-->
-                               <!--data-off="Del"-->
-                               <!--data-onstyle="danger"-->
-                               <!--data-offstyle="success"-->
-                               <!--data-size="large"-->
-                               <!--class="form-control"-->
-                               <!--ng-click="model.delivered()">-->
-                    <!--</div>-->
-
-                <!--</div>-->
-            <!--</div>-->
-
-
-
-
-
-<!--********************************************************************-->
-    <!--</div>--
- <!--********************************************************************-->
-    <!--<div>-->
-    <!--<a class="list-group-item" data-toggle="collapse" data-target="#sl" data-parent="#menu">AVAILABE DELIVERY BOY<span class="glyphicon glyphicon-tag pull-right"></span></a>-->
-    <!--<div id="sl" class="sublinks collapse">-->
-    <!--<a class="list-group-item small" id="myBtn"><span class="glyphicon glyphicon-chevron-right"></span> saved tasks</a>-->
-    <!--<a class="list-group-item small" id="myBtn"><span class="glyphicon glyphicon-chevron-right"></span> add new task</a>-->
-    <!--</div>-->
-
-    <!--<a  class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu">ORDERS <span class="glyphicon glyphicon-envelope pull-right"></span></a>-->
-    <!--<div id="sm" class="sublinks collapse">-->
-
-    <!--<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> inbox</a>-->
-    <!--<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> sent</a>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-
-
-    <!-- The Modal -->
-
-    <!--<div id="myModal" class="modal">-->
-        <!--&lt;!&ndash; Modal content &ndash;&gt;-->
-        <!--<div class="modal-content">-->
-            <!--<span class="close">&times;</span>-->
-            <!--&lt;!&ndash;<p>Some text in the Modal..</p>&ndash;&gt;-->
-        <!--</div>-->
-
-        <!--<li>-->
-            <!--<ul>-->
-                <!--Ramesh-->
-            <!--</ul>-->
-
-            <!--<ul>-->
-                <!--Suresh-->
-            <!--</ul>-->
-
-            <!--<ul>-->
-                <!--Yogesh-->
-            <!--</ul>-->
-        <!--</li>-->
-    <!--</div>-->
-
-</div>
-</div>
 
 <nav class="navbar  navbar-fixed-bottom bg-primary" >
     <div class="container-fluid">
