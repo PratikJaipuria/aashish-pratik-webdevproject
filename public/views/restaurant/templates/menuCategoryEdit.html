@@ -35,12 +35,12 @@
                 <a ng-click="model.updateMenuCategory(model.menu)" class="btn btn-success btn-block">Update</a>
             </div>
             <div class="col-sm-6 col-xs-12">
-                <a ng-click="model.deleteMenuCategory(model.catname)" class="btn btn-success btn-block">Delete</a>
+                <a ng-click="model.deleteMenuCategory(model.catname)" class="btn btn-danger btn-block">Delete</a>
             </div>
 
-            <div class="col-sm-6 col-xs-12">
-                <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu" class="btn btn-danger  btn-block">Cancel</a>
-            </div>
+            <!--<div class="col-sm-6 col-xs-12">-->
+                <!--<a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu" class="btn btn-danger  btn-block">Cancel</a>-->
+            <!--</div>-->
         </div>
     </div>
 
@@ -53,7 +53,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/{{model.userId}}" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

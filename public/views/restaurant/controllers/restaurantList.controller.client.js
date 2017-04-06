@@ -10,6 +10,7 @@
         var vm = this;
 
         var ownerId = $routeParams.uid;
+        vm.ownerId = ownerId;
 
         function init() {
             restaurantService

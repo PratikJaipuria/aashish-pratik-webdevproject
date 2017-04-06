@@ -5,6 +5,7 @@
 
     function restaurantOrderTrackController(orderTrackService,userService, $location, $routeParams, $timeout){
         var vm =this;
+        var userId = $routeParams['uid'];
         var restaurantId=$routeParams['rst'];
         var scheduledOrder=[];
         var notScheduled=[];
@@ -16,13 +17,27 @@
         vm.notDelivered=[];
         vm.getScheduled=getScheduled;
         vm.getNotScheduled=getNotScheduled;
-
+        vm.refresh=refresh;
         vm.assignDelivery=assignDelivery;
 
-
+        vm.userId = userId;
+        vm.restaurantId = restaurantId;
         function init() {
 
             var dbNameAvail=[];
+            vm.scheduled=[];
+            scheduledOrder=[];
+            vm.notScheduled=[];
+            notScheduled=[];
+            vm.delivered=[];
+            delivered=[];
+            vm.orders=[];
+            vm.delBoys=[];
+            delBoys=[];
+            vm.db=[];
+            dbNameAvail=[];
+
+
             var promise=orderTrackService.findOrdersForThisRestaurant(restaurantId);
             promise.success(function (restOrders) {
                 if (restOrders.length>0){
@@ -31,30 +46,30 @@
 
 
 
+
                     for (var o in restOrders[0].orderId){
-                        if(restOrders[0].orderId[o].scheduled){
+                        if(restOrders[0].orderId[o].scheduled && restOrders[0].orderId[o].delivered==false ){
                             // console.log(restOrders[0]);
                             scheduledOrder.push(restOrders[0].orderId[o]);
                         }
-                        else{
+                        if(restOrders[0].orderId[o].scheduled == false){
                             notScheduled.push(restOrders[0].orderId[o]);
                         }
 
-                        if(restOrders[0].orderId[o].delivery){
+                        if(restOrders[0].orderId[o].delivered){
                             delivered.push(restOrders[0].orderId[o]);
 
                         }
 
-                        else {
-                            notDelivered.push(restOrders[0].orderId[o]);
-                        }
+
 
 
                     }
-                    // vm.scheduled=scheduledOrder;
-                    // vm.notscheduled=notScheduled;
-                    console.log("not delivered",notDelivered);
-                    console.log("delivered",delivered);
+                    vm.scheduled=scheduledOrder;
+                    vm.notScheduled=notScheduled;
+                    vm.delivered=delivered;
+
+
 
 
 
@@ -69,9 +84,9 @@
                         }
                         vm.delBoys=delBoys;
                         vm.db=dbNameAvail;
-                        console.log(vm.db);
+
                     }).error(function (err) {
-                        vm.error="Unable to fetch delivery Boys";
+                        throwError("Unable to fetch delivery Boys");
                     })
 
 
@@ -82,7 +97,7 @@
                 }
 
             }).error(function (err) {
-                vm.error="Unable to find orders";
+                throwError("Unable to find orders");
             })
           }init();
 
@@ -100,12 +115,13 @@
                 var promise=orderTrackService.assignDelivery(order);
                 promise.success(function (res) {
                   order.scheduled=true;
+                    refresh();
                 }).error(function (err) {
                     vm.error="Unable to assign "+order._id+" to "+order.dbName;
                 })
             }
             else {
-                vm.error="select a delivery boy";
+                throwError("select a delivery boy");
             }
 
 
@@ -114,12 +130,28 @@
         function getScheduled() {
 
             vm.orders=scheduledOrder;
-            console.log(vm.orders);
+
         }
 
         function getNotScheduled() {
             vm.orders=notScheduled;
-            console.log(vm.orders);
+
+        }
+
+
+        function throwError(errorMsg){
+            vm.error=errorMsg;
+
+
+            $timeout(clearError, 10000);
+        }
+
+        function clearError() {
+            vm.error='';
+        }
+
+        function refresh() {
+            init();
         }
 
     }

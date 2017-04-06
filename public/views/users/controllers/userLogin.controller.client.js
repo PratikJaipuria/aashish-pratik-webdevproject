@@ -37,7 +37,16 @@
                 if(errors.length == 0){
                     var promise=userService.findUserByCredentials(user.username, user.password);
                     promise.success(function (user) {
-                        $location.url("/user/"+user._id);
+                        if(user.role=='USER'){
+                            $location.url("/user/" +user._id+"/searchResult");
+                        }else if(user.role=='OWNER'){
+                            $location.url("/user/" +user._id+"/restaurant");
+                        }else if(user.role=='DELIVERYBOY'){
+                            $location.url("/user/"+user._id);
+                        }
+
+
+                        // $location.url("/user/"+user._id);
                     }).error(function (err) {
                         error="Invalid username or password";
                         errors.push(error);
@@ -65,7 +74,7 @@
             vm.error=errorMsg;
 
 
-            $timeout(clearError, 5000);
+            $timeout(clearError, 10000);
         }
 
         function clearError() {

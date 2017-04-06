@@ -10,12 +10,9 @@ module.exports=function () {
         createOrder: createOrder,
         getCurrentOrder: getCurrentOrder,
         markOrderDelivered: markOrderDelivered,
-        // findUserByUsername: findUserByUsername,
-        // findUserById:findUserById,
-        // findUserByCredentials:findUserByCredentials,
-           updateOrderWithDB:updateOrderWithDB,
-        // deleteUser:deleteUser,
-        // addRestaurant:addRestaurant
+        getAllOrdersForThisCustomerId:getAllOrdersForThisCustomerId,
+        updateOrderWithDB:updateOrderWithDB,
+
 
     };
     return api;
@@ -70,11 +67,25 @@ module.exports=function () {
         var deferred = q.defer();
         OrderModel.update({_id: order._id},{$set: {delivered: true}}, function (err, order) {
             if (err) {
-                console.log("***************************ERROR", err);
+
                 deferred.reject(err);
             }
             else {
-                console.log("***************************ORDER", order);
+
+                deferred.resolve(order)
+            }
+        });
+        return deferred.promise;
+    }
+
+
+    function getAllOrdersForThisCustomerId(uid) {
+        var deferred = q.defer();
+        OrderModel.find({userId: uid}, function (err, order) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
                 deferred.resolve(order)
             }
         });

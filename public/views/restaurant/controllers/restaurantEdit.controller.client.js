@@ -3,7 +3,7 @@
         .module("ProjectMaker")
         .controller("restaurantEditController",restaurantEditController);
 
-    function restaurantEditController($routeParams, $location,restaurantService, Upload, $timeout){
+    function restaurantEditController($routeParams, $location, addressAPISearchService , restaurantService, Upload, $timeout){
         var vm = this;
         var ownerId = $routeParams.uid;
         vm.ownerId=ownerId;
@@ -29,6 +29,10 @@
         vm.addNewSpeciality=addNewSpeciality;
         vm.deleteSpeciality=deleteSpeciality;
         vm.uploadImage=uploadImage;
+        vm.loadAddressFromAPI=loadAddressFromAPI;
+        vm.populateCityAndStateIfDlSel=populateCityAndStateIfDlSel;
+        vm.states=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
+
 
 
         function init() {
@@ -38,6 +42,8 @@
                 .findRestaurantById(restaurantId)
                 .success(function (restaurant) {
                     vm.restaurant = restaurant;
+
+                    console.log("Initial Result:",vm.restaurant);
 
                     for (var s in restaurant.foodTypes){
                         ++vm.count;
@@ -63,7 +69,39 @@
         init();
 
 
+        function loadAddressFromAPI() {
 
+            if(vm.restaurant.streetAddress){
+                var formattedSpace=vm.restaurant.streetAddress.replace(/\s+/g,'+');
+                var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
+
+                var promise=addressAPISearchService.autoCompleteAddress(formatedSpaceAndPound);
+                promise.success(function (addr) {
+                    vm.addressFromAPI=addr.suggestions;
+
+                }).error(function (err) {
+                    vm.error=err;
+                })
+            }
+
+        }
+
+        function populateCityAndStateIfDlSel() {
+
+            if (vm.addressFromAPI){
+                var cityAndState=vm.addressFromAPI[0].text.split(', ')[1].split(' ');
+                vm.restaurant.city=cityAndState[0];
+                vm.restaurant.state=cityAndState[1];
+
+            }
+
+            else{
+                vm.restaurant.city='';
+                vm.restaurant.state='';
+            }
+
+
+        }
         // function updateRestaurant(restaurant) {
         //     var dayContainer=[]
         //     for (var w in day){
@@ -118,7 +156,7 @@
                     errors.push(error);
                 }
 
-                if(!restaurant.address){
+                if(!restaurant.streetAddress){
                     error="Invalid address";
                     errors.push(error);
                 }
@@ -133,8 +171,20 @@
                     errors.push(error);
                 }
 
+                if(!restaurant.cuisine){
+                    error="Need at least one cuisine";
+                    errors.push(error);
+                }
+
                 if(errors.length==0){
-                    console.log(restaurant);
+                    console.log("***********",restaurant);
+                    restaurant.name=restaurant.name.toUpperCase();
+                    restaurant.streetAddress=restaurant.streetAddress.toUpperCase();
+                    restaurant.city=restaurant.city.toUpperCase();
+
+                    console.log("From VIEW",vm.day);
+                    console.log("Only hours",restaurant.hours);
+
                     restaurantService
                         .updateRestaurant(restaurantId,restaurant)
                         .success(function (restaurant) {
@@ -198,26 +248,28 @@
         }
 
         function setFoodTypes(restaurant) {
+            var cuisine='';
             for (var s in vm.speciality){
                 restaurant.foodTypes.push(vm.speciality[s].value);
+                cuisine+=vm.speciality[s].value+' ';
             }
-
+            restaurant.cuisine=cuisine;
             return restaurant;
         }
 
         function setDeliveryandPickupforModel () {
-            if(vm.restaurant.pickup){
-                vm.restaurant.pickup="Yes";
+            if(vm.restaurant.offersPickup){
+                vm.restaurant.offersPickup="Yes";
             }
             else {
-                vm.restaurant.pickup="No";
+                vm.restaurant.offersPickup="No";
             }
 
-            if(vm.restaurant.delivery){
-                vm.restaurant.delivery="Yes";
+            if(vm.restaurant.offersDelivery){
+                vm.restaurant.offersDelivery="Yes";
             }
             else {
-                vm.restaurant.delivery="No";
+                vm.restaurant.offersDelivery="No";
             }
 
         }
@@ -379,27 +431,28 @@
         }
 
         function setDeliveryAndPickupFlag (restaurant) {
-            if(restaurant.pickup=='Yes'){
-                restaurant.pickup=true;
+            if(restaurant.offersPickup=='Yes'){
+                restaurant.offersPickup=true;
             }
             else {
-                restaurant.pickup=false;
+                restaurant.offersPickup=false;
             }
 
-            if(restaurant.delivery=='Yes'){
-                restaurant.delivery=true;
+            if(restaurant.offersDelivery=='Yes'){
+                restaurant.offersDelivery=true;
             }
             else {
-                restaurant.delivery=false;
+                restaurant.offersDelivery=false;
             }
             return restaurant;
+            console.log("After Update",restaurant);
         }
 
         function throwError(errorMsg){
             vm.error=errorMsg;
 
 
-            $timeout(clearError, 5000);
+            $timeout(clearError, 10000);
         }
 
         function clearError() {

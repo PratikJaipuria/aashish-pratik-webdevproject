@@ -14,7 +14,9 @@
             "findRestaurantByOwner":findRestaurantByOwner,
             "findRestaurantById":findRestaurantById,
             "updateRestaurant":updateRestaurant,
-            "deleteRestaurant":deleteRestaurant
+            "deleteRestaurant":deleteRestaurant,
+            "createAPIResturantIfNotExist":createAPIResturantIfNotExist,
+            "findAllPartnerResturantsInThisLocation":findAllPartnerResturantsInThisLocation,
 
         };
 
@@ -42,6 +44,15 @@
         function findRestaurantById(restaurantId) {
             return $http.get('/api/restaurant/'+restaurantId);
 
+        }
+
+        function createAPIResturantIfNotExist (restaurant) {
+         return   $http.post('/api/apiresturant/create',restaurant);
+        }
+
+        function findAllPartnerResturantsInThisLocation(search) {
+            console.log("Inside client service",search);
+            return $http.get('/api/partnerRestaurant?name='+search.name+'&address='+search.address);
         }
     }
 })();

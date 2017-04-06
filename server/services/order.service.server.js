@@ -4,7 +4,7 @@ module.exports=function(app,model){
     app.get('/api/restaurant/:rst/orders', getOrdersForThisRestaurant);
     app.put('/api/restaurant/:rst/orders/delivery', assignDelivery);
     app.put('/api/restaurant/:rst/orders/markdelivered', markOrderDelivered);
-    // app.put("/api/restaurant/customerOrder", addOrderToCustomer);
+    app.get("/api/user/:uid/customerOrders", getCustomerOrders);
     // app.delete("/api/user/:uid", deleteUser);
     // app.get("/api/user/:uid", findUserById);
     // app.get("/api/user",findUserByCredentials);
@@ -24,35 +24,47 @@ module.exports=function(app,model){
         var currtime=(new Date()).getTime().toString();
         order.timestamp=currtime;
 
-        OrderModel
-            .createOrder(order)
-            .then(function (reponse) {
-                OrderModel.getCurrentOrder (userId,currtime)
-                    .then(function(order){
-                        UserModel.addOrdertoCustomer(userId, order._id)
-                            .then(function (response) {
+        UserModel
+            .findUserById(userId)
+            .then(function (user) {
+                order.deliverAddress=user.address+' '+user.city+' '+user.state;
+                order.customerPhone=user.phone;
 
-                                RestaurantModel.addOrdertoRestaurant(resId, order)
+
+                OrderModel
+                    .createOrder(order)
+                    .then(function (reponse) {
+                        OrderModel.getCurrentOrder (userId,currtime)
+                            .then(function(order){
+                                UserModel.addOrdertoCustomer(userId, order._id)
                                     .then(function (response) {
-                                        res.sendStatus(200);
+
+                                        RestaurantModel.addOrdertoRestaurant(resId, order)
+                                            .then(function (response) {
+                                                res.sendStatus(200);
+
+                                            }, function (err) {
+
+                                                res.sendStatus(404).send({"message":"Unable to update order in restaurant"});
+                                            })
 
                                     }, function (err) {
 
-                                        res.sendStatus(404).send({"message":"Unable to update order in restaurant"});
+                                        res.sendStatus(404).send({"message":"Unable to update order in Customer"});
                                     })
+                            }, function(err){
 
-                            }, function (err) {
-
-                                res.sendStatus(404).send({"message":"Unable to update order in Customer"});
+                                res.sendStatus(404).send({"message":"Unable to fetch orderId"});
                             })
-                    }, function(err){
+                    }, function (err) {
 
-                        res.sendStatus(404).send({"message":"Unable to fetch orderId"});
+                        res.sendStatus(404).send({"message":"Unable to createOrder"});
                     })
-                }, function (err) {
-
-                res.sendStatus(404).send({"message":"Unable to createOrder"});
+            },function (err) {
+                res.sendStatus(404).send({"message":"Unable to fetch user details"});
             })
+
+
 
     };
 
@@ -84,13 +96,25 @@ module.exports=function(app,model){
     }
 
     function markOrderDelivered(req, res) {
-        console.log("***************************inside markorderdelier fn");
+
         var order=req.body;
         OrderModel.markOrderDelivered(order)
             .then(function (response) {
 
                 res.sendStatus(200);
 
+            }, function (err) {
+                res.sendStatus(404);
+            })
+    }
+
+
+
+    function getCustomerOrders (req, res) {
+        var userId=req.params['uid'];
+        OrderModel.getAllOrdersForThisCustomerId(userId)
+            .then(function (orders) {
+                res.json(orders);
             }, function (err) {
                 res.sendStatus(404);
             })

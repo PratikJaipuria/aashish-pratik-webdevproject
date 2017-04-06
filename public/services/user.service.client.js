@@ -15,7 +15,8 @@
             "findDeliveryBoyByRestaurant":findDeliveryBoyByRestaurant,
             "updateAvailabiltyofDB":updateAvailabiltyofDB,
             "findActiveDeliveryBoyByRestaurant":findActiveDeliveryBoyByRestaurant,
-            "getAllOrdersForThisDeliveryBoy":getAllOrdersForThisDeliveryBoy
+            "getAllOrdersForThisDeliveryBoy":getAllOrdersForThisDeliveryBoy,
+            "findAllOrdersForThisCustomer":findAllOrdersForThisCustomer
         };
 
 
@@ -60,10 +61,12 @@
             return $http.get( "/api/users/activedelboys/"+restaurantId);
         }
         function getAllOrdersForThisDeliveryBoy(userId) {
-            console.log("hello");
+
             return $http.get( "/api/users/"+userId+"/orders/");
         }
 
-
+        function findAllOrdersForThisCustomer(userId) {
+            return $http.get( "/api/user/"+userId+"/customerOrders");
+        }
     }
 })();

@@ -14,8 +14,9 @@ module.exports=function(){
         orderId:[{type: mongoose.Schema.Types.ObjectId, ref: 'OrderModel'}],
         deliveryBoysId : [String],
         phone: String,
-        address: String,
+        streetAddress: String,
         city: String,
+        state:String,
         country: String,
         pin:String,
         logoUrl:String,
@@ -30,11 +31,12 @@ module.exports=function(){
             "Sunday":[String]
         },
         foodTypes:[String],
-        delivery:Boolean,
-        pickup:Boolean,
+        cuisine: String,
+        offersDelivery:Boolean,
+        offersPickup:Boolean,
         dateCreated: {type: Date, default: Date.now},
         url: String,
-        partner: {type: Boolean, default: false}
+        partner: {type: Boolean, default: false},
     }, {collection: 'restaurantdb'});
     // UserSchema.index( { "email": 1, "username": 1 }, { unique: true } );
     return RestaurantSchema;

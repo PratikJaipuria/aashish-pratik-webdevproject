@@ -1,6 +1,35 @@
+/*.loader {*/
+    /*position: fixed;*/
+    /*left: 0px;*/
+    /*top: 0px;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*z-index: 9999;*/
+    /*background: url('../images/10.jpg') 50% 50% no-repeat rgb(249,249,249);*/
+/*}*/
+
+
+input{
+    text-align: center;
+    border-radius:10px;
+}
+
 .blackContainer{
+    height: auto;
+    width: 100%;
     margin-top: 20px;
     background: rgba(0, 0, 0, 0.6);
+    margin-bottom: 100px;
+
+}
+
+.blackContainerForTabs{
+    height: auto;
+    width: 100%;
+
+    background: rgba(0, 0, 0, 0.6);
+    margin-bottom: 100px;
+
 }
 
 .blackContainerList{
@@ -9,9 +38,9 @@
 }
 .wbdv-speciality-remove{
     position: relative;
-    right: 30px;
+    right: 38px;
     font-size: 30px;
-    top: 10px;
+    top: 12px;
 }
 
 .wbdv-pad-0{
@@ -24,10 +53,12 @@ padding: 0px;
 
 .wbdv-avail-true{
     color: green !important;
+    font-weight: bolder;
 }
 
 .wbdv-avail-false{
     color: red !important;
+    font-weight: bolder;
 }
 
 .wbdv-pad-left-30{
@@ -154,6 +185,18 @@ padding: 0px;
     font-size: x-large;
 }
 
+
+.tagline{
+    /*color: black;*/
+    /*font-color: darkred;*/
+    color: whitesmoke;
+    font-weight: bold;
+    font-family: Calibri;
+    /*font-size: x-large;*/
+}
+
+
+
 .filter-headings{
     color: grey;
     font-family: "Californian FB";
@@ -271,8 +314,8 @@ body {
     border: 1px hidden #ddd;
     border-radius: 4px;
     /*padding: 5px;*/
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 200px;
 
 }
 
@@ -350,6 +393,12 @@ input[type="checkbox"]{
 
 .wbdv-mar-top-50{
     margin-top: 50px;
+
+}
+
+
+.wbdv-mar-top-65{
+    margin-top: 65px;
 
 }
 

@@ -17,7 +17,7 @@ module.exports=function(){
         restName:String,
         timestamp:String,
         scheduled:{type: Boolean, default: false},
-
+        customerPhone:String
 
     }, {collection: 'orderdb'});
 

@@ -204,17 +204,29 @@ module.exports = function () {
 
     function updateDBwithOrder (delBoyId, orderId) {
         var deferred=q.defer();
-        UserModel.update({_id: delBoyId},{$push: {OrderId: orderId}}, function (err,res) {
-            if(err){
 
+        UserModel.update({_id: delBoyId},{$pullAll: {OrderId: [orderId]}},function (err,res) {
+            if(err) {
                 deferred.reject();
             }
-            else {
+                else{
+                    UserModel.update({_id: delBoyId},{$push: {OrderId: orderId}}, function (err,res) {
+                        if(err){
 
-                deferred.resolve(res);
+                            deferred.reject();
+                        }
+                        else {
 
-            }
+                            deferred.resolve(res);
+
+                        }
+                    })
+                }
+
         })
+
+
+
         return deferred.promise;
     }
 

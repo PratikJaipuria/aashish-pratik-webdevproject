@@ -1,7 +1,7 @@
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
         <div  class="navbar-text navbar-link pull-left">
-            <a href="#/user/123/restaurant/123/menu">
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu">
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
             </a>
         </div>
@@ -10,13 +10,13 @@
         </div>
 
         <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a href="#/user/123/restaurant/123/menu">
+            <a ng-click="model.createMenu(model.menu)">
                 <span class="wbdv-text-clr-white" title="Save">Save Item</span>
             </a>
         </div>
 
         <div  class="navbar-text navbar-link pull-right visible-xs">
-            <a href="#/user/123/restaurant/123/menu">
+            <a ng-click="model.createMenu(model.menu)>
                 <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Save Item"></span>
             </a>
         </div>
@@ -54,7 +54,7 @@
                     <a ng-click="model.createMenu(model.menu)" class="btn btn-success btn-block">Create</a>
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <a href="#/user/123/restaurant/123/menu" class="btn btn-danger  btn-block">Cancel</a>
+                    <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu" class="btn btn-danger  btn-block">Cancel</a>
                  </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/{{model.userId}}" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

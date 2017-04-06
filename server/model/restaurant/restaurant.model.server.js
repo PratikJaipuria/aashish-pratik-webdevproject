@@ -21,7 +21,10 @@ module.exports = function () {
         addDeliveryBoy:addDeliveryBoy,
         insertMenuId:insertMenuId,
         findRestaurantBytimestamp:findRestaurantBytimestamp,
-        getOrdersForThisRestaurant:getOrdersForThisRestaurant
+        getOrdersForThisRestaurant:getOrdersForThisRestaurant,
+        findAllPartnerResturantsInThisLocation:findAllPartnerResturantsInThisLocation,
+        findAllPartnerResturantsInThisCity:findAllPartnerResturantsInThisCity,
+        findAllPartnerResturantsInThisCityAndState:findAllPartnerResturantsInThisCityAndState
 
 
 
@@ -96,26 +99,31 @@ module.exports = function () {
 
     function updateRestaurant(restaurantId,restaurant) {
         var deferred = q.defer();
+        // console.log(restaurantId);
+        // console.log(restaurant);
         RestaurantModel
             .update({_id:restaurantId},{
             $set: {
                 name:  restaurant.name,
                 phone: restaurant.phone,
-                address: restaurant.address,
+                streetAddress: restaurant.streetAddress,
                 city: restaurant.city,
                 country: restaurant.country,
                 pin:restaurant.pin,
                 url:restaurant.url,
                 logoUrl: restaurant.logoUrl,
                 foodTypes: restaurant.foodTypes,
-                delivery: restaurant.delivery,
-                pickup: restaurant.pickup
+                offersDelivery: restaurant.offersDelivery,
+                offersPickup: restaurant.offersPickup,
+                state:restaurant.state
             }
-            },function (err,restaurant) {
+            },function (err,rst) {
                 if(err){
+
                     deferred.reject(err);
                 }else{
-                    deferred.resolve(restaurant);
+
+                    deferred.resolve(rst);
                 }
             });
         return deferred.promise;
@@ -190,12 +198,12 @@ module.exports = function () {
         console.log(resId);
         RestaurantModel.update({_id: resId},{$set: { name: order.restName}, $push: {orderId: order._id}},{upsert: true},function (err, restaurant) {
                     if(err){
-                        console.log(err);
+
                         deferred.reject(err);
                     }
                     else{
 
-                        console.log(err);
+
                         deferred.resolve(restaurant);
                     }})
 
@@ -209,14 +217,132 @@ module.exports = function () {
                 .populate('orderId')
                 .exec(function (err, response) {
                     if(err){
-                        console.log(err);
+
                         deferred.reject(err);
                     }
                     else{
-                        console.log(response);
+
                         deferred.resolve(response);
                     }
                 })
+            return deferred.promise;
+        }
+
+        function findAllPartnerResturantsInThisLocation(restaurantDetails) {
+            var deferred=q.defer();
+            if (restaurantDetails.name && restaurantDetails.name !== "UNDEFINED"){
+                RestaurantModel.find({$and: [{partner: true},
+                        {name: restaurantDetails.name},
+                        {state: restaurantDetails.state},
+                        {city: restaurantDetails.city} ,
+                        {$or: [{streetAddress: restaurantDetails.streetAddress},
+                            {streetAddress: restaurantDetails.freeFormAddress}]}]},
+                    function (err, restaurants) {
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else{
+
+                            deferred.resolve(restaurants);
+                        }
+                    })
+            }
+
+            else{
+                RestaurantModel.find({$and: [{partner: true},
+                        {state: restaurantDetails.state},
+                        {city: restaurantDetails.city} ,
+                        {$or: [{streetAddress: restaurantDetails.streetAddress},
+                            {streetAddress: restaurantDetails.freeFormAddress}]}]},
+                    function (err, restaurants) {
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else{
+
+                            deferred.resolve(restaurants);
+                        }
+                    })
+            }
+
+
+
+            return deferred.promise;
+        }
+
+        function findAllPartnerResturantsInThisCityAndState(restaurantDetails) {
+            var deferred=q.defer();
+            if (restaurantDetails.name && restaurantDetails.name !== "UNDEFINED"){
+                RestaurantModel.find({$and: [{partner: true},
+                        {name: restaurantDetails.name},
+                        {state: restaurantDetails.state},
+                        {city: restaurantDetails.city}]},
+                    function (err, restaurants) {
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else{
+
+                            deferred.resolve(restaurants);
+                        }
+                    })
+            }
+            else{
+
+                RestaurantModel.find({$and: [{partner: true},
+                        {state: restaurantDetails.state},
+                        {city: restaurantDetails.city}]},
+                    function (err, restaurants) {
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else{
+
+                            deferred.resolve(restaurants);
+                        }
+                    })
+            }
+
+
+
+            return deferred.promise;
+        }
+
+
+        function findAllPartnerResturantsInThisCity(restaurantDetails) {
+            var deferred=q.defer();
+
+            if (restaurantDetails.name && restaurantDetails.name !== "UNDEFINED"){
+                RestaurantModel.find({$and: [{partner: true},
+                        {name: restaurantDetails.name},
+                        {city: restaurantDetails.city}]},
+                    function (err, restaurants) {
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else{
+
+                            deferred.resolve(restaurants);
+                        }
+                    })
+            }
+            else{
+
+                RestaurantModel.find({$and: [{partner: true},
+                        {city: restaurantDetails.city}]},
+                    function (err, restaurants) {
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else{
+
+                            deferred.resolve(restaurants);
+                        }
+                    })
+            }
+
+
+
             return deferred.promise;
         }
 

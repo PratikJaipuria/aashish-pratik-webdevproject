@@ -1,7 +1,7 @@
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
         <div  class="navbar-text navbar-link pull-left">
-            <a href="#/owner/123/restaurant/123/menu">
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu">
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
             </a>
         </div>
@@ -35,9 +35,9 @@
             <div class="col-sm-6 col-xs-12">
                 <a ng-click="model.deleteMenuItem(model.menu)" class="btn btn-danger btn-block">Delete</a>
             </div>
-            <div class="col-sm-6 col-xs-12">
-                <a href="#/owner/123/restaurant/123/menu" class="btn btn-primary  btn-block">Cancel</a>
-            </div>
+            <!--<div class="col-sm-6 col-xs-12">-->
+                <!--<a href="#/owner/123/restaurant/123/menu" class="btn btn-primary  btn-block">Cancel</a>-->
+            <!--</div>-->
         </div>
     </div>
 
@@ -50,7 +50,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/user/123" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/{{model.userId}}" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

@@ -2,17 +2,40 @@
     angular.module('ProjectMaker')
         .controller('userRegisterController', userRegisterController);
 
-    function userRegisterController ($location, userService, $timeout, $routeParams) {
+    function userRegisterController ($location, userService,addressAPISearchService, $timeout, $routeParams) {
         var vm = this;
          var role=$routeParams['role'];
 
         var restaurantId = $routeParams['rst'];
         vm.restaurantId = restaurantId;
 
-        vm.countries=['United States', 'Canada'];
+        vm.countries=['United States'];
+
         vm.createUser=createUser;
+        vm.loadAddressFromAPI=loadAddressFromAPI;
+        vm.populateCityAndStateIfDlSel=populateCityAndStateIfDlSel;
+        vm.states=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
+
         function init() {
         }init();
+
+
+        function loadAddressFromAPI() {
+
+            if(vm.user.address){
+                var formattedSpace=vm.user.address.replace(/\s+/g,'+');
+                var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
+
+                var promise=addressAPISearchService.autoCompleteAddress(formatedSpaceAndPound);
+                promise.success(function (addr) {
+                    vm.addressFromAPI=addr.suggestions;
+
+                }).error(function (err) {
+                    vm.error=err;
+                })
+            }
+
+        }
 
 
         function createUser (user) {
@@ -60,6 +83,11 @@
                 errors.push(error);
             }
 
+            if(!user.state){
+                error="State is invalid";
+                errors.push(error);
+            }
+
 
             if(errors.length == 0){
 
@@ -82,6 +110,23 @@
 
         }
 
+
+        function populateCityAndStateIfDlSel() {
+
+            if (vm.addressFromAPI){
+                var cityAndState=vm.addressFromAPI[0].text.split(', ')[1].split(' ');
+                vm.user.city=cityAndState[0];
+                vm.user.state=cityAndState[1];
+
+            }
+
+            else{
+                vm.user.city='';
+                vm.user.state='';
+            }
+
+
+        }
 
 
         function createNewUser(user) {

@@ -9,6 +9,11 @@
         var restaurantId = $routeParams['rst'];
         var menu;
         vm.menu='';
+
+        vm.userId = userId;
+        vm.restaurantId = restaurantId;
+
+
         vm.createMenu = createMenu;
 
         function init() {

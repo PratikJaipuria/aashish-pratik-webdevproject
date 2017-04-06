@@ -103,9 +103,7 @@
                                placeholder="Verify Password"
                                required/>
                     </div>
-                </div>
 
-                <div class="row ">
                     <div class="form-group col-sm-4 col-xs-12 ">
                         <input ng-model="model.user.email"
                                type="email" class="form-control"
@@ -115,8 +113,9 @@
                                required/>
                     </div>
 
+                </div>
 
-
+                <div class="row ">
                     <div class="form-group col-sm-4 col-xs-12 ">
                         <input ng-model="model.user.phone"
                                type="text" class="form-control"
@@ -127,36 +126,18 @@
                                required/>
                     </div>
 
-                </div>
-
-
-
-                <div class="row">
-                    <div class="col-sm-4 col-xs-12 ">
-                        <div class="form-group ">
-                            <!--<label for="address"  class="wbdv-req-field">Address:</label>-->
-                            <textarea ng-model="model.user.address"
-                                      class="form-control"
-                                      id="address"
-                                      name="address"
-                                      row="5"
-                                      placeholder="Address" required></textarea>
-                        </div>
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <!--<label for="country"  class="wbdv-req-field">Country:</label>-->
+                        <select ng-model="model.user.country"
+                                id="country"
+                                name="country"
+                                class="form-control"
+                                ng-init="model.user.country = model.user.country||model.countries[0]"
+                                ng-options="option for option in model.countries">
+                        </select>
                     </div>
 
-                    <div class="form-group col-sm-3 col-xs-12 ">
-
-                        <input id="city"
-                               type="text"
-                               class="form-control"
-                               placeholder="City"
-                               ng-model="model.user.city"
-                               required/>
-
-                    </div>
-
-
-                    <div class="form-group col-sm-2 col-xs-12 ">
+                    <div class="form-group col-sm-4 col-xs-12 ">
                         <!--<label for="pin"  class="wbdv-req-field">PIN:</label>-->
                         <input ng-model="model.user.pin"
                                type="text" class="form-control"
@@ -166,15 +147,51 @@
                                required/>
                     </div>
 
-                    <div class="form-group col-sm-3 col-xs-12 ">
-                        <!--<label for="country"  class="wbdv-req-field">Country:</label>-->
-                        <select ng-model="model.user.country"
-                                id="country"
-                                name="country"
+                </div>
+
+
+
+                <div class="row">
+
+                    <div class="col-sm-4 col-xs-12 ">
+                        <div class="form-group ">
+                            <input    ng-model="model.user.address"
+                                      ng-change="model.loadAddressFromAPI()"
+                                      type="text"
+                                      list="addressList"
+                                      class="form-control"
+                                      id="address"
+                                      name="address"
+                                      placeholder="Address"
+                                      ng-blur="model.populateCityAndStateIfDlSel()"
+                                      required>
+                            <datalist id="addressList">
+                                <option ng-repeat="adr in model.addressFromAPI" value="{{adr.text}}">
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12 ">
+
+                        <input id="city"
+                               type="text"
+                               class="form-control"
+                               placeholder="City"
+                               ng-model="model.user.city"
+
+                               required/>
+
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <select id="state"
                                 class="form-control"
-                                ng-init="model.user.country = model.user.country||model.countries[0]"
-                                ng-options="option for option in model.countries">
+                                ng-model="model.user.state"
+                                ng-init="model.user.state = model.user.state || model.states[0]"
+                                ng-options="option for option in model.states">
+
                         </select>
+
                     </div>
                 </div>
             </form>

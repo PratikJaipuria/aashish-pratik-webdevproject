@@ -14,8 +14,8 @@
         vm.backPath='';
         vm.userId=$routeParams['uid'];
         vm.restaurantName=restaurantName;
-        vm.navigateToMenu=navigateToMenu;
-        // vm.cart.deliverAddress='';
+        vm.navigateToUserOrderPage=navigateToUserOrderPage;
+
         var CheckOutDetails;
         var calculatedBasket;
         var cart={
@@ -45,6 +45,7 @@
             vm.cart=calculatedBasket;
             vm.cart.userId=vm.userId;
 
+
         }
         init();
 
@@ -64,34 +65,23 @@
                 promise.success(function (order) {
                     outputMsg('SUCCESS','Your order has been successfully placed');
 
-                    navigateToMenu();
+                    navigateToUserOrderPage();
                 }).error(function (err) {
                     outputMsg("ERROR","We are unable to process your Order currently, sorry for inconvenience");
-                    navigateToMenu();
+                    navigateToRestaurantSearch();
 
                 })
             }).error(function (err) {
                 outputMsg("ERROR","Unable to fetch your details");
             })
-
-            // var promise=checkOutService.createOrder(cart);
-            // promise.success(function (order) {
-            //     outputMsg('SUCCESS','Your order has been successfully placed');
-            //
-            //     navigateToMenu();
-            // }).error(function (err) {
-            //     outputMsg("ERROR","We are unable to process your Order currently, sorry for inconvenience");
-            //     navigateToMenu();
-            //
-            // })
         }
 
-        function navigateToMenu() {
+        function navigateToUserOrderPage() {
             if (name && address){
-                $location.url("/user/"+vm.userId+"/searchResult/name/"+name+"/address/"+address+"/restaurant/"+restaurantId+"/"+restaurantName+"/menu");
+                $location.url("/user/"+vm.userId+"/orders");
             }
             else {
-                $location.url("/user/"+vm.userId+"/searchResult/address/"+address+"/restaurant/"+restaurantId+"/"+restaurantName+"/menu");
+                $location.url("/user/"+vm.userId+"/orders");
             }
         }
 
@@ -104,7 +94,7 @@
             }
 
 
-            $timeout(clearError, 5000);
+            $timeout(clearError, 10000);
         }
 
         function clearError() {

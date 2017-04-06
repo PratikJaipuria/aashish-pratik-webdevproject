@@ -1,10 +1,9 @@
 
-
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
 
         <div  class="navbar-text navbar-link pull-left">
-            <a href="#/owner/123/restaurant">
+            <a href="#/user/{{model.userId}}/restaurant">
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
             </a>
         </div>
@@ -15,27 +14,27 @@
 
 
 
-        <div  class="navbar-text navbar-link pull-right visible-xs" >
-            <a href="#/owner/123/restaurant/123/menu">
-                <span class="glyphicon glyphicon-menu-hamburger wbdv-text-clr-white" title="Menu"></span>
+        <div  class="navbar-brand navbar-link " >
+            <a ng-click="model.refresh()">
+                <span class="glyphicon glyphicon-refresh wbdv-text-clr-white" title="Menu"></span>
             </a>
         </div>
 
         <div  class="navbar-text navbar-link pull-right visible-xs" >
-            <a href="#/owner/123/restaurant/123/db">
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/db">
                 <i class="fa fa-motorcycle wbdv-text-clr-white" style="padding-right: 25px;" title="Delivery Boys" aria-hidden="true"></i>
 
             </a>
         </div>
 
+        <!--<div  class="navbar-text navbar-link pull-right hidden-xs">-->
+            <!--<a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu">-->
+                <!--<span class="wbdv-text-clr-white" title="Menu" >Menu</span>-->
+            <!--</a>-->
+        <!--</div>-->
         <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a href="#/owner/123/restaurant/123/menu">
-                <span class="wbdv-text-clr-white" title="Menu" >Menu</span>
-            </a>
-        </div>
-        <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a href="#/owner/123/restaurant/123/db">
-                <span class="wbdv-text-clr-white" title="Delivery Boys" style="padding-right: 25px;">Delivery Boys</span>
+            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/db">
+                <span class="wbdv-text-clr-white" title="Delivery Boys" style="padding-right: 25px;">Delivery Personnals</span>
             </a>
         </div>
 
@@ -48,7 +47,7 @@
 <div class="container pageBackground">
 
 
-    <div id="menu" class="blackContainer">
+    <div  class="blackContainerForTabs">
 
         <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
             {{model.error}}
@@ -56,100 +55,388 @@
         </div>
 
 
-        <div ng-repeat="order in model.orders" class="list-group prevent-overflow">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a  class="list-group-item"
-                        data-toggle="collapse"
-                        style="background-color: black; color: white" data-target="#{{order._id}}"
-                        data-parent="#menu">
-                        {{order.userFullName}}
-                        <span class="glyphicon glyphicon-envelope pull-right"></span></a>
-                </div>
-            </div>
+        <ul class="nav nav-pills nav-justified" style="color:white; background-color: black;">
+            <li><a data-target="#allOrders" data-toggle="tab" ng-click="model.refresh()">All Orders</a></li>
+            <li  class="active"> <a data-target="#ordersPending" data-toggle="tab" ng-click="model.refresh">Orders Pending</a></li>
+            <li><a data-target="#ordersScheduled" data-toggle="tab" ng-click="model.refresh()">Orders Scheduled</a></li>
+            <li><a data-target="#ordersDelivered" data-toggle="tab" ng-click="model.refresh()">Orders Delivered</a></li>
+        </ul>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">
-                    <div id="{{order._id}}" class="collapse wbdv-text-clr-white">
-                        <div class="list-group-item small"  style="background-color: black">
-                            <div class="row">
+        <div class="tab-content clearfix">
+            <div class="tab-pane" id="allOrders">
+                <div class="row  list-group wbdv-mar-top-15"  style="text-align: center">ALL ORDERS </div>
+                <div ng-repeat="order in model.orders" class=" prevent-overflow">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="list-group-item"
+                                data-toggle="collapse"
+                                style="background-color: black; color: white" data-target="#{{order._id}}"
+                                data-parent="#menu">
+                                {{order.userFullName}}
+                                <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+                        </div>
+                    </div>
 
-                                <div class="col-xs-12 col-sm-12 prevent-overflow">
-                                    <div class="row form-group"  style="border-bottom: double">
-                                        <div class="col-xs-5 col-sm-3 leftinfotext">OrderID :</div>
-                                        <div class="col-xs-7 col-sm-3 rightinfotext">{{order._id}}</div>
-                                        <div class="col-xs-5 col-sm-3 leftinfotext">Customer :</div>
-                                        <div class="col-xs-7 col-sm-3 rightinfotext">{{order.userFullName}}</div>
-                                        <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
-                                        <div class="col-xs-7 col-sm-3 rightinfotext">1234</div>
-                                        <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
-                                        <div class="col-xs-5 col-sm-3 rightinfotext"
-                                             style="background-color: white; color: black; font-size: 20px; text-align:center">{{order.totalAmount}}</div>
-                                        <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
-                                        <div class="col-xs-7 col-sm-9 rightinfotext">{{order.address}}</div>
-                                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div id="{{order._id}}" class="collapse wbdv-text-clr-white">
+                                <div class=" small"  style="background-color: black">
+                                    <div class="row">
 
-                                    <div class="row wbdv-mar-top-5 form-group" style="background-color: #888888;">
-                                        <div class="col-xs-12 col-sm-12 leftinfotext">Orders :</div>
+                                        <div class="col-xs-12 col-sm-12 prevent-overflow">
+                                            <div class="row form-group"  style="border-bottom: double">
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">OrderID :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order._id}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Customer :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order.userFullName}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
+                                                <div class="col-xs-5 col-sm-3 rightinfotext"
+                                                     style="background-color: green; color: black; font-size: 20px; text-align:center">{{order.totalAmount}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
+                                                <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
+                                            </div>
 
-                                        <div class="col-xs-12 col-sm-12 leftinfotext" ng-repeat="item in order.items">
-                                            <div class="row" style="border-bottom: dotted; ">
-                                                <div class="col-xs-5 col-sm-2">
-                                                    item:
-                                                </div>
-                                                <div class="col-xs-7 col-sm-2">
-                                                    {{item.name}}
-                                                </div>
-                                                <div class="col-xs-5 col-sm-2">
-                                                    unitPrice :
-                                                </div>
-                                                <div class="col-xs-7 col-sm-2">
-                                                    {{item.basePrice}}
-                                                </div>
-                                                <div class="col-xs-5 col-sm-2">
-                                                    Units:
-                                                </div>
-                                                <div class="col-xs-7 col-sm-2">
-                                                    {{item.totCount}}
+                                            <div class="row wbdv-mar-top-5 form-group prevent-overflow" style="background-color: #888888;">
+                                                <div class="col-xs-12 col-sm-12 leftinfotext">Orders :</div>
+
+                                                <div class="col-xs-12 col-sm-12 leftinfotext" ng-repeat="item in order.items">
+                                                    <div class="row" style="border-bottom: dotted; ">
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            item:
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.name}}
+                                                        </div>
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            unitPrice :
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.basePrice}}
+                                                        </div>
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            Units:
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.totCount}}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="row wbdv-mar-top-5 wbdv-mar-bottom-10">
+                                                <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
+                                                    <select
+                                                            id="delBoy"
+                                                            name="delBoy"
+                                                            ng-model="order.dbName"
+                                                            class="form-control"
+                                                            ng-init="order.dbName = order.dbName||model.db[0]"
+                                                            ng-options="option for option in model.db">
+                                                    </select>
+                                                </div>
+
+                                                <div ng-show="order.delivered==false" class=" col-xs-6 col-sm-2 wbdv-mar-top-3">
+                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>
+                                                </div>
+                                            </div>
+
+
                                         </div>
+
                                     </div>
-                                    <div class="row wbdv-mar-top-5 wbdv-mar-bottom-10">
-                                        <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
-                                            <select ng-model="order.dbName"
-                                                    id="country"
-                                                    name="country"
-                                                    class="form-control"
-                                                    style="vertical-align: middle; "
-                                                    ng-init="order.dbName = order.dbName||model.db[0]"
-                                                    ng-options="option for option in model.db">
-                                            </select>
-                                        </div>
-
-                                        <div ng-show="order.delivered==false" class=" col-xs-6 col-sm-2 wbdv-mar-top-3">
-                                            <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>
-                                        </div>
-                                    </div>
-
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+                <div class="tab-pane  active" id="ordersPending">
+                    <div class="row  list-group wbdv-mar-top-15"  style="text-align: center">ORDERS PENDING TO BE SCHEDULED</div>
+                    <div ng-repeat="order in model.notScheduled" class=" prevent-overflow">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="list-group-item"
+                                     data-toggle="collapse"
+                                     style="background-color: black; color: white" data-target="#pending{{order._id}}"
+                                     data-parent="#menu">
+                                    {{order.userFullName}}
+                                    <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <div id="{{'pending'+order._id}}" class="collapse wbdv-text-clr-white">
+                                    <div class=" small"  style="background-color: black">
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-12 prevent-overflow">
+                                                <div class="row form-group"  style="border-bottom: double">
+                                                    <div class="col-xs-5 col-sm-3 leftinfotext">OrderID :</div>
+                                                    <div class="col-xs-7 col-sm-3 rightinfotext">{{order._id}}</div>
+                                                    <div class="col-xs-5 col-sm-3 leftinfotext">Customer :</div>
+                                                    <div class="col-xs-7 col-sm-3 rightinfotext">{{order.userFullName}}</div>
+                                                    <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
+                                                    <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
+                                                    <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
+                                                    <div class="col-xs-5 col-sm-3 rightinfotext"
+                                                         style="background-color: green; color: black; font-size: 20px; text-align:center">{{order.totalAmount}}</div>
+                                                    <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
+                                                    <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
+                                                </div>
+
+                                                <div class="row wbdv-mar-top-5 form-group prevent-overflow" style="background-color: #888888;">
+                                                    <div class="col-xs-12 col-sm-12 leftinfotext">Orders :</div>
+
+                                                    <div class="col-xs-12 col-sm-12 leftinfotext" ng-repeat="item in order.items">
+                                                        <div class="row" style="border-bottom: dotted; ">
+                                                            <div class="col-xs-5 col-sm-2">
+                                                                item:
+                                                            </div>
+                                                            <div class="col-xs-7 col-sm-2">
+                                                                {{item.name}}
+                                                            </div>
+                                                            <div class="col-xs-5 col-sm-2">
+                                                                unitPrice :
+                                                            </div>
+                                                            <div class="col-xs-7 col-sm-2">
+                                                                {{item.basePrice}}
+                                                            </div>
+                                                            <div class="col-xs-5 col-sm-2">
+                                                                Units:
+                                                            </div>
+                                                            <div class="col-xs-7 col-sm-2">
+                                                                {{item.totCount}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row wbdv-mar-top-5 wbdv-mar-bottom-10">
+                                                    <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
+                                                        <select
+                                                                id="pendingdelBoy"
+                                                                name="delBoy"
+                                                                ng-model="order.dbName"
+                                                                class="form-control"
+                                                                ng-init="order.dbName = order.dbName||model.db[0]"
+                                                                ng-options="option for option in model.db">
+                                                        </select>
+                                                    </div>
+
+                                                    <div ng-show="order.delivered==false" class=" col-xs-6 col-sm-2 wbdv-mar-top-3">
+                                                        <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="tab-pane" id="ordersScheduled">
+                <div class="row  list-group wbdv-mar-top-15"  style="text-align: center">ORDERS SCHEDULED</div>
+                <div ng-repeat="order in model.scheduled" class=" prevent-overflow">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="list-group-item"
+                                 data-toggle="collapse"
+                                 style="background-color: black; color: white" data-target="#scheduled{{order._id}}"
+                                 data-parent="#menu">
+                                {{order.userFullName}}
+                                <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div id="{{'scheduled'+order._id}}" class="collapse wbdv-text-clr-white">
+                                <div class=" small"  style="background-color: black">
+                                    <div class="row">
+
+                                        <div class="col-xs-12 col-sm-12 prevent-overflow">
+                                            <div class="row form-group"  style="border-bottom: double">
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">OrderID :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order._id}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Customer :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order.userFullName}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
+                                                <div class="col-xs-5 col-sm-3 rightinfotext"
+                                                     style="background-color: green; color: black; font-size: 20px; text-align:center">{{order.totalAmount}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
+                                                <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
+                                            </div>
+
+                                            <div class="row wbdv-mar-top-5 form-group prevent-overflow" style="background-color: #888888;">
+                                                <div class="col-xs-12 col-sm-12 leftinfotext">Orders :</div>
+
+                                                <div class="col-xs-12 col-sm-12 leftinfotext" ng-repeat="item in order.items">
+                                                    <div class="row" style="border-bottom: dotted; ">
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            item:
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.name}}
+                                                        </div>
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            unitPrice :
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.basePrice}}
+                                                        </div>
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            Units:
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.totCount}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row wbdv-mar-top-5 wbdv-mar-bottom-10">
+                                                <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
+                                                    <select
+                                                            id="scheduleddelBoy"
+                                                            name="delBoy"
+                                                            ng-model="order.dbName"
+                                                            class="form-control"
+                                                            ng-init="order.dbName = order.dbName||model.db[0]"
+                                                            ng-options="option for option in model.db">
+                                                    </select>
+                                                </div>
+
+                                                <div ng-show="order.delivered==false" class=" col-xs-6 col-sm-2 wbdv-mar-top-3">
+                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="ordersDelivered">
+                <div class="row  list-group wbdv-mar-top-15"  style="text-align: center">ORDERS DELIVERED</div>
+                <div ng-repeat="order in model.delivered" class=" prevent-overflow">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="list-group-item"
+                                 data-toggle="collapse"
+                                 style="background-color: black; color: white" data-target="#delivered{{order._id}}"
+                                 data-parent="#menu">
+                                {{order.userFullName}}
+                                <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div id="{{'delivered'+order._id}}" class="collapse wbdv-text-clr-white">
+                                <div class=" small"  style="background-color: black">
+                                    <div class="row">
+
+                                        <div class="col-xs-12 col-sm-12 prevent-overflow">
+                                            <div class="row form-group"  style="border-bottom: double">
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">OrderID :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order._id}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Customer :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order.userFullName}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
+                                                <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
+                                                <div class="col-xs-5 col-sm-3 rightinfotext"
+                                                     style="background-color: green; color: black; font-size: 20px; text-align:center">{{order.totalAmount}}</div>
+                                                <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
+                                                <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
+                                            </div>
+
+                                            <div class="row wbdv-mar-top-5 form-group prevent-overflow" style="background-color: #888888;">
+                                                <div class="col-xs-12 col-sm-12 leftinfotext">Orders :</div>
+
+                                                <div class="col-xs-12 col-sm-12 leftinfotext" ng-repeat="item in order.items">
+                                                    <div class="row" style="border-bottom: dotted; ">
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            item:
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.name}}
+                                                        </div>
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            unitPrice :
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.basePrice}}
+                                                        </div>
+                                                        <div class="col-xs-5 col-sm-2">
+                                                            Units:
+                                                        </div>
+                                                        <div class="col-xs-7 col-sm-2">
+                                                            {{item.totCount}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row wbdv-mar-top-5 wbdv-mar-bottom-10">
+                                                <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
+                                                    <select
+                                                            id="delivereddelBoy"
+                                                            name="delBoy"
+                                                            ng-model="order.dbName"
+                                                            class="form-control"
+                                                            ng-init="order.dbName = order.dbName||model.db[0]"
+                                                            ng-options="option for option in model.db">
+                                                    </select>
+                                                </div>
+
+                                                <div ng-show="order.delivered==false" class=" col-xs-6 col-sm-2 wbdv-mar-top-3">
+                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign Delivery Boy</a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+
         </div>
+
     </div>
 
-</div>
+
 
 <nav class="navbar  navbar-fixed-bottom bg-primary" >
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/owner/123" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/{{model.userId}}" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

@@ -103,35 +103,52 @@
                     <div class="col-sm-4 col-xs-12">
                         <div class="form-group">
                             <label for="address"  class="wbdv-req-field">Address:</label>
-                            <textarea rows="5" ng-model="model.restaurant.address"
-                                      type="text" class="form-control"
+                            <input    ng-model="model.restaurant.streetAddress"
+                                      ng-change="model.loadAddressFromAPI()"
+                                      type="text"
+                                      list="addressList"
+                                      class="form-control"
                                       id="address"
                                       name="address"
-
                                       placeholder="Address"
-                                      required></textarea>
+                                      ng-blur="model.populateCityAndStateIfDlSel()"
+                                      required>
+                            <datalist id="addressList">
+                                <option ng-repeat="adr in model.addressFromAPI" value="{{adr.text}}">
+                            </datalist>
                         </div>
                     </div>
 
                     <div class="col-sm-8 col-xs-12">
                         <div class="row">
-                            <div class="col-sm-6 col-xs-12">
+
+                            <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="city" class="wbdv-req-field" style="color: white;">City:</label>
-                                    <select ng-model="model.restaurant.city"
-                                            id="city"
-                                            name="city"
-                                            class="form-control"
-                                            placeholder="Restaurant City"
-                                            style="display: block;"
-                                            ng-init="model.restaurant.city=model.restaurant.city||model.city[0]"
-                                            ng-options="option for option in model.city">
-
-                                    </select>
+                                    <input id="city"
+                                           type="text"
+                                           name="city"
+                                           class="form-control"
+                                           placeholder="Restaurant City"
+                                           ng-model="model.restaurant.city"
+                                           style="display: block;"
+                                           required/>
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 col-xs-12">
+
+                            <div class="col-sm-4 col-xs-12">
+                                <label for="state" class="wbdv-req-field" style="color: white;">State:</label>
+                                <select id="state"
+                                        name="state"
+                                        class="form-control"
+                                        ng-model="model.restaurant.state"
+                                        ng-init="model.restaurant.state = model.restaurant.state || model.states[0]"
+                                        ng-options="option for option in model.states">
+                                </select>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="country" class="wbdv-req-field" style="color: white;">Country:</label>
                                     <select ng-model="model.restaurant.country"
@@ -146,52 +163,62 @@
                                     </select>
                                 </div>
                             </div>
-
-                        </div>
-
-                        <div class="row wbdv-mar-top-5">
-
-                            <div class="col-sm-6 col-xs-12 ">
-                                <div class="form-group">
-                                    <label for="del" class="wbdv-req-field" style="color: white;">Delivery Available</label>
-                                    <select ng-model="model.restaurant.delivery"
-                                            id="del"
-                                            name="del"
-                                            class="form-control"
-                                            style="display: block;"
-                                            ng-init="model.restaurant.delivery=model.restaurant.delivery||model.booleanVal[0]"
-                                            ng-options="option for option in model.booleanVal">
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="del" class="wbdv-req-field" style="color: white;">Pickup Available</label>
-                                    <select ng-model="model.restaurant.pickup"
-                                            id="pickup"
-                                            name="pickup"
-                                            class="form-control"
-                                            style="display: block"
-                                            ng-init="model.restaurant.pickup=model.restaurant.pickup||model.booleanVal[0]"
-                                            ng-options="option for option in model.booleanVal">
-                                    </select>
-                                </div>
-                            </div>
-
-
-
                         </div>
 
                     </div>
-
                 </div>
+
+                <div class="row">
+
+
+                        <div class="col-sm-4 col-xs-12 ">
+                            <div class="form-group">
+                                <label for="del" class="wbdv-req-field" style="color: white;">Delivery Available</label>
+                                <select ng-model="model.restaurant.offersDelivery"
+                                        id="del"
+                                        name="del"
+                                        class="form-control"
+                                        style="display: block;"
+                                        ng-init="model.restaurant.offersDelivery=model.restaurant.offersDelivery||model.booleanVal[0]"
+                                        ng-options="option for option in model.booleanVal">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="del" class="wbdv-req-field" style="color: white;">Pickup Available</label>
+                                <select ng-model="model.restaurant.offersPickup"
+                                        id="pickup"
+                                        name="pickup"
+                                        class="form-control"
+                                        style="display: block"
+                                        ng-init="model.restaurant.offersPickup=model.restaurant.offersPickup||model.booleanVal[0]"
+                                        ng-options="option for option in model.booleanVal">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="restURL">Restaurant URL</label>
+                                <input ng-model="model.restaurant.url" id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
+                            </div>
+                        </div>
+                    </div>
+
+
 
 
                 <div class=" row wbdv-mar-top-5">
                     <div class="col-xs-12 col-sm-4 pull-left">
                         <div class="form-group">
+
+                            <div ng-if="model.file">
+                                <img style="width: 100px; height: 100px;" ngf-thumbnail="model.file || '../../../../../resources/thumb.jpg'"/>
+                            </div>
+
                             <label for="uploadFile">Logo</label>
                             <input type="url" placeholder="URL for logo image" class="form-control" ng-model="model.restaurant.logoUrl"/>
                             <input
@@ -211,20 +238,10 @@
                     </div>
 
 
-                    <div class="col-xs-4 col-sm-4 pull-left" ng-if="model.file">
-                        <div class="form-group">
-                            <img style="width: 100px; height: 100px;" ngf-thumbnail="model.file || '../../../../../resources/thumb.jpg'"/>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4 pull-right">
-                        <div class="form-group">
-                            <label for="restURL">Restaurant URL</label>
-                            <input ng-model="model.restaurant.url" id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
-                        </div>
-                    </div>
-
                 </div>
+
+
+
 
 
                 <div data-toggle="collapse" data-target="#workingDays">
@@ -274,6 +291,7 @@
 
 
                             <li class="list-group-item" ng-repeat="(key, day) in model.restaurant.hours" style="padding-right: 0px; padding-left: 2px; background-color: black">
+
                                 <div class="row">
                                     <div class="col-xs-2" style="color: white">
 
@@ -282,12 +300,10 @@
                                     </div>
 
 
-
                                     <div class="col-xs-2">
                                         <select ng-model="day.stH"
                                                 id="stH"
                                                 name="stH"
-
                                                 style="display: block;padding-left: 10px; text-align-last: center; color: black"
                                                 ng-init="day.stH = day[1]||model.hours[0]"
                                                 ng-options="option for option in model.hours">
@@ -333,21 +349,21 @@
 
 
 
-                <!--<div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">-->
-                <!--<div class="col-sm-12 col-xs-12">-->
-                <!--<a class="btn btn-block btn-primary add_field_button">Add Speciality</a>-->
-                <!--</div>-->
-                <!--</div>-->
+                <div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">
+                <div class="col-sm-12 col-xs-12">
+                <a class="btn btn-block btn-primary add_field_button">Add Speciality</a>
+                </div>
+                </div>
 
-                <!--<div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">-->
-                <!--</div>-->
+                <div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">
+                </div>
 
                 <div class="row wbdv-mar-top-15" >
 
                     <a  ng-click="model.addNewSpeciality()">
                         <div class="col-sm-12 col-xs-12" style="color: white">
-                            <label for="specialities" class="wbdv-mar-top-15" style="font-size: larger">
-                                <i><u>Click ME to Add your restaurant specialities</u></i>
+                            <i><u>Edit Specilaities</u></i>
+                            <label for="specialities" class="glyphicon glyphicon-plus-sign wbdv-mar-top-15 wbdv-req-field" style="font-size: larger">
                             </label>
                         </div>
                     </a>
@@ -357,9 +373,9 @@
 
                 <div class="row" id="specialities">
                     <div class="pull-left" style="margin-right:5px;" ng-repeat="special in model.speciality">
-                        <input class="wbdv-mar-top-3" type="text" style="color:black; height: 35px;" ng-model="special.value"/>
+                        <input class="wbdv-mar-top-3" type="text" style="color:black; height: 35px; text-align: center" ng-model="special.value"/>
                         <a ng-click="model.deleteSpeciality(special)">
-                            <span class="glyphicon glyphicon-remove wbdv-speciality-remove" style="color: red"></span>
+                            <span class="glyphicon glyphicon-remove-sign wbdv-speciality-remove" style="color: red"></span>
                         </a>
                     </div>
                 </div>

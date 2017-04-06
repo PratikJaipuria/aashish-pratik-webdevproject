@@ -16,6 +16,7 @@ module.exports=function(){
         deliverAddress: [String],
         dateCreated: {type: Date, default: Date.now},
         city: String,
+        state: String,
         country: String,
         pin:String,
         OrderId: [{type: mongoose.Schema.Types.ObjectId, ref: 'OrderModel'}],

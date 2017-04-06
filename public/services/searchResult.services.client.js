@@ -8,7 +8,8 @@
 
         var api = {
 
-            "searchRestaurant":searchRestaurant
+            "searchRestaurant":searchRestaurant,
+
         };
 
         return api;
@@ -28,11 +29,14 @@
             }
             else{
 
-                return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token=6fb883f6655311b6&method=both&street-address='+ formattedRestAdd);
+                 return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token=6fb883f6655311b6&method=both&street-address='+ formattedRestAdd);
             }
 
 
         }
+
+
+
    }
 
 })();

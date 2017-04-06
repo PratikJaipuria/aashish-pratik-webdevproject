@@ -6,54 +6,99 @@
     function deliveryPersonnalOrderController (orderTrackService,userService, $location, $routeParams, $timeout) {
         var vm = this;
         var userId=$routeParams['uid'];
-
+        var deliveredOrders=[];
+        var unDeliveredOrders=[];
 
         vm.orderDelivered=orderDelivered;
         vm.enableButton=enableButton;
+        vm.refresh=refresh;
+        vm.userId = userId;
+
+
+
         function init() {
+            vm.orders=[];
+            vm.deliveredOrders=[];
+            vm.unDeliveredOrders=[];
+            deliveredOrders=[];
+            unDeliveredOrders=[];
+
            var promise= userService.getAllOrdersForThisDeliveryBoy(userId);
             promise.success(function (userAndorders) {
                     vm.orders=userAndorders.OrderId;
-                    console.log("Orders for this guy:  ",vm.orders);
+
+                    for(var o in vm.orders){
+                        if(vm.orders[o].delivered){
+                            deliveredOrders.push(vm.orders[o]);
+
+                        }
+
+                        else{
+                            unDeliveredOrders.push(vm.orders[o]);
+                        }
+                    }
+
+                    vm.deliveredOrders=deliveredOrders;
+                    vm.unDeliveredOrders=unDeliveredOrders;
+
             }).error(function (err) {
-                vm.error="Unable to fetch your orders";
+                throwError("Unable to fetch your orders");
             });
         }
         init();
 
-        function enableButton (orderId,order) {
+        function enableButton (orderId,order, prefixToID) {
 
             if (order.delivered==false){
-                $('#delivery-' + orderId).bootstrapToggle('on');
+                $(prefixToID + orderId).bootstrapToggle('on');
              }
              else {
-                $('#delivery-' + orderId).bootstrapToggle('off').bootstrapToggle('disable');
+                $(prefixToID + orderId).bootstrapToggle('off').bootstrapToggle('disable');
             }
 
 
 
         }
         
-        function orderDelivered (orderId, order) {
+        function orderDelivered (orderId, order, prefixToOrderId) {
             console.log(orderId);
 
 
             var promise=orderTrackService.orderedDelivered(order);
             promise.success(function (res) {
-                order.delivered=true;
-                $('#delivery-' + orderId).bootstrapToggle('off').bootstrapToggle('disable');
+
+                $(prefixToOrderId + orderId).bootstrapToggle('off').bootstrapToggle('disable');
+                refresh();
+
 
             }).error(function (err) {
-                vm.error="Unable to mark the order as delivered";
+                throwError("Unable to mark the order as delivered");
             });
 
 
-            console.log( vm.orders);
 
 
 
 
         }
+
+        function refresh() {
+
+            init();
+        }
+
+        function throwError(errorMsg){
+            vm.error=errorMsg;
+
+
+            $timeout(clearError, 10000);
+        }
+
+        function clearError() {
+            vm.error='';
+        }
+
+
         
     }
 })();

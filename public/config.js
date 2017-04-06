@@ -98,13 +98,13 @@
 
 
             .when("/searchResult/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl:"views/order/templates/user.checkout.html",
-                controller: "checkOutController",
+                templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
+                controller: "restaurantSearchMenuController",
                 controllerAs: "model"})
 
             .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl:"views/order/templates/user.checkout.html",
-                controller: "checkOutController",
+                templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
+                controller: "restaurantSearchMenuController",
                 controllerAs: "model"})
 
 
@@ -217,7 +217,7 @@
                 templateUrl: "views/users/templates/userRegister.html",
                 controller: "deliveryBoyRegisterController",
                 controllerAs: "model"
-            })
+           })
 
             //change this to profile standard path
             .when("/user/:uid/restaurant/:rst/editdb/:dbid",{
@@ -226,13 +226,15 @@
                 controller: "deliveryBoyProfileController",
                 controllerAs: "model"
             })
-            //
-            // .when("/db/:uid",{
-            //     ///deliveryPersonnal/:db
-            //     templateUrl: "views/deliveryBoy/templates/deliveryPersonnalProfile.html"
-            //     // controller: "restaurantEdit",
-            //     // controllerAs: "model"
-            // })
+
+            .when("/user/:uid/orders",{
+
+                templateUrl: "views/users/templates/user.order.view.html",
+                controller: "userOrderController",
+                controllerAs: "model"
+            })
+
+
 
             .when("/user/:uid/dborders",{
                 ///deliveryPersonnal/:db

@@ -119,28 +119,49 @@
                     <div class="col-sm-4 col-xs-12 ">
                         <div class="form-group ">
                             <label for="address"  class="wbdv-req-field">Address:</label>
-                            <textarea ng-model="model.user.address"
+                            <input ng-model="model.user.address"
+                                   ng-change="model.loadAddressFromAPI()"
                                       class="form-control"
+                                      type="text"
+                                      list="addressList"
                                       id="address"
                                       name="address"
-                                      row="5"
-                                      placeholder="Address" required></textarea>
+                                      ng-blur="model.populateCityAndStateIfDlSel()"
+                                      placeholder="Address" required>
+                                      <datalist id="addressList">
+                                            <option ng-repeat="adr in model.addressFromAPI" value="{{adr.text}}">
+                                      </datalist>
                         </div>
                     </div>
 
+
+
+
+
+
+
+
                     <div class="form-group col-sm-3 col-xs-12">
                         <label for="city"  class="wbdv-req-field">City:</label>
+                        <input id="city"
+                               name="city"
+                               type="text"
+                               class="form-control"
+                               placeholder="City"
+                               ng-model="model.user.city"
 
-                        <select ng-model="model.user.city"
-                                id="city"
-                                name="city"
-                                class="form-control" placeholder="Restaurant City"
-                                style="display: block;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                               required/>
+                    </div>
+
+                    <div class="form-group col-sm-4 col-xs-12 ">
+                        <select id="state"
+                                class="form-control"
+                                ng-model="model.user.state"
+                                ng-init="model.user.state = model.user.state || model.states[0]"
+                                ng-options="option for option in model.states">
+
                         </select>
+
                     </div>
 
 

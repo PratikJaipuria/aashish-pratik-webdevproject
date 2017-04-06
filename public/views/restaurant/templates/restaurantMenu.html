@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top bg-primary">
+<nav class="navbar navbar-fixed-top bg-primary" xmlns="http://www.w3.org/1999/html">
     <div class="container-fluid">
 
         <div class="navbar-text pull-right visible-xs">
@@ -17,7 +17,7 @@
 
 
         <div class="navbar-text pull-left wbdv-mar-left-0">
-            <a href="#/user/123/restaurant/123/order">
+            <a href="#/user/{{model.userId}}/restaurant">
                     <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
             </a>
         </div>
@@ -30,7 +30,7 @@
 
 <div class="container pageBackground">
     <div class="blackContainer">
-        <div class="contentContainer">
+        <div class="contentContainer prevent-overflow">
             <ul id="ownerRestaurantsRegistered" class="list-group">
                 <li class="list-group-item"  style="color: black; background-color: lightslategray; margin-bottom: 5px;">
                     <div class="row">
@@ -89,22 +89,21 @@
                                 </div>
                             </li>
                         </ul>
-
                     </div>
                 </li>
+            </ul>
         </div>
     </div>
-
-
-
-
 </div>
+
+
+
 
 
 <nav class="navbar navbar-fixed-bottom bg-primary">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/user/123">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user wbdv-text-clr-white"></span>
             </a>
         </div>
